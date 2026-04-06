@@ -79,7 +79,7 @@ public class IOManager : GenericSingleton<IOManager>
         {
             string json = JsonUtility.ToJson(mAudioSettings);
             File.WriteAllText(_saveAudioSettingsFile, json);
-            Debug.Log("File di salvataggio Audio Settings è stato scritto in: " + _saveAudioSettingsFile);
+            //Debug.Log("File di salvataggio Audio Settings è stato scritto in: " + _saveAudioSettingsFile);
             return true;
         }
         catch (System.Exception e)

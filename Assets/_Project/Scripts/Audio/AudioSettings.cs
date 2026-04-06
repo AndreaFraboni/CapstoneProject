@@ -76,7 +76,7 @@ public class AudioSettings : MonoBehaviour
         }
         else
         {
-            Debug.Log("ERROR AUDIO SETTINGS NOT SAVED !!!");
+            Debug.LogError("ERROR AUDIO SETTINGS NOT SAVED !!!");
         }
     }
 }
