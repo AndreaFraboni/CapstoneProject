@@ -56,7 +56,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.42501405
+        functionName: AE_FootStepSfx
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 77fcb664c3aaa1b45aa7ec19117708b1,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.921184
+        functionName: AE_FootStepSfx
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 77fcb664c3aaa1b45aa7ec19117708b1,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
