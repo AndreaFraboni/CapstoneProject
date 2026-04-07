@@ -27,6 +27,7 @@ public class GameUIManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.StopAllAudioSource();
         if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
     }
 
@@ -52,6 +53,8 @@ public class GameUIManager : MonoBehaviour
 
     public void Pause()
     {
+        AudioManager.Instance.StopAllAudioSource();
+        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemePauseMenu");
         pauseMenu.SetActive(true);
         Time.timeScale = 0.0f;
         isPaused = true;
@@ -59,6 +62,8 @@ public class GameUIManager : MonoBehaviour
 
     public void Resume()
     {
+        AudioManager.Instance.StopAllAudioSource();
+        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
         pauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
         isPaused = false;

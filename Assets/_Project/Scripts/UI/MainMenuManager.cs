@@ -8,10 +8,8 @@ public class MainMenuManager : MonoBehaviour
         LoadAudioSettings();
         if (AudioManager.Instance != null)
         {
-            if (AudioManager.Instance.musicSource.clip == null)
-            {
-                AudioManager.Instance.PlayMusic("ThemeMenu");
-            }
+            AudioManager.Instance.StopAllAudioSource();
+            AudioManager.Instance.PlayMusic("ThemeMenu");
         }
     }
 

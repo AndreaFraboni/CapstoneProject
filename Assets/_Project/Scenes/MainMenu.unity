@@ -3461,7 +3461,11 @@ MonoBehaviour:
   _mixer: {fileID: 24100000, guid: a0dbfb78b03bf1b49863419e58b5dcc3, type: 2}
   musicSounds:
   - name: ThemeMenu
-    clip: {fileID: 8300000, guid: 69902a5bc0a3c994a9eeb8aa1b463b71, type: 3}
+    clip: {fileID: 8300000, guid: d05cc4a1faf6df744aa0a2e706fe6afb, type: 3}
+  - name: ThemePauseMenu
+    clip: {fileID: 8300000, guid: de6b0e75432c64349bb5ef9ddc7e5b1e, type: 3}
+  - name: ThemeGame
+    clip: {fileID: 8300000, guid: b727aa3423ae6f04c9e7c59cffb0e8e2, type: 3}
   sfxSounds:
   - name: MouseClickSound
     clip: {fileID: 8300000, guid: 2639010a0f34a7d409a1280880bea488, type: 3}

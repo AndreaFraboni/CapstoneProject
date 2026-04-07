@@ -35,14 +35,16 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.started) return;
 
-        _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-        if (Physics.Raycast(_ray, out hit))
+        if (!GameUIManager.Instance.isPaused)
         {
-            _walking = true;
-            _running = false;
-            _meshAgent.speed = _walkingSpeed;
-            _meshAgent.SetDestination(hit.point);
+            _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(_ray, out hit))
+            {
+                _walking = true;
+                _running = false;
+                _meshAgent.speed = _walkingSpeed;
+                _meshAgent.SetDestination(hit.point);
+            }
         }
     }
 
@@ -50,14 +52,16 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.performed) return;
 
-        _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-        if (Physics.Raycast(_ray, out hit))
+        if (!GameUIManager.Instance.isPaused)
         {
-            _running = true;
-            _walking = false;
-            _meshAgent.speed = _runningSpeed;
-            _meshAgent.SetDestination(hit.point);
+            _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(_ray, out hit))
+            {
+                _running = true;
+                _walking = false;
+                _meshAgent.speed = _runningSpeed;
+                _meshAgent.SetDestination(hit.point);
+            }
         }
     }
 
