@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         if (_cam == null) _cam = Camera.main;
-        if (_meshAgent == null) _meshAgent = GetComponentInParent<NavMeshAgent>();
+        if (_meshAgent == null) _meshAgent = GetComponent<NavMeshAgent>();
         if (_anim == null) _anim = GetComponentInChildren<Animator>();
     }
 
