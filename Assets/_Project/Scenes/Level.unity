@@ -2479,17 +2479,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 832
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
+  m_MinimumDistanceFromTarget: 0.5
   m_AvoidObstacles: 1
-  m_DistanceLimit: 0
+  m_DistanceLimit: 10
   m_MinimumOcclusionTime: 0
   m_CameraRadius: 0.2
-  m_Strategy: 1
+  m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0.15
   m_Damping: 0.7
@@ -4397,7 +4397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1063193456}
   m_Layer: 0
-  m_Name: Turrets
+  m_Name: Towers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4416,7 +4416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2870321103780568133}
+  - {fileID: 2900024580900474111}
   - {fileID: 249862735351572834}
   - {fileID: 6390398841831561972}
   - {fileID: 1845107895529954753}
@@ -7887,7 +7887,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6324886852827020614}
-  m_Layer: 0
+  - component: {fileID: 6324886852827020615}
+  m_Layer: 9
   m_Name: Cannon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7920,7 +7921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5984905277579905039}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8125,22 +8126,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &323436343320887530
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1649681030497724399}
-  m_Layer: 0
-  m_Name: C_tower_1_rig1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &333223597633156566
 GameObject:
   m_ObjectHideFlags: 0
@@ -8290,7 +8275,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7574526571090004575}
-  m_Layer: 0
+  - component: {fileID: 7574526571090004576}
+  m_Layer: 9
   m_Name: Cannon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8435,6 +8421,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!208 &519210383851838542
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452055659113784615}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!222 &530079205316314235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8510,15 +8512,32 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 249862735351572834}
-  - component: {fileID: 593455327564575705}
-  m_Layer: 0
+  - component: {fileID: 593455327564575706}
+  - component: {fileID: 593455327564575707}
+  m_Layer: 9
   m_Name: cannon_tower_LVL_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &593455327564575705
+--- !u!208 &593455327564575706
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593455327564575704}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!65 &593455327564575707
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8537,23 +8556,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.7151947, y: 10.882042, z: 3.7038078}
-  m_Center: {x: 0.043388367, y: 4.94102, z: -0.015863419}
---- !u!4 &635902901283712819
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7574120410361147492}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.00000029943556, y: -0.000000018128265, z: -0.7110902, w: 0.7031008}
-  m_LocalPosition: {x: 0.000000015665535, y: 1.1873988, z: 0.00000013101968}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7735342062403269539}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.776535, y: 11.028511, z: 3.8026123}
+  m_Center: {x: 0.018569946, y: 5.4707985, z: -0.05504608}
 --- !u!1 &636777116491248247
 GameObject:
   m_ObjectHideFlags: 0
@@ -8878,6 +8882,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!4 &796135360437083321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513523693011777036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0056494926, y: 0.9999841, z: 0.0000004138786, w: 0.000000077837356}
+  m_LocalPosition: {x: 0.659995, y: -0.0024757008, z: 2.5638}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 913013887189776831}
+  m_Father: {fileID: 5386464996741171656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &821803656883668317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8992,22 +9012,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6717328406034884683}
   m_CullTransparentMesh: 1
---- !u!1 &860423114355785481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4206339066390861014}
-  m_Layer: 0
-  m_Name: Cannon_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &895438353877476863
 GameObject:
   m_ObjectHideFlags: 0
@@ -9104,6 +9108,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!4 &913013887189776831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551459551890956580}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000029943556, y: -0.000000018128265, z: -0.7110902, w: 0.7031008}
+  m_LocalPosition: {x: 0, y: 1.19, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 796135360437083321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &914054926722885901
 GameObject:
   m_ObjectHideFlags: 0
@@ -9285,7 +9304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1557893119119284128}
   - component: {fileID: 7685342903834496556}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_tower_LVL_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9626,8 +9645,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1845107895529954753}
-  - component: {fileID: 1845107895529954754}
-  m_Layer: 0
+  - component: {fileID: 1845107895529954755}
+  - component: {fileID: 1845107895529954756}
+  m_Layer: 9
   m_Name: cannon_tower_LVL_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9686,7 +9706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1798654841926894921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9892,23 +9912,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1649681030497724399
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323436343320887530}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4327694149320693583}
-  - {fileID: 7735342062403269539}
-  m_Father: {fileID: 2870321103780568133}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1651400746281582752
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10297,6 +10300,23 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.06565428, y: -4.188681, z: 0.013372421}
     m_Extent: {x: 3.5215578, y: 7.4702325, z: 3.54546}
   m_DirtyAABB: 0
+--- !u!1 &1782894174097889849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3015077840449646803}
+  - component: {fileID: 5613547847651099796}
+  m_Layer: 9
+  m_Name: Cannon_tower_LVL_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &1798654841926894921
 Transform:
   m_ObjectHideFlags: 0
@@ -10441,7 +10461,7 @@ Transform:
   m_GameObject: {fileID: 1355851177981675387}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.131889, y: -23.486399, z: -24.70314}
+  m_LocalPosition: {x: 15.131889, y: -23.4864, z: -24.70314}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10449,7 +10469,23 @@ Transform:
   - {fileID: 1735608132286323147}
   m_Father: {fileID: 1063193456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1845107895529954754
+--- !u!208 &1845107895529954755
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355851177981675387}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!65 &1845107895529954756
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10468,8 +10504,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1781425, y: 11.064782, z: 3.6925468}
-  m_Center: {x: 0.0007953644, y: 4.84965, z: -0.062044144}
+  m_Size: {x: 3.776535, y: 11.028416, z: 3.8026123}
+  m_Center: {x: 0.018569946, y: 5.470846, z: -0.05504608}
 --- !u!1 &1882066693203970947
 GameObject:
   m_ObjectHideFlags: 0
@@ -10747,7 +10783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5371955689158483524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: C_tower_2_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11024,13 +11060,30 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 187884474933978290}
-  m_Layer: 0
+  - component: {fileID: 2597342316930428429}
+  m_Layer: 9
   m_Name: Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!208 &2597342316930428429
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597342316930428428}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.005, y: 0.07, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.4, y: 0.01, z: 1}
+  m_TimeToStationary: 0.5
 --- !u!114 &2636243871653805983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11061,6 +11114,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!64 &2645276133236065769
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513523693011777036}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!4 &2661006887783536571
 Transform:
   m_ObjectHideFlags: 0
@@ -11318,23 +11393,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2.159}
   m_SizeDelta: {x: 0, y: 173.389}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &2870321103780568133
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3215215518031382271}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.434538, y: -23.486399, z: -19.324846}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 1649681030497724399}
-  - {fileID: 6908882472214018104}
-  m_Father: {fileID: 1063193456}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2882204613879459610
 GameObject:
   m_ObjectHideFlags: 0
@@ -11364,13 +11422,30 @@ GameObject:
   m_Component:
   - component: {fileID: 1735608132286323147}
   - component: {fileID: 5631938670949701763}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_tower_LVL_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &2900024580900474111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452055659113784615}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 14.434538, y: -23.486399, z: -19.39}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 5386464996741171656}
+  - {fileID: 3015077840449646803}
+  m_Father: {fileID: 1063193456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &2911302978852426589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11399,7 +11474,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7940302003064420428}
-  m_Layer: 0
+  - component: {fileID: 7940302003064420429}
+  m_Layer: 9
   m_Name: Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11495,6 +11571,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!4 &3015077840449646803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782894174097889849}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.723886e-15, y: 0.000000067281604, z: -0.0000000140792595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2900024580900474111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &3027957846278339631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11632,44 +11723,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3084594943452292101}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3215215518031382271
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2870321103780568133}
-  - component: {fileID: 3215215518031382272}
-  m_Layer: 0
-  m_Name: cannon_tower_LVL_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &3215215518031382272
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3215215518031382271}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.1781425, y: 10.882042, z: 3.6925468}
-  m_Center: {x: 0.0007953644, y: 4.94102, z: -0.062044144}
 --- !u!114 &3218096749487677092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12009,6 +12062,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0135492645, y: 0.011937965, z: 0.039999966}
   m_Center: {x: -0.00014244509, y: -0.0012850204, z: 0.020000035}
+--- !u!1 &3513523693011777036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 796135360437083321}
+  - component: {fileID: 2645276133236065769}
+  - component: {fileID: 3513523693011777037}
+  m_Layer: 9
+  m_Name: Door_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!208 &3513523693011777037
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513523693011777036}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.005, y: 0.07, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.4, y: 0.01, z: 1}
+  m_TimeToStationary: 0.5
 --- !u!114 &3532956920925887766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12115,6 +12202,22 @@ Transform:
   - {fileID: 5269466808116988786}
   m_Father: {fileID: 1063193456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3551459551890956580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913013887189776831}
+  m_Layer: 9
+  m_Name: Door_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!224 &3592815500064994349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12243,22 +12346,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &3620508795302399141
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7735342062403269539}
-  m_Layer: 0
-  m_Name: Door_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!223 &3640932405510190773
 Canvas:
   m_ObjectHideFlags: 0
@@ -12458,7 +12545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7930465300740589790}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12850,21 +12937,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4206339066390861014
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860423114355785481}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0.00000002247644, z: 0.000000084293724, w: 0.7071067}
-  m_LocalPosition: {x: 5.151435e-14, y: 1.735075, z: 1.5913867e-10}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4327694149320693583}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &4228324994969435952
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12973,22 +13045,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4327694149320693583
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7271565249948062767}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000043711395, y: 1, z: 0.00000025267778, w: 0.00000007549789}
-  m_LocalPosition: {x: -3.2892068e-15, y: 11.548903, z: 0.106813066}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4206339066390861014}
-  m_Father: {fileID: 1649681030497724399}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4357657202837691234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13092,13 +13148,30 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2661006887783536571}
-  m_Layer: 0
+  - component: {fileID: 4410549669233125267}
+  m_Layer: 9
   m_Name: Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!208 &4410549669233125267
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4410549669233125266}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.005, y: 0.07, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.4, y: 0.01, z: 1}
+  m_TimeToStationary: 0.5
 --- !u!1 &4413576448832724080
 GameObject:
   m_ObjectHideFlags: 0
@@ -13143,7 +13216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 171353519159811769}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13316,7 +13389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8543325108241001329}
   - component: {fileID: 3427453976869637762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_tower_LVL_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13545,6 +13618,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4731126761664122132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865720248326674145}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0.00000002247644, z: 0.000000084293724, w: 0.7071067}
+  m_LocalPosition: {x: 5.151435e-14, y: 1.735075, z: 1.5913867e-10}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6257242428656653768}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4735693460820483525
 Transform:
   m_ObjectHideFlags: 0
@@ -13577,7 +13665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1642640188112511487}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: C_tower_4_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13732,6 +13820,61 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4862909285754753971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5386464996741171656}
+  m_Layer: 9
+  m_Name: C_tower_1_rig1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &4865720248326674145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4731126761664122132}
+  - component: {fileID: 4865720248326674146}
+  m_Layer: 9
+  m_Name: Cannon_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &4865720248326674146
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4865720248326674145}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!222 &4905415563906598672
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14038,7 +14181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7410401138918398956}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14396,23 +14539,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &5320544912723136594
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6908882472214018104}
-  - component: {fileID: 7213659952992737940}
-  m_Layer: 0
-  m_Name: Cannon_tower_LVL_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!224 &5370700848519690500
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14467,6 +14593,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!4 &5386464996741171656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4862909285754753971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6257242428656653768}
+  - {fileID: 796135360437083321}
+  m_Father: {fileID: 2900024580900474111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5393198873939747388
 GameObject:
   m_ObjectHideFlags: 0
@@ -14799,6 +14942,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!137 &5613547847651099796
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782894174097889849}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 149060faa91a8c64594f4d3c7bb50100, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -2536733481753887828, guid: e11fdebce2ac9d545ba2bc1339191ca4, type: 3}
+  m_Bones:
+  - {fileID: 796135360437083321}
+  - {fileID: 913013887189776831}
+  - {fileID: 6257242428656653768}
+  - {fileID: 4731126761664122132}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 6257242428656653768}
+  m_AABB:
+    m_Center: {x: 0.059993505, y: -4.1842246, z: 0.11604738}
+    m_Extent: {x: 3.0895193, y: 7.465779, z: 3.0129254}
+  m_DirtyAABB: 0
 --- !u!222 &5629862231370308134
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15403,7 +15603,7 @@ Transform:
   m_GameObject: {fileID: 26598654135436932}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000004414136, y: -0.000000018930496, z: -0.7110902, w: 0.7031008}
-  m_LocalPosition: {x: 0.00000006129952, y: 1.1873989, z: 0.00000013101861}
+  m_LocalPosition: {x: 0, y: 1.19, z: 0.2}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15448,8 +15648,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390398841831561972}
-  - component: {fileID: 6390398841831561973}
-  m_Layer: 0
+  - component: {fileID: 6390398841831561974}
+  - component: {fileID: 6390398841831561975}
+  m_Layer: 9
   m_Name: cannon_tower_LVL_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15630,6 +15831,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117254110024185973}
   m_CullTransparentMesh: 1
+--- !u!4 &6257242428656653768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489008377423445472}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000043711395, y: 1, z: 0.00000025267778, w: 0.00000007549789}
+  m_LocalPosition: {x: -3.2892068e-15, y: 11.548903, z: 0.106813066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4731126761664122132}
+  m_Father: {fileID: 5386464996741171656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6324886852827020614
 Transform:
   m_ObjectHideFlags: 0
@@ -15645,6 +15862,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7410401138918398956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &6324886852827020615
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866046483968413}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!222 &6374802354644282481
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15670,7 +15909,7 @@ Transform:
   m_GameObject: {fileID: 6045116368708190286}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.636042, y: -23.486399, z: -23.545954}
+  m_LocalPosition: {x: 8.636042, y: -23.4864, z: -23.545954}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -15678,7 +15917,23 @@ Transform:
   - {fileID: 8543325108241001329}
   m_Father: {fileID: 1063193456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6390398841831561973
+--- !u!208 &6390398841831561974
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6045116368708190286}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!65 &6390398841831561975
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15697,8 +15952,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5200043, y: 11.513692, z: 4.0183105}
-  m_Center: {x: -0.030471802, y: 4.827167, z: 0.10083771}
+  m_Size: {x: 3.776535, y: 11.075083, z: 3.8026123}
+  m_Center: {x: 0.018569946, y: 5.4475126, z: -0.05504608}
 --- !u!1 &6401414726651725094
 GameObject:
   m_ObjectHideFlags: 0
@@ -16136,21 +16391,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &6908882472214018104
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320544912723136594}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.723886e-15, y: 0.000000067281604, z: -0.0000000140792595}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2870321103780568133}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &6915780586462613360
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16768,63 +17008,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!137 &7213659952992737940
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5320544912723136594}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 149060faa91a8c64594f4d3c7bb50100, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -2536733481753887828, guid: e11fdebce2ac9d545ba2bc1339191ca4, type: 3}
-  m_Bones:
-  - {fileID: 7735342062403269539}
-  - {fileID: 635902901283712819}
-  - {fileID: 4327694149320693583}
-  - {fileID: 4206339066390861014}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 4327694149320693583}
-  m_AABB:
-    m_Center: {x: 0.059993505, y: -4.1842246, z: 0.11604738}
-    m_Extent: {x: 3.0895193, y: 7.465779, z: 3.0129254}
-  m_DirtyAABB: 0
 --- !u!4 &7222027042202320571
 Transform:
   m_ObjectHideFlags: 0
@@ -16851,22 +17034,6 @@ GameObject:
   - component: {fileID: 8041226701952855104}
   m_Layer: 0
   m_Name: ghost_cannon_tower_LVL_3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &7271565249948062767
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4327694149320693583}
-  m_Layer: 0
-  m_Name: Cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17183,22 +17350,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &7574120410361147492
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 635902901283712819}
-  m_Layer: 0
-  m_Name: Door_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &7574526571090004575
 Transform:
   m_ObjectHideFlags: 0
@@ -17214,6 +17365,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 171353519159811769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &7574526571090004576
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429569944815674099}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!114 &7576263406614551172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17375,22 +17548,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.060008526, y: -4.1855297, z: 0.11604619}
     m_Extent: {x: 3.0895333, y: 7.467083, z: 3.0129254}
   m_DirtyAABB: 0
---- !u!4 &7735342062403269539
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3620508795302399141}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.0056494926, y: 0.9999841, z: 0.0000004138786, w: 0.000000077837356}
-  m_LocalPosition: {x: 0.659995, y: -0.0024757008, z: 2.5638}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 635902901283712819}
-  m_Father: {fileID: 1649681030497724399}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &7743197046966309630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17467,7 +17624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8183120104573200321}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: C_tower_3_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17537,7 +17694,7 @@ Transform:
   m_GameObject: {fileID: 3856991767175109543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000017123452, y: -0.0000000045013295, z: -0.71109027, w: 0.70310074}
-  m_LocalPosition: {x: 0.0000000071692625, y: 1.1873987, z: 0.00000010040952}
+  m_LocalPosition: {x: 0, y: 1.19, z: 0.2}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17559,6 +17716,22 @@ Transform:
   - {fileID: 5984905277579905039}
   m_Father: {fileID: 8183120104573200321}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &7940302003064420429
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958498192043528136}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.005, y: 0.07, z: 0.005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.4, y: 0.01, z: 1}
+  m_TimeToStationary: 0.5
 --- !u!222 &7943863619961494907
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17657,7 +17830,7 @@ Transform:
   m_GameObject: {fileID: 8143888110553260769}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000004414136, y: -0.000000018930496, z: -0.7110902, w: 0.7031008}
-  m_LocalPosition: {x: 0.00000006129952, y: 1.1873989, z: 0.00000013101861}
+  m_LocalPosition: {x: 0, y: 1.19, z: 0.19}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17909,7 +18082,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8038658721998875148}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18228,9 +18401,48 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37539616, y: 0.23540258}
   m_AnchorMax: {x: 0.623, y: 0.3242013}
-  m_AnchoredPosition: {x: 1, y: -1.0002441}
+  m_AnchoredPosition: {x: 1, y: -1.0003052}
   m_SizeDelta: {x: -11, y: -11}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &8452055659113784615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2900024580900474111}
+  - component: {fileID: 519210383851838542}
+  - component: {fileID: 8452055659113784616}
+  m_Layer: 9
+  m_Name: cannon_tower_LVL_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &8452055659113784616
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8452055659113784615}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.776535, y: 11.028511, z: 3.8026123}
+  m_Center: {x: 0.018569946, y: 5.4707985, z: -0.05504608}
 --- !u!114 &8457125185943594392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18274,6 +18486,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorObject: {fileID: 5260624669963642435}
+--- !u!1 &8489008377423445472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6257242428656653768}
+  m_Layer: 9
+  m_Name: Cannon_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &8536916428559294116
 GameObject:
   m_ObjectHideFlags: 0
@@ -18331,13 +18559,36 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8557403504923215828}
-  m_Layer: 0
+  - component: {fileID: 8567306189134963724}
+  m_Layer: 9
   m_Name: Cannon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &8567306189134963724
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567306189134963723}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!224 &8595748576635936504
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19412,6 +19663,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1248175507}
+  - {fileID: 486376495}
   - {fileID: 370295287}
   - {fileID: 977065342}
   - {fileID: 1632506206}
@@ -19419,7 +19671,6 @@ SceneRoots:
   - {fileID: 1276665162}
   - {fileID: 1907014458}
   - {fileID: 577135797}
-  - {fileID: 486376495}
   - {fileID: 421567266311229170}
   - {fileID: 8036716463726008049}
   - {fileID: 1621096354985819670}

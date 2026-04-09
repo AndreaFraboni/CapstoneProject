@@ -58,27 +58,6 @@ public class Tower : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other == null) return;
-
-        //if (other.gameObject.CompareTag(Tags.Enemy))
-        //{
-        //    _isActivated = true;
-        //}
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other == null) return;
-
-        //if (other.gameObject.CompareTag(Tags.Enemy))
-        //{
-        //    _isActivated = false;
-        //}
-    }
-
-
 }
 
 
