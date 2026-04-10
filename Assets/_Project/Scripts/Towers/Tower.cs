@@ -4,14 +4,30 @@ public class Tower : MonoBehaviour
 {
     [Header("Tower Parameters")]
     [SerializeField] private Transform _cannonBaseAim;
+
     [SerializeField] private Transform _firePoint;
     [SerializeField] private GameObject _projectilePrefab;
+
     [SerializeField] private Transform _target;
-    [SerializeField] protected float _fireRate = 2f;
-    [SerializeField] private float _shootForce = 30f;
+
+    [SerializeField] protected float _fireRate;
+    [SerializeField] private float _shootForce;
+
     [SerializeField] private bool _isActivated = false;
 
     private float _lastShoot = 0f;
+
+    public SO_TowerData Data { get; private set; }
+
+    public void Initialize(SO_TowerData data)
+    {
+        Data = data;
+
+        _fireRate = data.fireRate;
+        _shootForce = data.shootForce;
+        _projectilePrefab = data.ProjectilePrefab;
+
+    }
 
     private void Update()
     {
