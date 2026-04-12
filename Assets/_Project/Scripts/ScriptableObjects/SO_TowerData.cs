@@ -8,7 +8,7 @@ public class SO_TowerData : ScriptableObject
     public GameObject towerPrefab;
     public GameObject ghostPrefab;
 
-    public GameObject ProjectilePrefab;
+    public GameObject projectilePrefab;
 
     public int goldPrice;
 

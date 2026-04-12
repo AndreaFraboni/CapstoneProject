@@ -1,6 +1,7 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public void OnClick(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+        if (EventSystem.current.IsPointerOverGameObject()) return;
 
         if (!GameUIManager.Instance.isPaused)
         {
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
     public void OnDoubleClick(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (EventSystem.current.IsPointerOverGameObject()) return;
 
         if (!GameUIManager.Instance.isPaused)
         {

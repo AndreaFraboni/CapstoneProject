@@ -25,7 +25,7 @@ public class Tower : MonoBehaviour
 
         _fireRate = data.fireRate;
         _shootForce = data.shootForce;
-        _projectilePrefab = data.ProjectilePrefab;
+        _projectilePrefab = data.projectilePrefab;
 
     }
 
