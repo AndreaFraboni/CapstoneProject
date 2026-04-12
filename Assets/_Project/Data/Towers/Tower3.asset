@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f0e92955d11eb449bc7d21ca9e8de4, type: 3}
+  m_Name: Tower3
+  m_EditorClassIdentifier: 
+  towerName: Poison Tower
+  towerPrefab: {fileID: 8610291077475909585, guid: 8931f11850cc7cd44a1c8da3138a38fc,
+    type: 3}
+  ghostPrefab: {fileID: 6938986361587211178, guid: 98798b0d2be09d743a91957bb3b242d6,
+    type: 3}
+  projectilePrefab: {fileID: 1296096796299247977, guid: 573deeb436190004e8b1cef454bbb2da,
+    type: 3}
+  goldPrice: 400
+  range: 150
+  fireRate: 2
+  shootForce: 30

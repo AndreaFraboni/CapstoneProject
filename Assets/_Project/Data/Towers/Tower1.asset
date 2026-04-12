@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f0e92955d11eb449bc7d21ca9e8de4, type: 3}
+  m_Name: Tower1
+  m_EditorClassIdentifier: 
+  towerName: Frozen Tower
+  towerPrefab: {fileID: 6847116693334833553, guid: ad15dc4d3b6cf3043ac930ec1f98997f,
+    type: 3}
+  ghostPrefab: {fileID: 8393592447277973416, guid: 95812f19f38be394ca21a6f456dcf938,
+    type: 3}
+  projectilePrefab: {fileID: 1296096796299247977, guid: 407bafb4126afa84cb292a33d65b8b1a,
+    type: 3}
+  goldPrice: 100
+  range: 50
+  fireRate: 2
+  shootForce: 30

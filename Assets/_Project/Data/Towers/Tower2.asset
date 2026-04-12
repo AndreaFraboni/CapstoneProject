@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f0e92955d11eb449bc7d21ca9e8de4, type: 3}
+  m_Name: Tower2
+  m_EditorClassIdentifier: 
+  towerName: Fire Tower
+  towerPrefab: {fileID: 3984907669439407381, guid: 746ee78a679c8c846bb6b4a22fb23bae,
+    type: 3}
+  ghostPrefab: {fileID: 8202978051581186022, guid: 899162781af583149aadfc7f097c70f5,
+    type: 3}
+  projectilePrefab: {fileID: 1296096796299247977, guid: 86657a6f331cba44b872e1e5201b3d45,
+    type: 3}
+  goldPrice: 200
+  range: 100
+  fireRate: 2
+  shootForce: 30

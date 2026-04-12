@@ -2,18 +2,16 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [Header("Tower Parameters")]
     [SerializeField] private Transform _cannonBaseAim;
-
     [SerializeField] private Transform _firePoint;
-    [SerializeField] private GameObject _projectilePrefab;
 
     [SerializeField] private Transform _target;
 
+    [SerializeField] private bool _isActivated = false;
+
     [SerializeField] protected float _fireRate;
     [SerializeField] private float _shootForce;
-
-    [SerializeField] private bool _isActivated = false;
+    [SerializeField] private GameObject _projectilePrefab;
 
     private float _lastShoot = 0f;
 
@@ -26,7 +24,6 @@ public class Tower : MonoBehaviour
         _fireRate = data.fireRate;
         _shootForce = data.shootForce;
         _projectilePrefab = data.projectilePrefab;
-
     }
 
     private void Update()
@@ -35,12 +32,12 @@ public class Tower : MonoBehaviour
         {
             if (_isActivated)
             {
-                _cannonBaseAim.LookAt(_target.transform.position + Vector3.up);
-                _cannonBaseAim.Rotate(0f, 180f, 0f, Space.Self);
-                if (CanShoot())
-                {
-                    if (_target != null) Shoot();
-                }
+                //_cannonBaseAim.LookAt(_target.transform.position + Vector3.up);
+                //_cannonBaseAim.Rotate(0f, 180f, 0f, Space.Self);
+                //if (CanShoot())
+                //{
+                //    if (_target != null) Shoot();
+                //}
             }
         }
     }
