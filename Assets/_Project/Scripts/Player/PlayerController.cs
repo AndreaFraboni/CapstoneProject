@@ -15,59 +15,89 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _walking = false;
     [SerializeField] private bool _running = false;
 
+    [SerializeField] private LifeController _lifeController;
+
+    [SerializeField] private PlayerInput _playerInput;
+
     private Animator _anim;
 
     private Ray _ray;
     private RaycastHit hit;
+
+    public bool isAlive = true;
+
+    private bool _deathStarted = false;
+
+    private bool _clickForWalk = false;
+    private bool _clickForRun = false;
 
     private void Awake()
     {
         if (_cam == null) _cam = Camera.main;
         if (_meshAgent == null) _meshAgent = GetComponent<NavMeshAgent>();
         if (_anim == null) _anim = GetComponentInChildren<Animator>();
+        if (_lifeController == null) _lifeController = GetComponent<LifeController>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (!GameManager.Instance.IsPlaying()) return;
+        if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
+    }
 
-        HandleAnimation();
+    private void OnDisable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
     }
 
     public void OnClick(InputAction.CallbackContext context)
     {
+        if (!isAlive) return;
         if (!context.started) return;
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) return;
 
-        if (GameManager.Instance.IsPlaying())
-        {
-            _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (Physics.Raycast(_ray, out hit))
-            {
-                _walking = true;
-                _running = false;
-                _meshAgent.speed = _walkingSpeed;
-                _meshAgent.SetDestination(hit.point);
-            }
-        }
+        _clickForWalk = true;
     }
 
     public void OnDoubleClick(InputAction.CallbackContext context)
     {
+        if (!isAlive) return;
         if (!context.performed) return;
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) return;
 
-        if (GameManager.Instance.IsPlaying())
+        _clickForRun = true;
+    }
+
+    private void Update()
+    {
+        if (!isAlive) return;
+        if (!GameManager.Instance.IsPlaying()) return;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameManager.GameState.Paused) return;
+
+
+        HandleMove();
+        HandleAnimation();
+    }
+
+    private void HandleMove()
+    {
+        if (!_clickForWalk && !_clickForRun) return;
+
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+
+        _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(_ray, out hit))
         {
-            _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (Physics.Raycast(_ray, out hit))
-            {
-                _running = true;
-                _walking = false;
-                _meshAgent.speed = _runningSpeed;
-                _meshAgent.SetDestination(hit.point);
-            }
+            _walking = _clickForWalk;
+            _running = _clickForRun;
+
+            if (_clickForWalk) _meshAgent.speed = _walkingSpeed;
+            if (_clickForRun) _meshAgent.speed = _runningSpeed;
+
+            _meshAgent.SetDestination(hit.point);
         }
+
+        _clickForWalk = false;
+        _clickForRun = false;
     }
 
     private void HandleAnimation()
@@ -92,5 +122,38 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void DestroyGOPlayer()
+    {
+        GameManager.Instance.GameOver();
+        Destroy(gameObject);
+    }
 
+    private void StartDeathAnimation()
+    {
+        if (_deathStarted) return;
+
+        _deathStarted = true;
+
+        if (_meshAgent != null)
+        {
+            _meshAgent.isStopped = true;
+            _meshAgent.ResetPath();
+            _meshAgent.velocity = Vector3.zero;
+            _meshAgent.enabled = false;
+        }
+
+        _walking = false;
+        _running = false;
+        _anim.SetBool("walking", false);
+        _anim.SetBool("running", false);
+
+        _anim.SetBool("isDying", true);
+    }
+
+    public void OnDefeated()
+    {
+        isAlive = false;
+        AudioManager.Instance.PlaySFX("DeathSound");
+        StartDeathAnimation();
+    }
 }

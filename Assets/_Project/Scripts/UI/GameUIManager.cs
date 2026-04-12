@@ -7,6 +7,7 @@ public class GameUIManager : MonoBehaviour
 
     // UI referements
     public GameObject pauseMenu;
+    public GameObject gameOverBanner;
     public GameObject gameOverMenu;
     public GameObject winnerMenu;
 
@@ -21,40 +22,53 @@ public class GameUIManager : MonoBehaviour
         Instance = this;
     }
 
+    public void PlayClickSound()
+    {
+        AudioManager.Instance.PlaySFX("MouseClickSound");
+    }
+
     public void ShowPause()
     {
         Time.timeScale = 0;
+        Cursor.visible = true;
         pauseMenu.SetActive(true);
     }
 
     public void HidePause()
     {
         Time.timeScale = 1;
+        Cursor.visible = false;
         pauseMenu.SetActive(false);
     }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1.0f;
+        Cursor.visible = true;
         SceneManager.LoadScene(0);
     }
 
     public void ShowGameOver()
     {
+        AudioManager.Instance.StopAllAudioSource();
+        gameOverBanner.SetActive(true);
+        Invoke("ShowGameOverMenu", 1f);
+    }
+
+    public void ShowGameOverMenu()
+    {
+        AudioManager.Instance.PlayMusic("GameOverMusic");
+        gameOverBanner.SetActive(false);
         Time.timeScale = 0;
+        Cursor.visible = true;
         gameOverMenu.SetActive(true);
     }
 
     public void ShowVictory()
     {
         Time.timeScale = 0;
+        Cursor.visible = true;
         winnerMenu.SetActive(true);
-    }
-
-    public void Restart()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()

@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         CurrentState = GameState.Paused;
 
-        AudioManager.Instance.StopAllAudioSource();
+        if (AudioManager.Instance != null) AudioManager.Instance.StopAllAudioSource();
         if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemePauseMenu");
         GameUIManager.Instance.ShowPause();
     }
@@ -62,25 +64,37 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         if (CurrentState != GameState.Paused) return;
-
-        CurrentState = GameState.Playing;
-
-        AudioManager.Instance.StopAllAudioSource();
+        if (AudioManager.Instance != null) AudioManager.Instance.StopAllAudioSource();
         if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
+        StartCoroutine(ResumeInNextFrame());
+    }
+
+    private IEnumerator ResumeInNextFrame()
+    {
+        yield return null;
         GameUIManager.Instance.HidePause();
+        CurrentState = GameState.Playing;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMainMenu()
     {
-        //AudioManager.Instance.StopAllAudioSource();
         GameUIManager.Instance.LoadMainMenu();
+    }
+
+    public void SetGameOverState()
+    {
+        if (CurrentState == GameState.GameOver) return;
+        CurrentState = GameState.GameOver;
     }
 
     public void GameOver()
     {
-        if (CurrentState == GameState.GameOver) return;
-
-        CurrentState = GameState.GameOver;
         GameUIManager.Instance.ShowGameOver();
     }
 
