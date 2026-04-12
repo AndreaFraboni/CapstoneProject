@@ -7,12 +7,8 @@ public class GameUIManager : MonoBehaviour
 
     // UI referements
     public GameObject pauseMenu;
-    public GameObject gameOverBanner;
     public GameObject gameOverMenu;
-    public GameObject winnerBanner;
     public GameObject winnerMenu;
-
-    public bool isPaused = false;
 
     private void Awake()
     {
@@ -25,56 +21,16 @@ public class GameUIManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void ShowPause()
     {
-        AudioManager.Instance.StopAllAudioSource();
-        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
-    }
-
-    public void PlayClickSound()
-    {
-        AudioManager.Instance.PlaySFX("MouseClickSound");
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
-
-    public void Pause()
-    {
-        AudioManager.Instance.StopAllAudioSource();
-        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemePauseMenu");
+        Time.timeScale = 0;
         pauseMenu.SetActive(true);
-        Time.timeScale = 0.0f;
-        isPaused = true;
     }
 
-    public void Resume()
+    public void HidePause()
     {
-        AudioManager.Instance.StopAllAudioSource();
-        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
+        Time.timeScale = 1;
         pauseMenu.SetActive(false);
-        Time.timeScale = 1.0f;
-        isPaused = false;
-    }
-
-    public void Restart()
-    {
-        AudioManager.Instance.StopAllAudioSource();
-        gameOverBanner.SetActive(false);
-        Time.timeScale = 1.0f;
-        SceneManager.LoadScene(1);
     }
 
     public void LoadMainMenu()
@@ -82,33 +38,23 @@ public class GameUIManager : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(0);
     }
-    public void GameOver()
-    {
-        AudioManager.Instance.StopAllAudioSource();
-        gameOverBanner.SetActive(true);
-        Invoke("ShowGameOverMenu", 1f);
-    }
 
-    public void ShowGameOverMenu()
+    public void ShowGameOver()
     {
-        AudioManager.Instance.PlayMusic("GameOverMusic");
-        gameOverBanner.SetActive(false);
         Time.timeScale = 0;
         gameOverMenu.SetActive(true);
     }
-    public void Winner()
-    {
-        AudioManager.Instance.StopAllAudioSource();
-        winnerBanner.SetActive(true);
-        Invoke("ShowWinnerMenu", 1f);
-    }
 
-    public void ShowWinnerMenu()
+    public void ShowVictory()
     {
-        winnerBanner.SetActive(false);
-        AudioManager.Instance.PlayMusic("WinnerMusic");
         Time.timeScale = 0;
         winnerMenu.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()

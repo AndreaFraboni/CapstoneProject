@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsPlaying()) return;
+
         HandleAnimation();
     }
 
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if (!context.started) return;
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
-        if (!GameUIManager.Instance.isPaused)
+        if (GameManager.Instance.IsPlaying())
         {
             _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(_ray, out hit))
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
         if (!context.performed) return;
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
-        if (!GameUIManager.Instance.isPaused)
+        if (GameManager.Instance.IsPlaying())
         {
             _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(_ray, out hit))
