@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour
         if (!GameManager.Instance.IsPlaying()) return;
         if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameManager.GameState.Paused) return;
 
-
         HandleMove();
         HandleAnimation();
     }
@@ -82,22 +81,32 @@ public class PlayerController : MonoBehaviour
     {
         if (!_clickForWalk && !_clickForRun) return;
 
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1))
+        {
+            _clickForWalk = false;
+            _clickForRun = false;
+            return;
+        }
 
         _ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(_ray, out hit))
         {
-            _walking = _clickForWalk;
-            _running = _clickForRun;
+            NavMeshHit navHit;
+            if (NavMesh.SamplePosition(hit.point, out navHit, 2.0f, NavMesh.AllAreas))//https://docs.unity3d.com/540/Documentation/ScriptReference/NavMesh.SamplePosition.html
+            {
+                _walking = _clickForWalk;
+                _running = _clickForRun;
 
-            if (_clickForWalk) _meshAgent.speed = _walkingSpeed;
-            if (_clickForRun) _meshAgent.speed = _runningSpeed;
+                if (_clickForWalk) _meshAgent.speed = _walkingSpeed;
+                if (_clickForRun) _meshAgent.speed = _runningSpeed;
 
-            _meshAgent.SetDestination(hit.point);
+                _meshAgent.ResetPath();
+                _meshAgent.SetDestination(hit.point);
+            }
         }
-
         _clickForWalk = false;
         _clickForRun = false;
+
     }
 
     private void HandleAnimation()
@@ -114,12 +123,6 @@ public class PlayerController : MonoBehaviour
             _anim.SetBool("walking", false);
             _anim.SetBool("running", false);
         }
-    }
-
-    public void FootStepSound()
-    {
-
-
     }
 
     public void DestroyGOPlayer()

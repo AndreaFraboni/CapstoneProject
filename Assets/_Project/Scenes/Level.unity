@@ -1283,7 +1283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -3119,6 +3119,7 @@ GameObject:
   - component: {fileID: 533917412}
   - component: {fileID: 533917414}
   - component: {fileID: 533917413}
+  - component: {fileID: 533917415}
   m_Layer: 5
   m_Name: TowerUI
   m_TagString: Untagged
@@ -3187,6 +3188,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533917411}
   m_CullTransparentMesh: 1
+--- !u!114 &533917415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533917411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a62c67eed36cc84299544080723e673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towersButtonList:
+  - {fileID: 955595638}
+  - {fileID: 731257393}
+  - {fileID: 2074319492}
+  - {fileID: 1806291573}
 --- !u!1001 &538166810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3651,6 +3669,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d96ae21f-7cb1-4c8e-9de3-7c76253f7a4a
     m_ActionName: Gameplay/ESC[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 929e7e61-c7d8-4d2f-8c98-fe7abee4ddc7
+    m_ActionName: BuildMode/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4986e31f-d547-4cfc-b45e-d9f62035acd7
+    m_ActionName: BuildMode/CancelBuild[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -3897,6 +3923,7 @@ GameObject:
   - component: {fileID: 731257392}
   - component: {fileID: 731257391}
   - component: {fileID: 731257390}
+  - component: {fileID: 731257393}
   m_Layer: 5
   m_Name: Tower2
   m_TagString: Untagged
@@ -4006,6 +4033,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731257388}
   m_CullTransparentMesh: 1
+--- !u!114 &731257393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731257388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d626cdd937fbf204ca6d005dd2110819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerData: {fileID: 11400000, guid: c70e31666b1b64a449d03f659e2a50ab, type: 2}
+  _towerButton: {fileID: 731257390}
+  _towerPriceText: {fileID: 235500497}
 --- !u!1001 &738044995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5329,6 +5371,7 @@ GameObject:
   - component: {fileID: 955595637}
   - component: {fileID: 955595636}
   - component: {fileID: 955595635}
+  - component: {fileID: 955595638}
   m_Layer: 5
   m_Name: Tower1
   m_TagString: Untagged
@@ -5438,6 +5481,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955595633}
   m_CullTransparentMesh: 1
+--- !u!114 &955595638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955595633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d626cdd937fbf204ca6d005dd2110819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerData: {fileID: 11400000, guid: e9439866ad06e30449d00a2d9c5a549f, type: 2}
+  _towerButton: {fileID: 955595635}
+  _towerPriceText: {fileID: 1471745518}
 --- !u!1 &977065339
 GameObject:
   m_ObjectHideFlags: 0
@@ -7215,7 +7273,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -7683,7 +7741,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -8181,7 +8239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 300
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -8402,7 +8460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653365140}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.015968284, y: -0.94747305, z: 0.31582436, w: 0.047904857}
+  m_LocalRotation: {x: -0.015968286, y: 0.94747305, z: -0.31582433, w: -0.047904853}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8723,6 +8781,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1516705520}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1790441310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790441312}
+  - component: {fileID: 1790441311}
+  m_Layer: 0
+  m_Name: BuildManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1790441311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790441310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770f547fb2dd390489f42087b5d4c2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputHandler: {fileID: 577135796}
+--- !u!4 &1790441312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790441310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42.505524, y: 467.59204, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1796883618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2186217001014013416, guid: 915ac35a5aca31d4c9575633be0f6b82,
@@ -8747,8 +8850,9 @@ GameObject:
   - component: {fileID: 1806291572}
   - component: {fileID: 1806291571}
   - component: {fileID: 1806291570}
+  - component: {fileID: 1806291573}
   m_Layer: 5
-  m_Name: Tower3
+  m_Name: Tower4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8813,7 +8917,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1806291571}
   m_OnClick:
     m_PersistentCalls:
@@ -8856,6 +8960,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806291568}
   m_CullTransparentMesh: 1
+--- !u!114 &1806291573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806291568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d626cdd937fbf204ca6d005dd2110819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerData: {fileID: 11400000, guid: 3e4e0f245e5e0ae4cb4030719e824456, type: 2}
+  _towerButton: {fileID: 1806291570}
+  _towerPriceText: {fileID: 1398063471}
 --- !u!4 &1839858587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2186217001014013416, guid: 915ac35a5aca31d4c9575633be0f6b82,
@@ -9789,6 +9908,7 @@ GameObject:
   - component: {fileID: 2074319491}
   - component: {fileID: 2074319490}
   - component: {fileID: 2074319489}
+  - component: {fileID: 2074319492}
   m_Layer: 5
   m_Name: Tower3
   m_TagString: Untagged
@@ -9898,6 +10018,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074319487}
   m_CullTransparentMesh: 1
+--- !u!114 &2074319492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074319487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d626cdd937fbf204ca6d005dd2110819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerData: {fileID: 11400000, guid: c2598cc9ecc525e4c82f68f8b8697a2a, type: 2}
+  _towerButton: {fileID: 2074319489}
+  _towerPriceText: {fileID: 1614826140}
 --- !u!4 &2088664212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6829641023022884029, guid: a740cb07c8aaa3d41b2810b7e157be69,
@@ -10056,6 +10191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34090413a3d906439a5d01aeb349c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingCoins: 100
 --- !u!4 &2128621916
 Transform:
   m_ObjectHideFlags: 0
@@ -11737,7 +11873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2005131997, guid: c84d862874e215b4a98d7c0d932fb169, type: 3}
+  m_Sprite: {fileID: 1305639766, guid: ce68c5f70682fb54e93b3139eb8f25df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17434,13 +17570,14 @@ GameObject:
   - component: {fileID: 9044816342034054203}
   - component: {fileID: 7144708407131414079}
   - component: {fileID: 668630567881738995}
+  - component: {fileID: 9044816342034054204}
   m_Layer: 5
   m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &7328435954523718909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18335,7 +18472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37539616, y: 0.23540258}
   m_AnchorMax: {x: 0.623, y: 0.3242013}
-  m_AnchoredPosition: {x: 1, y: -1.0002747}
+  m_AnchoredPosition: {x: 1, y: -1.0002441}
   m_SizeDelta: {x: -11, y: -11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8457125185943594392
@@ -18916,7 +19053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0/100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -19073,6 +19210,19 @@ RectTransform:
   m_AnchoredPosition: {x: -207.34387, y: 98}
   m_SizeDelta: {x: 193.3439, y: 76}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &9044816342034054204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7308093934727744336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8321f7f9fa8492c41a14d6bbffb7200c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currenCoinsText: {fileID: 8913025142189132946}
 --- !u!224 &9053644413365161510
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19368,3 +19518,4 @@ SceneRoots:
   - {fileID: 1404008624}
   - {fileID: 83796359}
   - {fileID: 658550898}
+  - {fileID: 1790441312}

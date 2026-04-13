@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
 
+    [SerializeField] private int startingCoins = 100;
+    public int currentCoins { get; private set; }
+
+    public event Action<int> OnCoinsChanged;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,18 +33,48 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        currentCoins = startingCoins;
     }
 
     private void Start()
     {
-        AudioManager.Instance.StopAllAudioSource();
-        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopAllAudioSource();
+            if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
+        }
+
+        OnCoinsChanged?.Invoke(currentCoins);
+    }
+
+    public void AddCoins(int amount)
+    {
+        if (amount <= 0) return;
+        currentCoins = currentCoins + amount;
+        OnCoinsChanged?.Invoke(currentCoins);
+    }
+
+    public bool SpendCoins(int amount)
+    {
+        if (amount <= 0) return false;
+        if (currentCoins < amount) return false;
+        currentCoins = currentCoins - amount;
+        if (currentCoins <= 0) currentCoins = 0;
+        OnCoinsChanged?.Invoke(currentCoins);
+        return true;
+    }
+
+    public bool CanSpendCoins(int amount)
+    {
+        if (currentCoins > 0 && currentCoins >= amount)
+            return true;
+        else
+            return false;
     }
 
     public void OnPause(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-
         if (CurrentState == GameState.Playing)
             PauseGame();
         else if (CurrentState == GameState.Paused)
@@ -53,9 +89,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         if (CurrentState != GameState.Playing) return;
-
         CurrentState = GameState.Paused;
-
         if (AudioManager.Instance != null) AudioManager.Instance.StopAllAudioSource();
         if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemePauseMenu");
         GameUIManager.Instance.ShowPause();
@@ -95,7 +129,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        GameUIManager.Instance.ShowGameOver();
+        if (GameUIManager.Instance != null) GameUIManager.Instance.ShowGameOver();
     }
 
     public void Victory()
@@ -103,12 +137,28 @@ public class GameManager : MonoBehaviour
         if (CurrentState == GameState.Victory) return;
 
         CurrentState = GameState.Victory;
-        GameUIManager.Instance.ShowVictory();
+
+        if (GameUIManager.Instance != null) GameUIManager.Instance.ShowVictory();
     }
 
     public void QuitGame()
     {
-        GameUIManager.Instance.QuitGame();
+        if (GameUIManager.Instance != null) GameUIManager.Instance.QuitGame();
     }
+
+
+    public void EnterTowerPlacing()
+    {
+        if (CurrentState != GameState.Playing) return;
+        CurrentState = GameState.TowerPlacing;
+    }
+
+    public void ExitTowerPlacing()
+    {
+        if (CurrentState != GameState.TowerPlacing) return;
+        CurrentState = GameState.Playing;
+    }
+
+
 
 }

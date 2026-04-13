@@ -89,6 +89,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "BuildMode",
+            "id": "41befee6-e8d3-4556-ac8e-f3e6d2b9580b",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "929e7e61-c7d8-4d2f-8c98-fe7abee4ddc7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CancelBuild",
+                    "type": "Button",
+                    "id": "4986e31f-d547-4cfc-b45e-d9f62035acd7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "177de90d-41b6-46b1-a22d-50b6cceb9341",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cddd45c7-1424-47c5-bfb8-9484699f9733",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CancelBuild",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
