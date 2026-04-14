@@ -9,6 +9,7 @@ public class DangerZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("ON TRIGGER ..");
         if (other.gameObject.TryGetComponent<LifeController>(out LifeController _life))
         {
             _life.TakeDamage(_damage);
@@ -17,6 +18,7 @@ public class DangerZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("ON TRIGGER STAY ..");
         if (!other.TryGetComponent<LifeController>(out LifeController life)) return;
 
         _timer += Time.deltaTime;
@@ -30,6 +32,7 @@ public class DangerZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("ON TRIGGER EXIT ..");
         _timer = 0;
     }
 }

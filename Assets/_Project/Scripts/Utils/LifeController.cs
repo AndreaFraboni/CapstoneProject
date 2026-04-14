@@ -52,6 +52,8 @@ public class LifeController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("TAKE DAMAGE ..");
+
         AddHp(-damage);
     }
 }

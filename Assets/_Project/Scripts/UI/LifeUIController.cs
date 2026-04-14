@@ -1,18 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static GameManager;
 
 public class LifeUIController : MonoBehaviour
 {
     [SerializeField] private LifeController _lifeController;
     [SerializeField] private TextMeshProUGUI _currenLifeText;
     [SerializeField] private Image _bar_lifeBarFillable;
-
-    private void Awake()
-    {
-        if (_lifeController == null) _lifeController = GetComponentInParent<LifeController>();
-    }
 
     private void OnEnable()
     {
