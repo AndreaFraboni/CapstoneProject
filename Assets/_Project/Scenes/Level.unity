@@ -3670,13 +3670,53 @@ MonoBehaviour:
     m_ActionId: d96ae21f-7cb1-4c8e-9de3-7c76253f7a4a
     m_ActionName: Gameplay/ESC[/Keyboard/escape]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790441311}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: OnLeftMouseClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 929e7e61-c7d8-4d2f-8c98-fe7abee4ddc7
     m_ActionName: BuildMode/Click[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2128621915}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4986e31f-d547-4cfc-b45e-d9f62035acd7
     m_ActionName: BuildMode/CancelBuild[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1790441311}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: OnRightMouseClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 271b8e74-bf0d-4576-be63-6db2ac8e2550
+    m_ActionName: BuildMode/RightMouseClick[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -3994,7 +4034,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 731257391}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790441311}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: StartPlacement
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: c70e31666b1b64a449d03f659e2a50ab,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SO_TowerData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &731257391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5442,7 +5495,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 955595636}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790441311}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: StartPlacement
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: e9439866ad06e30449d00a2d9c5a549f,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SO_TowerData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &955595636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8460,7 +8526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653365140}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.015968286, y: 0.94747305, z: -0.31582433, w: -0.047904853}
+  m_LocalRotation: {x: 0.015968284, y: -0.94747305, z: 0.31582436, w: 0.047904857}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8811,6 +8877,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputHandler: {fileID: 577135796}
+  _cam: {fileID: 0}
+  terrainMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _layerObstaclesMask:
+    serializedVersion: 2
+    m_Bits: 1800
+  placementRadius: 1
 --- !u!4 &1790441312
 Transform:
   m_ObjectHideFlags: 0
@@ -8921,7 +8995,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1806291571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790441311}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: StartPlacement
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 3e4e0f245e5e0ae4cb4030719e824456,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SO_TowerData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1806291571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9979,7 +10066,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2074319490}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790441311}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: StartPlacement
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: c2598cc9ecc525e4c82f68f8b8697a2a,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: SO_TowerData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2074319490
 MonoBehaviour:
   m_ObjectHideFlags: 0

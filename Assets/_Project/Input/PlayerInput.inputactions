@@ -95,7 +95,7 @@
             "id": "41befee6-e8d3-4556-ac8e-f3e6d2b9580b",
             "actions": [
                 {
-                    "name": "Click",
+                    "name": "LeftMouseClick",
                     "type": "Button",
                     "id": "929e7e61-c7d8-4d2f-8c98-fe7abee4ddc7",
                     "expectedControlType": "",
@@ -104,9 +104,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CancelBuild",
+                    "name": "RightMouseClick",
                     "type": "Button",
-                    "id": "4986e31f-d547-4cfc-b45e-d9f62035acd7",
+                    "id": "271b8e74-bf0d-4576-be63-6db2ac8e2550",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -121,18 +121,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
+                    "action": "LeftMouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "cddd45c7-1424-47c5-bfb8-9484699f9733",
-                    "path": "<Keyboard>/escape",
+                    "id": "251c74b6-0f62-4b33-8edb-a52362a95b4d",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CancelBuild",
+                    "action": "RightMouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

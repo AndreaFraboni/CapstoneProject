@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     public void OnPause(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+
         if (CurrentState == GameState.Playing)
             PauseGame();
         else if (CurrentState == GameState.Paused)
@@ -83,30 +84,53 @@ public class GameManager : MonoBehaviour
 
     public bool IsPlaying()
     {
-        return CurrentState == GameState.Playing;
+        if (CurrentState == GameState.Playing)
+        {
+            return true;
+        }
+
+        if (CurrentState == GameState.TowerPlacing)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void PauseGame()
     {
         if (CurrentState != GameState.Playing) return;
+
         CurrentState = GameState.Paused;
-        if (AudioManager.Instance != null) AudioManager.Instance.StopAllAudioSource();
-        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemePauseMenu");
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopAllAudioSource();
+            if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemePauseMenu");
+        }
+
         GameUIManager.Instance.ShowPause();
     }
 
     public void ResumeGame()
     {
         if (CurrentState != GameState.Paused) return;
-        if (AudioManager.Instance != null) AudioManager.Instance.StopAllAudioSource();
-        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopAllAudioSource();
+            if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
+        }
+
         StartCoroutine(ResumeInNextFrame());
     }
 
     private IEnumerator ResumeInNextFrame()
     {
         yield return null;
+
         GameUIManager.Instance.HidePause();
+
         CurrentState = GameState.Playing;
     }
 
@@ -146,19 +170,13 @@ public class GameManager : MonoBehaviour
         if (GameUIManager.Instance != null) GameUIManager.Instance.QuitGame();
     }
 
-
     public void EnterTowerPlacing()
     {
-        if (CurrentState != GameState.Playing) return;
         CurrentState = GameState.TowerPlacing;
     }
 
     public void ExitTowerPlacing()
     {
-        if (CurrentState != GameState.TowerPlacing) return;
         CurrentState = GameState.Playing;
     }
-
-
-
 }

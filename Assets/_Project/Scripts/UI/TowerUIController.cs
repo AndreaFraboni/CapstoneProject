@@ -22,14 +22,22 @@ public class TowerUIController : MonoBehaviour
 
     private void UpdateCurrentCoins(int coins)
     {
-        foreach (TowerUIButton towerButton in _towersButtonList)
+        if (_towersButtonList.Count > 0)
         {
-            if (towerButton == null) continue;
+            foreach (TowerUIButton towerButton in _towersButtonList)
+            {
+                if (towerButton == null) continue;
 
-            if (coins >= towerButton._towerData.goldPrice)
-                towerButton._towerButton.interactable = true;
-            else
-                towerButton._towerButton.interactable = false;
+                if (coins >= towerButton._towerData.goldPrice)
+                    towerButton._towerButton.interactable = true;
+                else
+                    towerButton._towerButton.interactable = false;
+            }
+        }
+        else
+        {
+            Debug.LogError("Towers Button List is EMPTY !!!!!");
+            return;
         }
     }
 

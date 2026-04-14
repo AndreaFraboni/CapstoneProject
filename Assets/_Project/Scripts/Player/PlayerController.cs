@@ -7,11 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _meshAgent;
     [SerializeField] private NavMeshPath _navMeshPath;
+
     [SerializeField] private Camera _cam;
 
     [SerializeField] private float _walkingSpeed = 2f;
     [SerializeField] private float _runningSpeed = 6f;
-
     [SerializeField] private bool _walking = false;
     [SerializeField] private bool _running = false;
 
@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     public bool isAlive = true;
 
     private bool _deathStarted = false;
-
     private bool _clickForWalk = false;
     private bool _clickForRun = false;
 
@@ -53,7 +52,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAlive) return;
         if (!context.started) return;
-        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) return;
+        if (GameManager.Instance == null) return;
+        if (!GameManager.Instance.IsPlaying()) return;
 
         _clickForWalk = true;
     }
@@ -62,7 +62,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAlive) return;
         if (!context.performed) return;
-        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) return;
+        if (GameManager.Instance == null) return;
+        if (!GameManager.Instance.IsPlaying()) return;
 
         _clickForRun = true;
     }
@@ -70,8 +71,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (!isAlive) return;
+        if (GameManager.Instance == null) return;
         if (!GameManager.Instance.IsPlaying()) return;
-        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameManager.GameState.Paused) return;
 
         HandleMove();
         HandleAnimation();
@@ -127,6 +128,11 @@ public class PlayerController : MonoBehaviour
 
     public void DestroyGOPlayer()
     {
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("GameManager is NULL!!!");
+            return;
+        }
         GameManager.Instance.GameOver();
         Destroy(gameObject);
     }
