@@ -11868,6 +11868,7 @@ GameObject:
   - component: {fileID: 1711813854292982696}
   - component: {fileID: 3469287838286696291}
   - component: {fileID: 3469287838286696292}
+  - component: {fileID: 3469287838286696293}
   m_Layer: 10
   m_Name: SacredTree
   m_TagString: Untagged
@@ -14102,6 +14103,22 @@ MonoBehaviour:
   _currenthp: 0
   _maxHP: 2000
   _fullHPOnStart: 1
+--- !u!208 &3469287838286696293
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148350720637}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.0075, y: 0.0075, z: 0.0225}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.020000001}
+  m_TimeToStationary: 0.5
 --- !u!114 &3532956920925887766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16690,7 +16707,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.25
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -17502,7 +17519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.21770895, y: 0.3242013}
   m_AnchorMax: {x: 0.8441652, y: 0.8418141}
-  m_AnchoredPosition: {x: -9.88092, y: 2.5}
+  m_AnchoredPosition: {x: -9.880981, y: 2.5}
   m_SizeDelta: {x: -36.908, y: -45.744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6864919678392897126
