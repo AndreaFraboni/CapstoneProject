@@ -6,16 +6,20 @@ public class BuildManager : MonoBehaviour
     public static BuildManager Instance { get; private set; }
 
     [SerializeField] private PlayerInput _inputHandler;
+
     [SerializeField] private Camera _cam;
-    [SerializeField] private LayerMask terrainMask;
+
+    [SerializeField] private LayerMask _terrainMask;
 
     private SO_TowerData _selectedTowerData;
     private GameObject _currentGhostTower;
 
     [SerializeField] private LayerMask _layerObstaclesMask;
     [SerializeField] private float placementRadius = 1f;
-    private Vector3 currentPlacementPosition;
+
     private bool canPlaceHere;
+
+    private Vector3 currentPlacementPosition;
 
     private void Awake()
     {
@@ -65,11 +69,32 @@ public class BuildManager : MonoBehaviour
     public void OnLeftMouseClick(InputAction.CallbackContext context)
     {
         if (!context.started) return;
-
         if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) return;
 
+        if (!IsBuildMode()) return;
 
+        if (_currentGhostTower == null) return;
+        if (_selectedTowerData == null) return;
 
+        if (!canPlaceHere)
+        {
+            AudioManager.Instance.PlaySFX("WrongPlace");
+            return;
+        }
+
+        bool isTowerPlaced = TowerPlacement(currentPlacementPosition);
+        if (isTowerPlaced)
+        {
+            Debug.Log("You have placed tower in scene !!!!");
+
+            AudioManager.Instance.PlaySFX("TowerPlaced");
+
+            CancelPlacement(); // torre piazzata ora esco dalla modalità Build Mode !!!
+        }
+        else
+        {
+            Debug.Log("You can't place tower !!!!");
+        }
     }
 
     public void OnRightMouseClick(InputAction.CallbackContext context)
@@ -102,6 +127,23 @@ public class BuildManager : MonoBehaviour
         EnterBuildMode();
     }
 
+    private bool TowerPlacement(Vector3 Position)
+    {
+        if (_selectedTowerData == null) return false;
+        if (!GameManager.Instance.CanSpendCoins(_selectedTowerData.goldPrice))
+        {
+            Debug.Log("You don't have money !!!!");
+            return false;
+        }
+
+        GameManager.Instance.SpendCoins(_selectedTowerData.goldPrice);
+
+        GameObject clonedTower = Instantiate(_selectedTowerData.towerPrefab);
+        clonedTower.transform.position = Position;
+
+        return true;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(currentPlacementPosition, placementRadius);
@@ -109,6 +151,8 @@ public class BuildManager : MonoBehaviour
 
     private bool CanPlaceTower(Vector3 position)
     {
+        if (_selectedTowerData == null) return false;
+
         if (!GameManager.Instance.CanSpendCoins(_selectedTowerData.goldPrice))
         {
             Debug.Log("You don't have money !!!!");
@@ -118,33 +162,18 @@ public class BuildManager : MonoBehaviour
         bool isPlacementBlocked = Physics.CheckSphere(position, placementRadius, _layerObstaclesMask, QueryTriggerInteraction.Ignore);
         if (isPlacementBlocked)
         {
-            return false;  // you can't build tower here !!
+            return false;  // you can't place tower here !!
         }
 
-        return true; // ok you can build tower here !!
+        return true; // ok you can place tower here !!
     }
 
     private void Update()
     {
-        if (GameManager.Instance == null)
-        {
-            Debug.LogError("GameManager is NULL!!!");
-            return;
-        }
-
+        if (GameManager.Instance == null) return;
         if (GameManager.Instance.CurrentState != GameManager.GameState.TowerPlacing) return;
-
-        if (_selectedTowerData == null)
-        {
-            Debug.LogError("_selectedTowerData is NULL !!!");
-            return;
-        }
-
-        if (_currentGhostTower == null)
-        {
-            Debug.LogError("_currentGhostTower is NULL !!!");
-            return;
-        }
+        if (_selectedTowerData == null) return;
+        if (_currentGhostTower == null) return;
 
         UpdateGhostTowerPosition();
     }
@@ -152,7 +181,7 @@ public class BuildManager : MonoBehaviour
     private void UpdateGhostTowerPosition()
     {
         Ray ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit hit, 500f, terrainMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out RaycastHit hit, 500f, _terrainMask, QueryTriggerInteraction.Ignore))
         {
             currentPlacementPosition = hit.point;
 
@@ -178,6 +207,13 @@ public class BuildManager : MonoBehaviour
                     }
                 }
 
+            }
+        }
+        else
+        { // Raycast don't hit valid terrainMask !!!
+            if (_currentGhostTower != null)
+            {
+                _currentGhostTower.SetActive(false);
             }
         }
     }

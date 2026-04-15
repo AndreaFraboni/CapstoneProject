@@ -42,7 +42,7 @@ public class LifeController : MonoBehaviour
         {
             if (_currenthp > 0) AudioManager.Instance.PlaySFX("GetDamage");
         }
-        else
+        else if (amount > 0)
         {
             AudioManager.Instance.PlaySFX("PickupHeart");
         }

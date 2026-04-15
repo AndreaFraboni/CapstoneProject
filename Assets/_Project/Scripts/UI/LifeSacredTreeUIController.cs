@@ -35,6 +35,4 @@ public class LifeSacredTreeUIController : MonoBehaviour
         if (_currenLifeText != null) _currenLifeText.text = lifeNum + "/" + maxhealth;
         if (_barlifeFillable != null) _barlifeFillable.fillAmount = (float)lifeNum / maxhealth;
     }
-
-
 }
