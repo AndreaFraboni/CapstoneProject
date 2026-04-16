@@ -5,7 +5,7 @@ public class EnemiesManager : MonoBehaviour
 {
     public static EnemiesManager Instance { get; private set; }
 
-    //public List<EnemyController> listEnemies = new List<EnemyController>();
+    public List<EnemyFSMController> listEnemies = new List<EnemyFSMController>();
 
     private void Awake()
     {
@@ -18,23 +18,31 @@ public class EnemiesManager : MonoBehaviour
         Instance = this;
     }
 
+    public void RegistEnemy(EnemyFSMController enemy)
+    {
+        if (enemy == null) return;
 
+        if (!listEnemies.Contains(enemy))
+        {
+            listEnemies.Add(enemy);
+        }
+        else
+        {
+            Debug.LogWarning("l'enemy non verrà registrato in quanto è già registrato !!!!");
+        }
+    }
 
+    public void RemoveEnemy(EnemyFSMController enemy)
+    {
+        if (enemy == null) return;
 
-    //public void RegistEnemy(EnemyController enemy)
-    //{
-    //    if (enemy == null) return;
-    //    if (!listEnemies.Contains(enemy))
-    //    {
-    //        listEnemies.Add(enemy);
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("l'enemy non verrà registrato in quanto è già registrato !!!!");
-    //    }
-    //}
-
-    //public void RemoveEnemy(EnemyController enemy)
-    //{
-    //}
+        if (listEnemies.Remove(enemy))
+        {
+            Debug.Log("Ho rimosso un enemy!!!");
+        }
+        else
+        {
+            Debug.LogError("Stò provando a rimuovere un enemy che non è nella lista !!!");
+        }
+    }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerAnimationEvents : MonoBehaviour
 {
     [SerializeField] private PlayerController _pc;
+    [SerializeField] private EnemyFSMController _ec;
 
     private void Awake()
     {
@@ -18,6 +19,12 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         if (_pc == null) return;
         _pc.DestroyGOPlayer();
+    }
+
+    public void AE_DestroyEnemyGameObject()
+    {
+        if (_pc == null) return;
+        //_ec.DestroyGOEnemy();
     }
 
 
