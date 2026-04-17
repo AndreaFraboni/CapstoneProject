@@ -38,7 +38,7 @@ public class EnemiesManager : MonoBehaviour
 
         if (listEnemies.Remove(enemy))
         {
-            Debug.Log("Ho rimosso un enemy!!!");
+            //Debug.Log("Ho rimosso un enemy!!!");
         }
         else
         {

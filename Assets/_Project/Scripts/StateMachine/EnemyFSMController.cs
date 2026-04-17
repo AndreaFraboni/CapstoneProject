@@ -5,18 +5,22 @@ public class EnemyFSMController : MonoBehaviour
 {
     [SerializeField] private BaseFSMState _initialState;
 
+    [SerializeField] private LifeController _lifeController;
+
     private BaseFSMState _currentState;
 
     public NavMeshAgent agent;
     public Animator anim;
 
     bool _deathStarted = false;
-    //bool isAlive = false;
+    //bool isAlive = true;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
+
+        if (_lifeController == null) _lifeController = GetComponent<LifeController>();
 
         BaseFSMState[] states = GetComponentsInChildren<BaseFSMState>();
 
@@ -30,6 +34,17 @@ public class EnemyFSMController : MonoBehaviour
             }
         }
     }
+
+    private void OnEnable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
+    }
+
+    private void OnDisable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
+    }
+
 
     private void Start()
     {
@@ -111,6 +126,8 @@ public class EnemyFSMController : MonoBehaviour
     public void OnDefeated()
     {
         //isAlive = false;
+
+        EnemiesManager.Instance.RemoveEnemy(this);
 
         AudioManager.Instance.PlaySFX("DeathSound");
 

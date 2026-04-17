@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6270506522624480112}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Door_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4148344210102316859}
   - component: {fileID: 4305009275079626024}
   - component: {fileID: 4993888360760880932}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: Fillbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4772902331171231362}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 2497448513481929661}
   - component: {fileID: 7000189879614168900}
   - component: {fileID: 4152747225944157707}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: cannon_tower_LVL_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,6 +228,10 @@ MonoBehaviour:
   _firePoint: {fileID: 1748464398368473123}
   _target: {fileID: 0}
   _isActivated: 0
+  _fireRate: 0
+  _fireRange: 0
+  _shootForce: 0
+  _projectilePrefab: {fileID: 0}
 --- !u!1 &4672191522154960846
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6132665805358969872}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: C_tower_2_rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748464398368473123}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: MuzzlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7533740893916661447}
   - component: {fileID: 8346809584908713041}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +357,7 @@ GameObject:
   - component: {fileID: 7842463863922643310}
   - component: {fileID: 310238774627735655}
   - component: {fileID: 5299972850464196676}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: LifeBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4235997977622787114}
   - component: {fileID: 8987619805432186703}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cannon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +513,7 @@ GameObject:
   - component: {fileID: 3817176069632826266}
   - component: {fileID: 4559606431890695143}
   - component: {fileID: 2792838279236661783}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3561058483977971804}
   - component: {fileID: 8589234820411398992}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Cannon_tower_LVL_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

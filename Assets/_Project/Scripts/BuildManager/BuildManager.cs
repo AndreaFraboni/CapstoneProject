@@ -85,7 +85,7 @@ public class BuildManager : MonoBehaviour
         bool isTowerPlaced = TowerPlacement(currentPlacementPosition);
         if (isTowerPlaced)
         {
-            Debug.Log("You have placed tower in scene !!!!");
+            //Debug.Log("You have placed tower in scene !!!!");
 
             AudioManager.Instance.PlaySFX("TowerPlaced");
 
@@ -139,6 +139,7 @@ public class BuildManager : MonoBehaviour
         GameManager.Instance.SpendCoins(_selectedTowerData.goldPrice);
 
         GameObject clonedTower = Instantiate(_selectedTowerData.towerPrefab);
+        clonedTower.gameObject.GetComponent<Tower>().Initialize(_selectedTowerData);
         clonedTower.transform.position = Position;
 
         return true;

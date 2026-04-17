@@ -6,7 +6,7 @@ public class AudioManager : GenericSingleton<AudioManager>
     [SerializeField] private AudioMixer _mixer;
 
     public Sound[] musicSounds, sfxSounds;
-    public AudioSource musicSource, sfxSource;
+    public AudioSource musicSource, sfxSource, sfxFootStepsSource;
 
     public void SetSliderValue(Slider slider, string group)
     {
@@ -62,19 +62,59 @@ public class AudioManager : GenericSingleton<AudioManager>
 
     public void PlaySFX(string name)
     {
-        foreach (Sound _sound in sfxSounds)
+        foreach (Sound sound in sfxSounds)
         {
-            if (_sound.name == name)
+            if (sound.name == name)
             {
-                // if (sfxSource.isPlaying) sfxSource.Stop();
-                sfxSource.PlayOneShot(_sound.clip);
+                if (sound.clip == null)
+                {
+                    Debug.LogError($"Clip nulla per SFX: {name}");
+                    return;
+                }
+
+                if (sfxSource == null)
+                {
+                    Debug.LogError("SFX Source non assegnato!");
+                    return;
+                }
+                sfxSource.PlayOneShot(sound.clip);
                 return;
             }
         }
 
-        Debug.LogWarning($"SFX sound Not Found in my list: {name}");
+        Debug.LogError($"SFX sound Not Found in my list: {name}");
     }
 
+    public void PlayFootsteps(string name)
+    {
+        foreach (Sound sound in sfxSounds)
+        {
+            if (sound.name == name)
+            {
+                sfxFootStepsSource.clip = sound.clip;
+                if (!sfxFootStepsSource.isPlaying) sfxFootStepsSource.Play();
+                return;
+            }
+        }
+    }
+
+    public void PlaySFXAtPoint(string name, Vector3 position)
+    {
+        foreach (Sound sound in sfxSounds)
+        {
+            if (sound.name == name)
+            {
+                if (sound.clip == null)
+                {
+                    Debug.LogError($"Clip nulla per SFX: {name}");
+                    return;
+                }
+                AudioSource.PlayClipAtPoint(sound.clip, position);
+                return;
+            }
+        }
+        Debug.LogError($"SFX sound Not Found in my list: {name}");
+    }
 
     // Stop All Audio Source !!!!!
     public void StopAllAudioSource()

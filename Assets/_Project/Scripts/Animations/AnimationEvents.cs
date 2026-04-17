@@ -12,7 +12,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void AE_FootStepSfx()
     {
-        AudioManager.Instance.PlaySFX("FootStepSound");
+        AudioManager.Instance.PlayFootsteps("FootStepSound");
     }
 
     public void AE_DestroyGameObject()
@@ -23,8 +23,8 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void AE_DestroyEnemyGameObject()
     {
-        if (_pc == null) return;
-        //_ec.DestroyGOEnemy();
+        if (_ec == null) return;
+        _ec.DestroyGOEnemy();
     }
 
 

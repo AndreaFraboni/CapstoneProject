@@ -20,6 +20,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1296096796299247977, guid: 86657a6f331cba44b872e1e5201b3d45,
     type: 3}
   goldPrice: 200
-  range: 100
-  fireRate: 2
+  range: 7
+  fireRate: 0.8
   shootForce: 30

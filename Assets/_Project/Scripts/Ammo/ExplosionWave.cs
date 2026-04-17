@@ -9,6 +9,8 @@ public class ExplosionWave : MonoBehaviour
     public int _damage = 10;
     public float speed = 1f;
 
+    public DamageTarget _damageTarget = DamageTarget.Enemy;
+
     private void Awake()
     {
         if (_renderer == null) _renderer = GetComponent<Renderer>();
@@ -47,16 +49,37 @@ public class ExplosionWave : MonoBehaviour
     {
         if (_renderer != null)
         {
-            Material _material = new Material(material);
-            _renderer.material = _material;
+            Material newMaterial = new Material(material);
+            newMaterial.color = new Color(newMaterial.color.r, newMaterial.color.g, newMaterial.color.b, 0f);
+            _renderer.material = newMaterial;
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void SetDamageTarget(DamageTarget damageTarget)
     {
-
-
-
-
+        _damageTarget = damageTarget;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<LifeController>(out LifeController life))
+        {
+            switch (_damageTarget)
+            {
+                case DamageTarget.Enemy:
+                    if (other.CompareTag(Tags.Enemy))
+                    {
+                        life.TakeDamage(_damage);
+                    }
+                    break;
+
+                case DamageTarget.Player:
+                    if (other.CompareTag(Tags.Player))
+                    {
+                        life.TakeDamage(_damage);
+                    }
+                    break;
+            }
+        }
+    }
 }

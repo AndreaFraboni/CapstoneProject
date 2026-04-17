@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6269446740035903212}
   - component: {fileID: 3365583174150751345}
   - component: {fileID: 2690861433659025005}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: BulletFire
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.443191, y: 13.692, z: -1.91}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,11 +129,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &2690861433659025005
 MonoBehaviour:
   m_ObjectHideFlags: 0
