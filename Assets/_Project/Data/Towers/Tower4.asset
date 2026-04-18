@@ -17,8 +17,7 @@ MonoBehaviour:
     type: 3}
   ghostPrefab: {fileID: 4142417176416983588, guid: dc6198778e94a77438e197950b606a24,
     type: 3}
-  projectilePrefab: {fileID: 1296096796299247977, guid: 539f2efc335efb04f9e0402e2d285dc0,
-    type: 3}
+  bulletdata: {fileID: 11400000, guid: d233016b2c28d864290f2dac7d25e0e3, type: 2}
   goldPrice: 600
   range: 9
   fireRate: 0.1

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3365583174150751345}
   - component: {fileID: 5941818743929462530}
   m_Layer: 12
-  m_Name: BulleMagic
+  m_Name: BulletPrefab
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 047104519d8c98449b6cad3c53bea397, type: 2}
+  - {fileID: 2100000, guid: 815058e6a12d55a4b95024f5b44b11d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -147,5 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 50
-  _explosionWavePrefab: {fileID: 1296096796299247977}
+  _explosionWavePrefab: {fileID: 1198018687069149517, guid: 76066dfbc85586c40ab92f1efc8258d6,
+    type: 3}
   _explosionMaterial: {fileID: 2100000, guid: 1f444eaa00326e541b63b198a304c9a3, type: 2}
+  _damageTarget: 0

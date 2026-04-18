@@ -6,28 +6,44 @@ public class Tower : MonoBehaviour
     [SerializeField] private Transform _cannonBaseAim;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private Transform _target;
+
     [SerializeField] private bool _isActivated = false;
+
     [SerializeField] protected float _fireRate;
     [SerializeField] protected float _fireRange;
     [SerializeField] private float _shootForce;
-    [SerializeField] private GameObject _projectilePrefab;
+
+    [SerializeField] private Bullet _projectilePrefab;
 
     private float _lastShoot = 0f;
 
-    public SO_TowerData Data { get; private set; }
+    public SO_TowerData TowerData { get; private set; }
+    public SO_BulletData BulletData { get; private set; }
 
-    public void Initialize(SO_TowerData data)
+    public void Initialize(SO_TowerData data, SO_BulletData bulletdata)
     {
-        Data = data;
+        if (data == null || bulletdata == null)
+        {
+            Debug.LogError("BAD Initialize: null data !!!");
+            return;
+        }
 
-        _fireRate = data.fireRate;
-        _shootForce = data.shootForce;
-        _projectilePrefab = data.projectilePrefab;
-        _fireRange = data.range;
+        TowerData = data;
+        BulletData = bulletdata;
+
+        _fireRate = TowerData.fireRate;
+        _shootForce = TowerData.shootForce;
+        _fireRange = TowerData.range;
+
+        _projectilePrefab = BulletData.bulletPrefab;
+
+        if (_projectilePrefab == null)
+        {
+            Debug.LogError("Projectile prefab NOT ASSIGNED inl SO_BulletData !!!", this);
+            return;
+        }
 
         _isActivated = true;
-
-        // Debug.Log($"The Tower named : {data.towerName} is ACTIVATED !!!");
     }
 
     private void Update()
@@ -117,11 +133,16 @@ public class Tower : MonoBehaviour
 
         if (_projectilePrefab != null)
         {
-            GameObject projectile = Instantiate(_projectilePrefab, muzzlePos, rotationdesired);
+            Bullet projectile = Instantiate(_projectilePrefab, muzzlePos, rotationdesired);
+
+            projectile.SetBulletDamage(BulletData.damage);
+            projectile.setBulletMatRenderer(BulletData.expMaterial);
+            projectile.SetBulletMaterial(BulletData.expMaterial);
+            projectile.SetDamageType(BulletData.damageTarget);
+
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                //                rb.AddForce(dir * _shootForce, ForceMode.Impulse);
                 rb.velocity = dir * _shootForce;
             }
         }

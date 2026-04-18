@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6f4caef4017ad479c806b56b503e44, type: 3}
+  m_Name: MagicBullet
+  m_EditorClassIdentifier: 
+  BulletName: MagicBullet
+  bulletPrefab: {fileID: 5941818743929462530, guid: 33118f65503c2b1458ec95308665ca5b,
+    type: 3}
+  damage: 20
+  expMaterial: {fileID: 2100000, guid: 4847612c9892e944f8b7077cfac784a4, type: 2}
+  damageTarget: 0

@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f0e92955d11eb449bc7d21ca9e8de4, type: 3}
   m_Name: Tower1
   m_EditorClassIdentifier: 
-  towerName: Frozen Tower
+  towerName: Fire Tower
   towerPrefab: {fileID: 6847116693334833553, guid: ad15dc4d3b6cf3043ac930ec1f98997f,
     type: 3}
   ghostPrefab: {fileID: 8393592447277973416, guid: 95812f19f38be394ca21a6f456dcf938,
     type: 3}
-  projectilePrefab: {fileID: 1296096796299247977, guid: 407bafb4126afa84cb292a33d65b8b1a,
-    type: 3}
+  bulletdata: {fileID: 11400000, guid: d53d01c1bfbd5e4488ddca6d27038c30, type: 2}
   goldPrice: 100
   range: 6
   fireRate: 1

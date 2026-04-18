@@ -12,6 +12,7 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private LayerMask _terrainMask;
 
     private SO_TowerData _selectedTowerData;
+
     private GameObject _currentGhostTower;
 
     [SerializeField] private LayerMask _layerObstaclesMask;
@@ -139,7 +140,7 @@ public class BuildManager : MonoBehaviour
         GameManager.Instance.SpendCoins(_selectedTowerData.goldPrice);
 
         GameObject clonedTower = Instantiate(_selectedTowerData.towerPrefab);
-        clonedTower.gameObject.GetComponent<Tower>().Initialize(_selectedTowerData);
+        clonedTower.gameObject.GetComponent<Tower>().Initialize(_selectedTowerData, _selectedTowerData.bulletdata); ;
         clonedTower.transform.position = Position;
 
         return true;
