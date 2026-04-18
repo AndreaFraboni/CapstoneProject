@@ -10,12 +10,16 @@ public class Bullet : MonoBehaviour
 
     private bool _isExploded = false;
 
+    private Rigidbody _rb;
+
     public DamageTarget _damageTarget = DamageTarget.Enemy;
 
     private void Awake()
     {
         _bulletRenderer = GetComponent<Renderer>();
+        _rb = GetComponent<Rigidbody>();
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +32,27 @@ public class Bullet : MonoBehaviour
 
         SpawnExplosionWave(hitPoint);
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        if (MagicSpheresPooling.Instance != null)
+        {
+            MagicSpheresPooling.Instance.PutPoolObj(this);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void ResetBullet()
+    {
+        _isExploded = false;
+
+        if (_rb != null)
+        {
+            _rb.velocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
+        }
     }
 
     public void setBulletMatRenderer(Material mat)
@@ -58,7 +82,7 @@ public class Bullet : MonoBehaviour
     {
         if (_explosionWavePrefab == null)
         {
-            Debug.LogError("EXPLOSION WAVE PREFAB is NULL !!");
+            Debug.LogError("EXPLOSION WAVE PREFAB is NULL !!!");
             return;
         }
 
@@ -68,7 +92,7 @@ public class Bullet : MonoBehaviour
         {
             explosionWave.SetMaterialWave(_explosionMaterial);
             explosionWave.SetDamageWave(_damage);
-            explosionWave.GetComponent<ExplosionWave>().SetDamageTarget(_damageTarget);
+            explosionWave.SetDamageTarget(_damageTarget);
         }
     }
 

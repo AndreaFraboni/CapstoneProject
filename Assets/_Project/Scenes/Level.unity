@@ -6573,7 +6573,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2d98c894922204dad14b0f5d87e024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefabs: []
+  _bulletPrefab: {fileID: 5941818743929462530, guid: 33118f65503c2b1458ec95308665ca5b,
+    type: 3}
   _poolSize: 10
 --- !u!4 &1206806459
 Transform:
@@ -10848,7 +10849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34090413a3d906439a5d01aeb349c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCoins: 100
+  startingCoins: 2000
 --- !u!4 &2128621916
 Transform:
   m_ObjectHideFlags: 0
@@ -18262,7 +18263,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.75
+  m_fontSize: 20.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

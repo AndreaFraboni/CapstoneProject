@@ -13,8 +13,6 @@ public class Tower : MonoBehaviour
     [SerializeField] protected float _fireRange;
     [SerializeField] private float _shootForce;
 
-    [SerializeField] private Bullet _projectilePrefab;
-
     private float _lastShoot = 0f;
 
     public SO_TowerData TowerData { get; private set; }
@@ -34,14 +32,6 @@ public class Tower : MonoBehaviour
         _fireRate = TowerData.fireRate;
         _shootForce = TowerData.shootForce;
         _fireRange = TowerData.range;
-
-        _projectilePrefab = BulletData.bulletPrefab;
-
-        if (_projectilePrefab == null)
-        {
-            Debug.LogError("Projectile prefab NOT ASSIGNED inl SO_BulletData !!!", this);
-            return;
-        }
 
         _isActivated = true;
     }
@@ -119,37 +109,58 @@ public class Tower : MonoBehaviour
     {
         _lastShoot = Time.time;
 
-        Vector3 targetPos = _target.gameObject.transform.position;
-        Vector3 muzzlePos = _firePoint.position + _firePoint.forward * 0.5f;
-        Vector3 direction = (targetPos - muzzlePos).normalized;
+        if (_target == null)
+        {
+            Debug.LogError("Tower Shoot: target NULL !!!");
+            return;
+        }
+
+        if (BulletData == null)
+        {
+            Debug.LogError("Tower Shoot: BulletData NULL !!!");
+            return;
+        }
+
+        if (MagicSpheresPooling.Instance == null)
+        {
+            Debug.LogError("MagicSpheresPooling.Instance is NULL !!!");
+            return;
+        }
 
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX("ShootFireBall");
         }
 
+        Bullet projectile = MagicSpheresPooling.Instance.GetPoolObj();
+        if (projectile == null)
+        {
+            Debug.LogError("Il pool non ha restituito nessun Bullet !!!");
+            return;
+        }
+
+        Vector3 muzzlePos = _firePoint.position + _firePoint.forward * 1.0f;
         Vector3 dir = (_target.position - _firePoint.position).normalized;
         Quaternion rotationdesired = Quaternion.LookRotation(dir);
 
-        if (_projectilePrefab != null)
-        {
-            Bullet projectile = Instantiate(_projectilePrefab, muzzlePos, rotationdesired);
+        projectile.transform.position = muzzlePos;
+        projectile.transform.rotation = rotationdesired;
 
-            projectile.SetBulletDamage(BulletData.damage);
-            projectile.setBulletMatRenderer(BulletData.expMaterial);
-            projectile.SetBulletMaterial(BulletData.expMaterial);
-            projectile.SetDamageType(BulletData.damageTarget);
+        projectile.ResetBullet();
 
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.velocity = dir * _shootForce;
-            }
-        }
-        else
+        projectile.SetBulletDamage(BulletData.damage);
+        projectile.setBulletMatRenderer(BulletData.expMaterial);
+        projectile.SetBulletMaterial(BulletData.expMaterial);
+        projectile.SetDamageType(BulletData.damageTarget);
+
+        projectile.gameObject.SetActive(true);
+
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        if (rb != null)
         {
-            Debug.Log("Non ho riferimenti al Prefab del Bullet !!!");
-            return;
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.velocity = dir * _shootForce;
         }
 
 

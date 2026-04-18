@@ -21,4 +21,4 @@ MonoBehaviour:
   goldPrice: 600
   range: 9
   fireRate: 0.1
-  shootForce: 35
+  shootForce: 30
