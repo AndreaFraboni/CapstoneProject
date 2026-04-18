@@ -15,6 +15,6 @@ MonoBehaviour:
   BulletName: MagicBullet
   bulletPrefab: {fileID: 5941818743929462530, guid: 33118f65503c2b1458ec95308665ca5b,
     type: 3}
-  damage: 20
+  damage: 30
   expMaterial: {fileID: 2100000, guid: 4847612c9892e944f8b7077cfac784a4, type: 2}
   damageTarget: 0

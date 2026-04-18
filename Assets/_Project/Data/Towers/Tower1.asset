@@ -20,5 +20,5 @@ MonoBehaviour:
   bulletdata: {fileID: 11400000, guid: d53d01c1bfbd5e4488ddca6d27038c30, type: 2}
   goldPrice: 100
   range: 6
-  fireRate: 0.8
+  fireRate: 0.6
   shootForce: 30

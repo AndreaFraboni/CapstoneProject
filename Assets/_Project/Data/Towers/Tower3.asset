@@ -18,7 +18,7 @@ MonoBehaviour:
   ghostPrefab: {fileID: 6938986361587211178, guid: 98798b0d2be09d743a91957bb3b242d6,
     type: 3}
   bulletdata: {fileID: 11400000, guid: 14d0cde2c4aa74a4f88ecfbaeba4cfc5, type: 2}
-  goldPrice: 400
+  goldPrice: 1000
   range: 8
   fireRate: 0.5
   shootForce: 30
