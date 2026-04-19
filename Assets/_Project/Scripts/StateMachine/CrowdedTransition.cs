@@ -14,7 +14,6 @@ public class CrowdedTransition : BaseFSMTransition
         foreach (Collider hit in hits)
         {
             if (hit.transform == _controller.transform) continue;
-
             EnemyFSMController otherEnemy = hit.GetComponentInParent<EnemyFSMController>();
             if (otherEnemy != null && otherEnemy != _controller) return true;
         }

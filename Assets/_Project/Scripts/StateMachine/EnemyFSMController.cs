@@ -5,6 +5,10 @@ public class EnemyFSMController : MonoBehaviour
 {
     [SerializeField] private BaseFSMState _initialState;
     [SerializeField] private LifeController _lifeController;
+    [SerializeField] private Transform _mainTarget;
+
+    [SerializeField] private LayerMask _otherTargetsLayer;
+    [SerializeField] private float _DetectionRadius = 6f;
 
     private BaseFSMState _currentState;
 
@@ -14,8 +18,10 @@ public class EnemyFSMController : MonoBehaviour
     bool _deathStarted = false;
 
     public bool isAlive = true;
-
     public bool IsAttacking = false;
+
+    public Transform MainTarget => _mainTarget;
+    public Transform CurrentTarget { get; private set; }
 
     private void Awake()
     {
@@ -50,6 +56,8 @@ public class EnemyFSMController : MonoBehaviour
 
     private void Start()
     {
+        CurrentTarget = _mainTarget;
+
         if (_initialState != null) ChangeState(_initialState);
 
         EnemiesManager.Instance.RegistEnemy(this);
@@ -58,6 +66,8 @@ public class EnemyFSMController : MonoBehaviour
     private void Update()
     {
         if (_currentState == null || !isAlive) return;
+
+        ValidateCurrentTarget();
 
         _currentState.StateUpdate();
 
@@ -101,6 +111,47 @@ public class EnemyFSMController : MonoBehaviour
         _currentState.OnStateEnter();
     }
 
+
+
+
+    public void SetMainTarget(Transform target)
+    {
+        _mainTarget = target;
+        if (CurrentTarget == null || CurrentTarget == _mainTarget) CurrentTarget = target;
+    }
+    public void SetCurrentTarget(Transform target)
+    {
+        if (target == null) return;
+        CurrentTarget = target;
+    }
+
+    public void ResetToMainTarget()
+    {
+        CurrentTarget = MainTarget;
+    }
+
+    public bool HasCurrentTarget()
+    {
+        if (CurrentTarget == null) return false;
+        return true;
+    }
+
+    public bool IsCurrentTargetMainTarget()
+    {
+        return CurrentTarget == MainTarget;
+    }
+
+    public void ValidateCurrentTarget()
+    {
+        if (CurrentTarget == null)
+        {
+            ResetToMainTarget();
+            return;
+        }
+    }
+
+
+
     public void DestroyGOEnemy()
     {
         Destroy(gameObject);
@@ -132,19 +183,14 @@ public class EnemyFSMController : MonoBehaviour
 
     public void OnDefeated()
     {
-        //isAlive = false;
-
         EnemiesManager.Instance.RemoveEnemy(this);
-
         AudioManager.Instance.PlaySFX("DeathSound");
-
         StartDeathAnimation();
     }
 
     public void StartPlayAttackAnimation()
     {
         if (anim == null || IsAttacking || _deathStarted) return;
-
         IsAttacking = true;
         anim.SetBool("isAttacking", true);
     }
@@ -152,10 +198,14 @@ public class EnemyFSMController : MonoBehaviour
     public void StopAttack()
     {
         IsAttacking = false;
-
         if (anim == null) return;
-
         anim.SetBool("isAttacking", false);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _DetectionRadius);
     }
 
 }

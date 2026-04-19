@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class AttackSacredTreeState : BaseFSMState
+public class AttackTargetState : BaseFSMState
 {
-    [SerializeField] private Transform _sacredTree;
     [SerializeField] private float _timeBetweenAttacks = 2f;
     [SerializeField] private float _rotationSpeed = 8f;
 
@@ -10,6 +9,10 @@ public class AttackSacredTreeState : BaseFSMState
 
     public override void OnStateEnter()
     {
+        if (_controller == null) return;
+
+        _controller.ValidateCurrentTarget();
+
         if (_controller.agent != null)
         {
             _controller.agent.isStopped = true;
@@ -18,28 +21,26 @@ public class AttackSacredTreeState : BaseFSMState
         }
 
         _controller.StartPlayAttackAnimation();
-
         _nextAttackTime = Time.time + _timeBetweenAttacks;
     }
 
     public override void StateUpdate()
     {
-        if (!_controller.isAlive) return;
-        if (_sacredTree == null) return;
+        if (_controller == null || !_controller.isAlive) return;
 
-        Vector3 dirToSacredTree = _sacredTree.position - _controller.transform.position;
+        _controller.ValidateCurrentTarget();
+
+        Transform target = _controller.CurrentTarget;
+        if (target == null) return;
+        Vector3 dirToSacredTree = target.position - _controller.transform.position;
         dirToSacredTree.y = 0f;
 
         if (dirToSacredTree.sqrMagnitude > 0.001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(dirToSacredTree.normalized);
-            _controller.transform.rotation = Quaternion.Slerp(
-                _controller.transform.rotation,
-                targetRot,
-                _rotationSpeed * Time.deltaTime
-            );
+            _controller.transform.rotation = Quaternion.Slerp(_controller.transform.rotation, targetRot, _rotationSpeed * Time.deltaTime);
         }
-        
+
         if (Time.time >= _nextAttackTime)
         {
             _controller.StartPlayAttackAnimation();
