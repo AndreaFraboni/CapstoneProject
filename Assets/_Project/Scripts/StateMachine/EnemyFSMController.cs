@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class EnemyFSMController : MonoBehaviour
 {
     [SerializeField] private BaseFSMState _initialState;
-
     [SerializeField] private LifeController _lifeController;
 
     private BaseFSMState _currentState;
@@ -13,7 +12,10 @@ public class EnemyFSMController : MonoBehaviour
     public Animator anim;
 
     bool _deathStarted = false;
-    //bool isAlive = true;
+
+    public bool isAlive = true;
+
+    public bool IsAttacking = false;
 
     private void Awake()
     {
@@ -55,7 +57,7 @@ public class EnemyFSMController : MonoBehaviour
 
     private void Update()
     {
-        if (_currentState == null) return;
+        if (_currentState == null || !isAlive) return;
 
         _currentState.StateUpdate();
 
@@ -108,7 +110,9 @@ public class EnemyFSMController : MonoBehaviour
     {
         if (_deathStarted) return;
 
+        isAlive = false;
         _deathStarted = true;
+        IsAttacking = false;
 
         if (agent != null)
         {
@@ -118,9 +122,12 @@ public class EnemyFSMController : MonoBehaviour
             agent.enabled = false;
         }
 
-        anim.SetBool("walking", false);
-
-        anim.SetBool("isDying", true);
+        if (anim != null)
+        {
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("walking", false);
+            anim.SetBool("isDying", true);
+        }
     }
 
     public void OnDefeated()
@@ -134,5 +141,21 @@ public class EnemyFSMController : MonoBehaviour
         StartDeathAnimation();
     }
 
+    public void StartPlayAttackAnimation()
+    {
+        if (anim == null || IsAttacking || _deathStarted) return;
+
+        IsAttacking = true;
+        anim.SetBool("isAttacking", true);
+    }
+
+    public void StopAttack()
+    {
+        IsAttacking = false;
+
+        if (anim == null) return;
+
+        anim.SetBool("isAttacking", false);
+    }
 
 }

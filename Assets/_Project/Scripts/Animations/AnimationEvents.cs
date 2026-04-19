@@ -27,5 +27,10 @@ public class PlayerAnimationEvents : MonoBehaviour
         _ec.DestroyGOEnemy();
     }
 
+    public void AE_EndAttackAnimation()
+    {
+        //Debug.Log("ATTACCO FINITO");
+        if (_ec != null) _ec.StopAttack();
+    }
 
 }
