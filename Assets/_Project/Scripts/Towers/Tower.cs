@@ -13,10 +13,27 @@ public class Tower : MonoBehaviour
     [SerializeField] protected float _fireRange;
     [SerializeField] private float _shootForce;
 
+    [SerializeField] private LifeController _lifeController;
+
     private float _lastShoot = 0f;
 
     public SO_TowerData TowerData { get; private set; }
     public SO_BulletData BulletData { get; private set; }
+
+    private void Awake()
+    {
+        if (_lifeController == null) _lifeController = GetComponent<LifeController>();
+    }
+
+    private void OnEnable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
+    }
+
+    private void OnDisable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
+    }
 
     public void Initialize(SO_TowerData data, SO_BulletData bulletdata)
     {
@@ -162,9 +179,15 @@ public class Tower : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             rb.velocity = dir * _shootForce;
         }
-
-
     }
+
+
+    public void OnDefeated()
+    {
+        AudioManager.Instance.PlaySFX("MagicSpellExplode");
+        Destroy(gameObject);
+    }
+
 
 }
 

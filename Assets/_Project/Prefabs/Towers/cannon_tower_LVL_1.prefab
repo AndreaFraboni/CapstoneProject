@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 3855380183398169289}
   - component: {fileID: 7592026504059490679}
   - component: {fileID: 3356091103170927994}
+  - component: {fileID: 3491336902369638815}
   m_Layer: 13
   m_Name: cannon_tower_LVL_1
   m_TagString: Untagged
@@ -436,7 +437,21 @@ MonoBehaviour:
   _fireRate: 0
   _fireRange: 0
   _shootForce: 0
-  _projectilePrefab: {fileID: 0}
+--- !u!114 &3491336902369638815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6847116693334833553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e518929141b1d24d88292cdd467f139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currenthp: 0
+  _maxHP: 100
+  _fullHPOnStart: 1
 --- !u!1 &7004573869319701584
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +615,7 @@ GameObject:
   - component: {fileID: 9155427863232696135}
   - component: {fileID: 998035126662304221}
   - component: {fileID: 7313255016216778159}
+  - component: {fileID: 8279955052143343182}
   m_Layer: 13
   m_Name: LifeBarCanvas
   m_TagString: Untagged
@@ -690,3 +706,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8279955052143343182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7743799788444294360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d3bfd3a41d0904ca5093359f66433e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeController: {fileID: 3491336902369638815}
+  _barlifeFillable: {fileID: 2976632206563156553}
