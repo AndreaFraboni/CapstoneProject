@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Ground
   - SacredTree
+  - EnemyHitBox
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Enemy
   - Bullet
   - Tower
-  - 
+  - EnemyHitBox
   - 
   - 
   - 

@@ -10,6 +10,10 @@ public class EnemyFSMController : MonoBehaviour
     [SerializeField] private LayerMask _otherTargetsLayer;
     [SerializeField] private float _DetectionRadius = 6f;
 
+    [SerializeField] private int _physicalDamage = 50;
+
+    public EnemyHandHitBox enemyHandHitbox;
+
     private BaseFSMState _currentState;
 
     public NavMeshAgent agent;
@@ -29,6 +33,11 @@ public class EnemyFSMController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         if (_lifeController == null) _lifeController = GetComponent<LifeController>();
+
+        if (enemyHandHitbox == null)
+        {
+            enemyHandHitbox = GetComponentInParent<EnemyHandHitBox>();
+        }
 
         BaseFSMState[] states = GetComponentsInChildren<BaseFSMState>();
 
@@ -57,6 +66,8 @@ public class EnemyFSMController : MonoBehaviour
     private void Start()
     {
         CurrentTarget = _mainTarget;
+
+        if (enemyHandHitbox) enemyHandHitbox.physicalDamage = _physicalDamage;
 
         if (_initialState != null) ChangeState(_initialState);
 
@@ -192,6 +203,7 @@ public class EnemyFSMController : MonoBehaviour
     {
         if (anim == null || IsAttacking || _deathStarted) return;
         IsAttacking = true;
+        AudioManager.Instance.PlaySFX("EnemyRoar");
         anim.SetBool("isAttacking", true);
     }
 

@@ -31,6 +31,12 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         //Debug.Log("ATTACCO FINITO");
         if (_ec != null) _ec.StopAttack();
+        if (_ec != null) _ec.enemyHandHitbox.EnableHitbox();
+    }
+
+    public void AE_StartAttackAnimation()
+    {
+        if (_ec != null) _ec.enemyHandHitbox.DisableHitbox();
     }
 
 }
