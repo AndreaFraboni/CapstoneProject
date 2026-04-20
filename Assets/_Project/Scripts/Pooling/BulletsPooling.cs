@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicSpheresPooling : MonoBehaviour
+public class BulletsPooling : MonoBehaviour
 {
-    public static MagicSpheresPooling Instance { get; private set; }
+    public static BulletsPooling Instance { get; private set; }
 
     [SerializeField] private Bullet _bulletPrefab;
 

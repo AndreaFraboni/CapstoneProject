@@ -6,20 +6,16 @@ public class BuildManager : MonoBehaviour
     public static BuildManager Instance { get; private set; }
 
     [SerializeField] private PlayerInput _inputHandler;
-
     [SerializeField] private Camera _cam;
-
     [SerializeField] private LayerMask _terrainMask;
 
     private SO_TowerData _selectedTowerData;
-
     private GameObject _currentGhostTower;
 
     [SerializeField] private LayerMask _layerObstaclesMask;
     [SerializeField] private float placementRadius = 1f;
 
     private bool canPlaceHere;
-
     private Vector3 currentPlacementPosition;
 
     private void Awake()
@@ -70,26 +66,31 @@ public class BuildManager : MonoBehaviour
     public void OnLeftMouseClick(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+
         if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) return;
-
         if (!IsBuildMode()) return;
-
         if (_currentGhostTower == null) return;
         if (_selectedTowerData == null) return;
 
         if (!canPlaceHere)
         {
             AudioManager.Instance.PlaySFX("WrongPlace");
+            Debug.Log("You can't place tower here !!!!");
+            return;
+        }
+
+        if (!GameManager.Instance.CanAddOtherTower(1))
+        {
+            AudioManager.Instance.PlaySFX("WrongPlace");
+            Debug.Log("You can't place tower !!!!");
+            CancelPlacement();
             return;
         }
 
         bool isTowerPlaced = TowerPlacement(currentPlacementPosition);
         if (isTowerPlaced)
         {
-            //Debug.Log("You have placed tower in scene !!!!");
-
             AudioManager.Instance.PlaySFX("TowerPlaced");
-
             CancelPlacement(); // torre piazzata ora esco dalla modalità Build Mode !!!
         }
         else
@@ -142,6 +143,8 @@ public class BuildManager : MonoBehaviour
         GameObject clonedTower = Instantiate(_selectedTowerData.towerPrefab);
         clonedTower.gameObject.GetComponent<Tower>().Initialize(_selectedTowerData, _selectedTowerData.bulletdata); ;
         clonedTower.transform.position = Position;
+
+
 
         return true;
     }

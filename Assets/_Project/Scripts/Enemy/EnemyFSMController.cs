@@ -203,7 +203,7 @@ public class EnemyFSMController : MonoBehaviour
     {
         if (anim == null || IsAttacking || _deathStarted) return;
         IsAttacking = true;
-        AudioManager.Instance.PlaySFX("EnemyRoar");
+        //AudioManager.Instance.PlaySFX("EnemyRoar");
         anim.SetBool("isAttacking", true);
     }
 

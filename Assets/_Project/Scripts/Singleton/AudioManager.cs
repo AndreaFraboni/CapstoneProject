@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 public class AudioManager : GenericSingleton<AudioManager>
 {
     [SerializeField] private AudioMixer _mixer;
@@ -109,7 +110,13 @@ public class AudioManager : GenericSingleton<AudioManager>
                     Debug.LogError($"Clip nulla per SFX: {name}");
                     return;
                 }
-                AudioSource.PlayClipAtPoint(sound.clip, position);
+                //AudioSource.PlayClipAtPoint(sound.clip, position);
+                GameObject tempGO = new GameObject("TempAudio"); // create the temp object
+                tempGO.transform.position = position; // set its position
+                AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
+                aSource.clip = sound.clip; // define the clip
+                aSource.Play(); // start the sound
+                Destroy(tempGO, sound.clip.length); // destroy object after clip duration
                 return;
             }
         }

@@ -22,7 +22,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int startingCoins = 100;
     public int currentCoins { get; private set; }
 
+    [SerializeField] private int _maxTowersInScene = 4;
+    public int currentTowersSpawned = 0;
+
     public event Action<int> OnCoinsChanged;
+
+    public event Action OnTowersNotBuildable;
+    public event Action OnTowersBuildable;
+
 
     private void Awake()
     {
@@ -45,6 +52,38 @@ public class GameManager : MonoBehaviour
         }
 
         OnCoinsChanged?.Invoke(currentCoins);
+    }
+
+    public bool CanAddOtherTower(int amount)
+    {
+        if (currentTowersSpawned + amount > _maxTowersInScene) // stai tentando di buildare una torre ma sei già fuori limite !!!
+        {
+            OnTowersNotBuildable?.Invoke(); // disattivo UI delle torri da buildare .....
+            ExitTowerPlacing();
+            return false;
+        }
+
+        currentTowersSpawned += amount; // ok aumento numero torri in scena
+
+        if (currentTowersSpawned >= _maxTowersInScene) // ora però sei oltre il limite delle torri in scena contemporaneamente .....
+        {
+            OnTowersNotBuildable?.Invoke(); // disattivo UI delle torri da buildare .....
+            ExitTowerPlacing();
+        }
+
+        return true;
+    }
+
+    public void RemoveTower()
+    {
+        currentTowersSpawned--; // tolgo torre dal conteggio torri in scena ...
+
+        if (currentTowersSpawned < 0) currentTowersSpawned = 0;
+
+        if (currentTowersSpawned < _maxTowersInScene)
+        {
+            OnTowersBuildable?.Invoke(); // riattivo UI delle torri da buildare
+        }
     }
 
     public void AddCoins(int amount)
@@ -127,7 +166,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ResumeInNextFrame()
     {
-        yield return null;
+        yield return null; // al prossimo frame riattivo il game ....
 
         GameUIManager.Instance.HidePause();
 

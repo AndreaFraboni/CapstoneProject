@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -39,7 +38,7 @@ public class Tower : MonoBehaviour
     {
         if (data == null || bulletdata == null)
         {
-            Debug.LogError("BAD Initialize: null data !!!");
+            Debug.LogError("BAD Initialize: SO data or SO bulletdata are null !!!");
             return;
         }
 
@@ -121,7 +120,6 @@ public class Tower : MonoBehaviour
         return false;
     }
 
-
     public void Shoot()
     {
         _lastShoot = Time.time;
@@ -138,7 +136,7 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        if (MagicSpheresPooling.Instance == null)
+        if (BulletsPooling.Instance == null)
         {
             Debug.LogError("MagicSpheresPooling.Instance is NULL !!!");
             return;
@@ -149,10 +147,10 @@ public class Tower : MonoBehaviour
             AudioManager.Instance.PlaySFX("ShootFireBall");
         }
 
-        Bullet projectile = MagicSpheresPooling.Instance.GetPoolObj();
+        Bullet projectile = BulletsPooling.Instance.GetPoolObj();
         if (projectile == null)
         {
-            Debug.LogError("Il pool non ha restituito nessun Bullet !!!");
+            Debug.LogError("NO Bullet from MagicSpheresPool !!!");
             return;
         }
 
@@ -185,6 +183,9 @@ public class Tower : MonoBehaviour
     public void OnDefeated()
     {
         AudioManager.Instance.PlaySFX("MagicSpellExplode");
+
+        if (GameManager.Instance) GameManager.Instance.RemoveTower();
+
         Destroy(gameObject);
     }
 

@@ -34,9 +34,9 @@ public class Bullet : MonoBehaviour
 
         //Destroy(gameObject);
 
-        if (MagicSpheresPooling.Instance != null)
+        if (BulletsPooling.Instance != null)
         {
-            MagicSpheresPooling.Instance.PutPoolObj(this);
+            BulletsPooling.Instance.PutPoolObj(this);
         }
         else
         {
