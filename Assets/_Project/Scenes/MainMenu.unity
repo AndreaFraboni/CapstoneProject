@@ -3611,6 +3611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24100000, guid: a0dbfb78b03bf1b49863419e58b5dcc3, type: 2}
+  sfxMixerGroup: {fileID: 8974301474787894561, guid: a0dbfb78b03bf1b49863419e58b5dcc3,
+    type: 2}
   musicSounds:
   - name: ThemeMenu
     clip: {fileID: 8300000, guid: d05cc4a1faf6df744aa0a2e706fe6afb, type: 3}

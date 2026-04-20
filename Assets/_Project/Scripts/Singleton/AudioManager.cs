@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class AudioManager : GenericSingleton<AudioManager>
 {
     [SerializeField] private AudioMixer _mixer;
+    [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource, sfxFootStepsSource;
@@ -114,6 +115,9 @@ public class AudioManager : GenericSingleton<AudioManager>
                 tempGO.transform.position = position; // set its position
                 AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
                 aSource.clip = sound.clip; // define the clip
+
+                aSource.outputAudioMixerGroup = sfxMixerGroup;
+
                 aSource.Play(); // start the sound
                 Destroy(tempGO, sound.clip.length); // destroy object after clip duration
                 return;
