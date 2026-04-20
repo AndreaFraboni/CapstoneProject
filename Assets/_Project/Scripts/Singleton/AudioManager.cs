@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 public class AudioManager : GenericSingleton<AudioManager>
 {
     [SerializeField] private AudioMixer _mixer;
