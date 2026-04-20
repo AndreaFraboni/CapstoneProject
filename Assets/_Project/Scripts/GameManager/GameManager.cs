@@ -22,10 +22,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int startingCoins = 100;
     public int currentCoins { get; private set; }
 
+    [SerializeField] private int startingBlueGems = 0;
+    public int currentBlueGems { get; private set; }
+
     [SerializeField] private int _maxTowersInScene = 4;
     public int currentTowersSpawned = 0;
 
     public event Action<int> OnCoinsChanged;
+    public event Action<int> OnBlueGemsChanged;
 
     public event Action OnTowersNotBuildable;
     public event Action OnTowersBuildable;
@@ -40,7 +44,9 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+
         currentCoins = startingCoins;
+        currentBlueGems = startingBlueGems;
     }
 
     private void Start()
@@ -52,6 +58,7 @@ public class GameManager : MonoBehaviour
         }
 
         OnCoinsChanged?.Invoke(currentCoins);
+        OnBlueGemsChanged?.Invoke(currentBlueGems);
     }
 
     public bool CanAddOtherTower(int amount)
@@ -84,6 +91,31 @@ public class GameManager : MonoBehaviour
         {
             OnTowersBuildable?.Invoke(); // riattivo UI delle torri da buildare
         }
+    }
+
+    public void AddBlueGems(int amount)
+    {
+        if (amount <= 0) return;
+        currentBlueGems = currentBlueGems + amount;
+        OnBlueGemsChanged?.Invoke(currentBlueGems);
+    }
+
+    public bool SpendBlueGems(int amount)
+    {
+        if (amount <= 0) return false;
+        if (currentBlueGems < amount) return false;
+        currentBlueGems = currentBlueGems - amount;
+        if (currentBlueGems <= 0) currentBlueGems = 0;
+        OnBlueGemsChanged?.Invoke(currentBlueGems);
+        return true;
+    }
+
+    public bool CanSpendBlueGems(int amount)
+    {
+        if (currentBlueGems > 0 && currentBlueGems >= amount)
+            return true;
+        else
+            return false;
     }
 
     public void AddCoins(int amount)

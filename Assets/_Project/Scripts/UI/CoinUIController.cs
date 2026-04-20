@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CoinUIController : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _currenCoinsText;
+    [SerializeField] private TextMeshProUGUI _currentCoinsText;
 
     private void Start()
     {
@@ -21,6 +21,6 @@ public class CoinUIController : MonoBehaviour
 
     private void UpdateCoinsText(int coins)
     {
-        if (_currenCoinsText != null) _currenCoinsText.text = coins.ToString();
+        if (_currentCoinsText != null) _currentCoinsText.text = coins.ToString();
     }
 }
