@@ -3636,7 +3636,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.35
+  m_fontSize: 42.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5762,6 +5762,7 @@ MonoBehaviour:
   - {fileID: 237897064}
   - {fileID: 783809065}
   - {fileID: 2096647319}
+  _targetForEnemy: {fileID: 3469287838286696297}
 --- !u!4 &966568746
 Transform:
   m_ObjectHideFlags: 0
@@ -11036,7 +11037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34090413a3d906439a5d01aeb349c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCoins: 2000
+  startingCoins: 100
   startingBlueGems: 0
   _maxTowersInScene: 4
   currentTowersSpawned: 0
@@ -16991,7 +16992,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.85
+  m_fontSize: 33.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -18802,79 +18803,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3226394084139864717}
   m_CullTransparentMesh: 1
---- !u!1001 &7685921551720621338
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2853829052746669800, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: _mainTarget
-      value: 
-      objectReference: {fileID: 3469287838286696297}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 35.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 18.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866331167740690285, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8017887524454978518, guid: e1ec0d5e224abf04c9bf91486e488129,
-        type: 3}
-      propertyPath: m_Name
-      value: DemonEnemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e1ec0d5e224abf04c9bf91486e488129, type: 3}
 --- !u!224 &7743197046966309630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20087,7 +20015,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.35
+  m_fontSize: 42.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20533,4 +20461,3 @@ SceneRoots:
   - {fileID: 1017220298}
   - {fileID: 4482282913250416030}
   - {fileID: 1549111550488151055}
-  - {fileID: 7685921551720621338}

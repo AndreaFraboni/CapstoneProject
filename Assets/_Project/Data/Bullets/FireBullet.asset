@@ -15,6 +15,6 @@ MonoBehaviour:
   BulletName: FireBullet
   bulletPrefab: {fileID: 5941818743929462530, guid: 33118f65503c2b1458ec95308665ca5b,
     type: 3}
-  damage: 15
+  damage: 5
   expMaterial: {fileID: 2100000, guid: 5e5fed87c50284247ac97ed5ec25825a, type: 2}
   damageTarget: 0

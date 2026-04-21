@@ -15,6 +15,6 @@ MonoBehaviour:
   BulletName: FrozenBullet
   bulletPrefab: {fileID: 5941818743929462530, guid: 33118f65503c2b1458ec95308665ca5b,
     type: 3}
-  damage: 20
+  damage: 10
   expMaterial: {fileID: 2100000, guid: c4dda6786d797df4f9737d48de5dff84, type: 2}
   damageTarget: 0

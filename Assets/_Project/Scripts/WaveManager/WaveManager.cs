@@ -5,6 +5,8 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
 
+    [SerializeField] private Transform _targetForEnemy;
+
     private float _spawnrate = 20;
     private Coroutine Spawner;
     private Camera _cam;
@@ -30,7 +32,7 @@ public class WaveManager : MonoBehaviour
 
         while (true)
         {
-            SpawnEnemies(wave);
+            SpawnEnemies();
 
             float delay = Mathf.Clamp(_spawnrate - wave, 5f, _spawnrate);
             yield return new WaitForSeconds(delay);
@@ -39,14 +41,25 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private void SpawnEnemies(int i)
+    private void SpawnEnemies()
     {
-        Debug.Log("SPAWN ENEMY ......");
         AudioManager.Instance.PlaySFXAtPoint("StartWaveHorn", _cam.transform.position);
 
+        for (int i = 0; i < _spawnPoints.Length; i++)
+        {
+            Debug.Log($"index 0 {i}");
+            EnemyFSMController enemycloneprefab = DemonsPooling.Instance.GetPoolObj();
+            if (enemycloneprefab == null)
+            {
+                Debug.LogError("NO Enemy Prefab from DemonsPool !!!");
+                return;
+            }
 
+            enemycloneprefab.transform.position = _spawnPoints[i].position;
 
-
+            enemycloneprefab.gameObject.SetActive(true);
+            enemycloneprefab.ResetEnemy(_targetForEnemy);
+        }
     }
 
     private void OnDisable()

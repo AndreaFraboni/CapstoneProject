@@ -60,6 +60,7 @@ public class EnemyFSMController : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("OnEnable .....");
         if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
     }
 
@@ -68,9 +69,39 @@ public class EnemyFSMController : MonoBehaviour
         if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
     }
 
+    public void ResetEnemy(Transform target)
+    {
+        isAlive = true;
+
+        _deathStarted = false;
+
+        IsAttacking = false;
+
+        if (agent != null)
+        {
+            agent.enabled = true;
+            agent.isStopped = false;
+        }
+
+        if (anim != null)
+        {
+            anim.SetBool("isDying", false);
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("walking", false);
+        }
+
+        _mainTarget = target;
+        CurrentTarget = _mainTarget;
+
+        if (_initialState != null) ChangeState(_initialState);
+    }
+
+
 
     private void Start()
     {
+        Debug.Log("START .....");
+
         CurrentTarget = _mainTarget;
 
         if (enemyHandHitbox) enemyHandHitbox.physicalDamage = _physicalDamage;
