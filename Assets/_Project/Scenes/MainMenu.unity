@@ -1590,7 +1590,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 71.3
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 71.5
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3649,6 +3649,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2e6568d7c141f7649999bb1897e289df, type: 3}
   - name: PickupHeart
     clip: {fileID: 8300000, guid: 487ab2c2ccf607449bbc00735919af26, type: 3}
+  - name: BonusGame
+    clip: {fileID: 8300000, guid: c5e47a0de132120459c4ee2698c42542, type: 3}
   musicSource: {fileID: 8005124513045015314}
   sfxSource: {fileID: 8390682094850114899}
   sfxFootStepsSource: {fileID: 231970565}

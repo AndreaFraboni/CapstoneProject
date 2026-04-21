@@ -11,6 +11,8 @@ public class ExplosionWave : MonoBehaviour
 
     public DamageTarget _damageTarget = DamageTarget.Enemy;
 
+    private Coroutine _explosionScaling;
+
     private void Awake()
     {
         if (_renderer == null) _renderer = GetComponent<Renderer>();
@@ -18,7 +20,7 @@ public class ExplosionWave : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(SphereScaling());
+        _explosionScaling = StartCoroutine(SphereScaling());
     }
 
     private IEnumerator SphereScaling()
@@ -38,6 +40,15 @@ public class ExplosionWave : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        if (_explosionScaling != null)
+        {
+            StopCoroutine(_explosionScaling);
+            _explosionScaling = null;
+        }
     }
 
     public void SetDamageWave(int damage)

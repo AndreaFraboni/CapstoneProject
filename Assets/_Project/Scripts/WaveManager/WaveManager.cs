@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public static WaveManager Instance { get; private set; }
-
     [SerializeField] private Transform[] _spawnPoints;
 
     private float _spawnrate = 20;
@@ -13,18 +11,15 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-
         _cam = Camera.main;
     }
 
     private void Start()
+    {
+        Invoke("CallWave", 10); // wait some times before to start enemy wave !!!
+    }
+
+    private void CallWave()
     {
         Spawner = StartCoroutine(StartWaves());
     }
@@ -36,6 +31,7 @@ public class WaveManager : MonoBehaviour
         while (true)
         {
             SpawnEnemies(wave);
+
             float delay = Mathf.Clamp(_spawnrate - wave, 5f, _spawnrate);
             yield return new WaitForSeconds(delay);
 
@@ -47,6 +43,9 @@ public class WaveManager : MonoBehaviour
     {
         Debug.Log("SPAWN ENEMY ......");
         AudioManager.Instance.PlaySFXAtPoint("StartWaveHorn", _cam.transform.position);
+
+
+
 
     }
 

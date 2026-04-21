@@ -1922,6 +1922,8 @@ MonoBehaviour:
     m_Bits: 8200
   _DetectionRadius: 6
   _physicalDamage: 50
+  _bonusPrefab: {fileID: 5054829381564010568, guid: db72c1e6eef04734f92dc4fc1a7872e1,
+    type: 3}
   enemyHandHitbox: {fileID: 8331042893545343513}
   agent: {fileID: 0}
   anim: {fileID: 0}

@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public event Action OnTowersNotBuildable;
     public event Action OnTowersBuildable;
 
-
     private void Awake()
     {
         if (Instance != null && Instance != this)

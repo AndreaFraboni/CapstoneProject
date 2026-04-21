@@ -1,3 +1,4 @@
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,11 @@ public class EnemyFSMController : MonoBehaviour
     [SerializeField] private float _DetectionRadius = 6f;
 
     [SerializeField] private int _physicalDamage = 50;
+
+    [SerializeField] private GameObject _bonusPrefab;
+    [SerializeField] private int _numberOfBonus = 5;
+    [SerializeField] private float _bonusDistanceFromSpawnPoint = 1f;
+    [SerializeField] private float _bonusHeightOnTerrain = 0.25f;
 
     public EnemyHandHitBox enemyHandHitbox;
 
@@ -122,9 +128,6 @@ public class EnemyFSMController : MonoBehaviour
         _currentState.OnStateEnter();
     }
 
-
-
-
     public void SetMainTarget(Transform target)
     {
         _mainTarget = target;
@@ -161,10 +164,21 @@ public class EnemyFSMController : MonoBehaviour
         }
     }
 
-
+    private void SpawnBonus()
+    {
+        AudioManager.Instance.PlaySFXAtPoint("BonusGame", this.transform.position);
+        for (int i = 0; i < _numberOfBonus; i++)
+        {
+            GameObject clone = Instantiate(_bonusPrefab,
+                                           this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
+                                           Quaternion.identity);
+            clone.transform.RotateAround(this.transform.position, Vector3.up, 360 / (float)_numberOfBonus * i);
+        }
+    }
 
     public void DestroyGOEnemy()
     {
+        SpawnBonus();
         Destroy(gameObject);
     }
 
