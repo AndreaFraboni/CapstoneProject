@@ -4,7 +4,6 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
-
     [SerializeField] private Transform _targetForEnemy;
 
     private float _spawnrate = 20;
@@ -47,7 +46,6 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < _spawnPoints.Length; i++)
         {
-            Debug.Log($"index 0 {i}");
             EnemyFSMController enemycloneprefab = DemonsPooling.Instance.GetPoolObj();
             if (enemycloneprefab == null)
             {

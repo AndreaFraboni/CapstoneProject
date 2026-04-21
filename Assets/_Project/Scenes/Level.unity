@@ -790,7 +790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 119473435}
   m_Layer: 0
-  m_Name: '--------- ENVIRONMENT ------------------- '
+  m_Name: ----------- ENVIRONMENT --------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3636,7 +3636,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.1
+  m_fontSize: 35.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3992,12 +3992,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6829641023022884029, guid: a740cb07c8aaa3d41b2810b7e157be69,
     type: 3}
   m_PrefabInstance: {fileID: 151817183}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &656748626 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3511513636735680935, guid: 913485255cb269144bf499c703b1daf3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1549111550488151055}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &658550897
 GameObject:
@@ -7980,7 +7974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1424643899}
   m_Layer: 0
-  m_Name: ----------- GAME MANAGER -----------------
+  m_Name: ----------- GAME MANAGER ------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9402,7 +9396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifeController: {fileID: 3469287838286696292}
   _currenLifeText: {fileID: 1946211343}
-  _barlifeFillable: {fileID: 0}
+  _barlifeFillable: {fileID: 1787750262}
 --- !u!4 &1779772124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6829641023022884029, guid: a740cb07c8aaa3d41b2810b7e157be69,
@@ -10063,7 +10057,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1549111550488151055}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656748626}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc46e797964a4f4daa03f70168719bb, type: 3}
@@ -10075,25 +10069,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1549111550488151055}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656748626}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e518929141b1d24d88292cdd467f139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1907014467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656748626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dca58528dd547840a117281aa6d4221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lifeController: {fileID: 0}
 --- !u!1001 &1911141958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12627,11 +12608,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3511513636735680935, guid: 913485255cb269144bf499c703b1daf3,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1907014467}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 913485255cb269144bf499c703b1daf3, type: 3}
 --- !u!114 &1583563920726354077
 MonoBehaviour:
@@ -15289,26 +15266,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1172514692689897330, guid: a5715099bfac65c4c8f7607303495f64,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.014773501
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172514692689897330, guid: a5715099bfac65c4c8f7607303495f64,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.01463279
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172514692689897330, guid: a5715099bfac65c4c8f7607303495f64,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.00010966241
-      objectReference: {fileID: 0}
-    - target: {fileID: 1172514692689897330, guid: a5715099bfac65c4c8f7607303495f64,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -0.00027507605
-      objectReference: {fileID: 0}
     - target: {fileID: 2885083686947431465, guid: a5715099bfac65c4c8f7607303495f64,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16992,7 +16949,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.5
+  m_fontSize: 27.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -20015,7 +19972,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.55
+  m_fontSize: 35.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

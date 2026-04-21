@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 4693437268195580602}
   - component: {fileID: 7970593367835646318}
   - component: {fileID: 8079437628618054724}
+  - component: {fileID: 5918821550770206036}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -371,6 +372,19 @@ MonoBehaviour:
   _currenthp: 0
   _maxHP: 200
   _fullHPOnStart: 1
+--- !u!114 &5918821550770206036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511513636735680935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dca58528dd547840a117281aa6d4221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeController: {fileID: 0}
 --- !u!1 &3713150110352065121
 GameObject:
   m_ObjectHideFlags: 0

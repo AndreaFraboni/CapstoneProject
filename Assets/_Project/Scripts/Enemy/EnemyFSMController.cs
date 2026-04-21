@@ -60,21 +60,23 @@ public class EnemyFSMController : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("OnEnable .....");
         if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
+
+        if (EnemiesManager.Instance != null) EnemiesManager.Instance.RegistEnemy(this);
+
     }
 
     private void OnDisable()
     {
         if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
+
+        if (EnemiesManager.Instance != null) EnemiesManager.Instance.RemoveEnemy(this);
     }
 
     public void ResetEnemy(Transform target)
     {
         isAlive = true;
-
         _deathStarted = false;
-
         IsAttacking = false;
 
         if (agent != null)
@@ -90,25 +92,17 @@ public class EnemyFSMController : MonoBehaviour
             anim.SetBool("walking", false);
         }
 
+        _lifeController.SetHp(50);
+
         _mainTarget = target;
         CurrentTarget = _mainTarget;
 
         if (_initialState != null) ChangeState(_initialState);
     }
 
-
-
     private void Start()
     {
-        Debug.Log("START .....");
-
-        CurrentTarget = _mainTarget;
-
         if (enemyHandHitbox) enemyHandHitbox.physicalDamage = _physicalDamage;
-
-        if (_initialState != null) ChangeState(_initialState);
-
-        EnemiesManager.Instance.RegistEnemy(this);
     }
 
     private void Update()
@@ -210,7 +204,16 @@ public class EnemyFSMController : MonoBehaviour
     public void DestroyGOEnemy()
     {
         SpawnBonus();
-        Destroy(gameObject);
+
+        if (DemonsPooling.Instance != null)
+        {
+            DemonsPooling.Instance.PutPoolObj(this);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+        //Destroy(gameObject);
     }
 
     private void StartDeathAnimation()
@@ -239,7 +242,6 @@ public class EnemyFSMController : MonoBehaviour
 
     public void OnDefeated()
     {
-        EnemiesManager.Instance.RemoveEnemy(this);
         AudioManager.Instance.PlaySFX("DeathSound");
         StartDeathAnimation();
     }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4983637017332637206}
   - component: {fileID: 1172514692689897330}
   - component: {fileID: 1502175748802171146}
+  - component: {fileID: 7405904770146940733}
   m_Layer: 10
   m_Name: SacredTree
   m_TagString: SacredTree
@@ -121,8 +122,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0135492645, y: 0.011937965, z: 0.039999966}
-  m_Center: {x: -0.00014244509, y: -0.0012850204, z: 0.020000035}
+  m_Size: {x: 0.014773501, y: 0.01463279, z: 0.039999966}
+  m_Center: {x: -0.00010966241, y: -0.00027507605, z: 0.020000035}
 --- !u!114 &1502175748802171146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +139,17 @@ MonoBehaviour:
   _currenthp: 0
   _maxHP: 2000
   _fullHPOnStart: 1
+--- !u!114 &7405904770146940733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847847152025197152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63815b2a1d2d2074ebf590157ae750cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeController: {fileID: 0}
+  isAlive: 1
