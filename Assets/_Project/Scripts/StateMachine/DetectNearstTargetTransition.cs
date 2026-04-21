@@ -6,8 +6,13 @@ public class DetectNearstTargetTransition : BaseFSMTransition
     {
         if (_controller == null || !_controller.isAlive) return false;
         if (!_controller.IsCurrentTargetMainTarget()) return false;
-        //TO DO
-        // return _controller ==> TrySetNearstOtherTarget();
-        return false;
+
+        GameObject newTarget = _controller.CheckNewTarget();
+
+        if (newTarget == null) return false;
+
+        _controller.SetCurrentTarget(newTarget.transform);
+
+        return true;
     }
 }

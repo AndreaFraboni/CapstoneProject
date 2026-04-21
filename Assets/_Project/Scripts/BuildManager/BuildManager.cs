@@ -75,14 +75,14 @@ public class BuildManager : MonoBehaviour
         if (!canPlaceHere)
         {
             AudioManager.Instance.PlaySFX("WrongPlace");
-            Debug.Log("You can't place tower here !!!!");
+            //Debug.Log("You can't place tower here !!!!");
             return;
         }
 
         if (!GameManager.Instance.CanAddOtherTower(1))
         {
             AudioManager.Instance.PlaySFX("WrongPlace");
-            Debug.Log("You can't place tower !!!!");
+            //Debug.Log("You can't place tower !!!!");
             CancelPlacement();
             return;
         }
@@ -95,7 +95,7 @@ public class BuildManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("You can't place tower !!!!");
+            //Debug.Log("You can't place tower !!!!");
         }
     }
 
@@ -134,7 +134,7 @@ public class BuildManager : MonoBehaviour
         if (_selectedTowerData == null) return false;
         if (!GameManager.Instance.CanSpendCoins(_selectedTowerData.goldPrice))
         {
-            Debug.Log("You don't have money !!!!");
+            //Debug.Log("You don't have money !!!!");
             return false;
         }
 
@@ -143,8 +143,6 @@ public class BuildManager : MonoBehaviour
         GameObject clonedTower = Instantiate(_selectedTowerData.towerPrefab);
         clonedTower.gameObject.GetComponent<Tower>().Initialize(_selectedTowerData, _selectedTowerData.bulletdata); ;
         clonedTower.transform.position = Position;
-
-
 
         return true;
     }
@@ -160,7 +158,7 @@ public class BuildManager : MonoBehaviour
 
         if (!GameManager.Instance.CanSpendCoins(_selectedTowerData.goldPrice))
         {
-            Debug.Log("You don't have money !!!!");
+            //Debug.Log("You don't have money !!!!");
             return false;
         }
 

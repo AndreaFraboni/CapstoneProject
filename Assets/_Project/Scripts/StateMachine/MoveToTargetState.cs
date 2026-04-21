@@ -36,7 +36,6 @@ public class MoveToTargetState : BaseFSMState
 
     public override void OnStateExit()
     {
-
     }
 
 }

@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 1222511742490008228}
   - component: {fileID: 7362359089970112838}
   - component: {fileID: 1371615772111242488}
+  - component: {fileID: 6746294423127527487}
   m_Layer: 11
   m_Name: AttackTarget_State
   m_TagString: Untagged
@@ -188,6 +189,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 8848803809179914436}
   _maxDistance: 1.5
+--- !u!114 &6746294423127527487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117351701241910976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c1ac6a60bc44b4da41880fb92189d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetState: {fileID: 8848803809179914436}
 --- !u!1 &384036158971747683
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +595,7 @@ GameObject:
   - component: {fileID: 5868303888880607141}
   - component: {fileID: 8848803809179914436}
   - component: {fileID: 2869544036742213873}
+  - component: {fileID: 5364027793350716019}
   m_Layer: 11
   m_Name: MoveToTarget_State
   m_TagString: Untagged
@@ -629,6 +644,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetState: {fileID: 7362359089970112838}
   _minDistance: 1
+--- !u!114 &5364027793350716019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103102907625051040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c1ac6a60bc44b4da41880fb92189d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetState: {fileID: 8848803809179914436}
 --- !u!1 &2723342316029011101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1948,7 @@ MonoBehaviour:
   _otherTargetsLayer:
     serializedVersion: 2
     m_Bits: 8200
-  _DetectionRadius: 6
+  _detectionRadius: 6
   _physicalDamage: 50
   _bonusPrefab: {fileID: 5054829381564010568, guid: db72c1e6eef04734f92dc4fc1a7872e1,
     type: 3}

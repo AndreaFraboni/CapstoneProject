@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 3491336902369638815}
   m_Layer: 13
   m_Name: cannon_tower_LVL_1
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -437,6 +437,7 @@ MonoBehaviour:
   _fireRate: 0
   _fireRange: 0
   _shootForce: 0
+  _lifeController: {fileID: 0}
 --- !u!114 &3491336902369638815
 MonoBehaviour:
   m_ObjectHideFlags: 0

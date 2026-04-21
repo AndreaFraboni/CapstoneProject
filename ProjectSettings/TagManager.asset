@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - SacredTree
   - EnemyHitBox
+  - Tower
   layers:
   - Default
   - TransparentFX

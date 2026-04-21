@@ -1,4 +1,3 @@
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +8,7 @@ public class EnemyFSMController : MonoBehaviour
     [SerializeField] private Transform _mainTarget;
 
     [SerializeField] private LayerMask _otherTargetsLayer;
-    [SerializeField] private float _DetectionRadius = 6f;
+    [SerializeField] private float _detectionRadius = 6f;
 
     [SerializeField] private int _physicalDamage = 50;
 
@@ -33,6 +32,9 @@ public class EnemyFSMController : MonoBehaviour
     public Transform MainTarget => _mainTarget;
     public Transform CurrentTarget { get; private set; }
 
+    private Collider[] hitColliders;
+    private const int maxColliders = 10;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -44,6 +46,8 @@ public class EnemyFSMController : MonoBehaviour
         {
             enemyHandHitbox = GetComponentInParent<EnemyHandHitBox>();
         }
+
+        hitColliders = new Collider[maxColliders];
 
         BaseFSMState[] states = GetComponentsInChildren<BaseFSMState>();
 
@@ -69,8 +73,6 @@ public class EnemyFSMController : MonoBehaviour
     private void OnDisable()
     {
         if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
-
-        if (EnemiesManager.Instance != null) EnemiesManager.Instance.RemoveEnemy(this);
     }
 
     public void ResetEnemy(Transform target)
@@ -161,6 +163,7 @@ public class EnemyFSMController : MonoBehaviour
     public void SetCurrentTarget(Transform target)
     {
         if (target == null) return;
+        //Debug.Log("CurrentTarget -> " + target.name);
         CurrentTarget = target;
     }
 
@@ -182,11 +185,7 @@ public class EnemyFSMController : MonoBehaviour
 
     public void ValidateCurrentTarget()
     {
-        if (CurrentTarget == null)
-        {
-            ResetToMainTarget();
-            return;
-        }
+        if (CurrentTarget == null) CurrentTarget = _mainTarget;
     }
 
     private void SpawnBonus()
@@ -199,6 +198,40 @@ public class EnemyFSMController : MonoBehaviour
                                            Quaternion.identity);
             clone.transform.RotateAround(this.transform.position, Vector3.up, 360 / (float)_numberOfBonus * i);
         }
+    }
+
+    public GameObject CheckNewTarget()
+    {
+        GameObject nearstTargetFounded = null;
+        float nearstDistance = _detectionRadius;
+
+        int numColliders = Physics.OverlapSphereNonAlloc(transform.position, nearstDistance, hitColliders);
+
+        for (int i = 0; i < numColliders; i++)
+        {
+            Collider col = hitColliders[i];
+            if (col == null) continue;
+
+            GameObject obj = col.gameObject;
+
+            if (!obj.CompareTag(Tags.Tower) && !obj.CompareTag(Tags.Player)) continue;
+            if (_mainTarget != null && obj.transform == _mainTarget) continue;
+
+            float distance = Vector3.Distance(transform.position, obj.transform.position);
+
+            if (distance < nearstDistance)
+            {
+                nearstDistance = distance;
+                nearstTargetFounded = obj;
+            }
+        }
+
+        if (nearstTargetFounded != null)
+        {
+            return nearstTargetFounded;
+        }
+
+        return null;
     }
 
     public void DestroyGOEnemy()
@@ -243,6 +276,7 @@ public class EnemyFSMController : MonoBehaviour
     public void OnDefeated()
     {
         AudioManager.Instance.PlaySFX("DeathSound");
+        if (EnemiesManager.Instance != null) EnemiesManager.Instance.RemoveEnemy(this);
         StartDeathAnimation();
     }
 
@@ -264,7 +298,7 @@ public class EnemyFSMController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _DetectionRadius);
+        Gizmos.DrawWireSphere(transform.position, _detectionRadius);
     }
 
 }
