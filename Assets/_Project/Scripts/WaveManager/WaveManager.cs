@@ -4,6 +4,7 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private Transform _spawnMiniBossPoint;
     [SerializeField] private Transform _targetForEnemy;
 
     private float _spawnrate = 20;
@@ -33,7 +34,13 @@ public class WaveManager : MonoBehaviour
         {
 
             if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) StopWaveManager();
-           
+
+
+            if (wave % 5 == 0)
+            {
+                SpawnMiniBossEnemy();
+            }
+
             SpawnEnemies();
 
             float delay = Mathf.Clamp(_spawnrate - wave, 5f, _spawnrate);
@@ -42,7 +49,7 @@ public class WaveManager : MonoBehaviour
             wave++;
         }
     }
-    
+
     private void StopWaveManager()
     {
         if (Spawner != null)
@@ -59,7 +66,7 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < _spawnPoints.Length; i++)
         {
-            EnemyFSMController enemycloneprefab = DemonsPooling.Instance.GetPoolObj();
+            EnemyFSMController enemycloneprefab = DemonsPooling.Instance.GetDemonPoolObj();
             if (enemycloneprefab == null)
             {
                 Debug.LogError("NO Enemy Prefab from DemonsPool !!!");
@@ -71,6 +78,21 @@ public class WaveManager : MonoBehaviour
             enemycloneprefab.gameObject.SetActive(true);
             enemycloneprefab.ResetEnemy(_targetForEnemy);
         }
+    }
+
+    private void SpawnMiniBossEnemy()
+    {
+        EnemyFSMController miniBossEnemyClonePrefab = DemonsPooling.Instance.GetMiniBossDemonPoolObj();
+        if (miniBossEnemyClonePrefab == null)
+        {
+            Debug.LogError("NO mini Boss Enemy Prefab from DemonsPool !!!");
+            return;
+        }
+
+        miniBossEnemyClonePrefab.transform.position = _spawnMiniBossPoint.position;
+
+        miniBossEnemyClonePrefab.gameObject.SetActive(true);
+        miniBossEnemyClonePrefab.ResetEnemy(_targetForEnemy);
     }
 
     private void OnDisable()

@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 7362359089970112838}
-  _minDistance: 1
+  minDistance: 1
 --- !u!114 &5364027793350716019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1950,9 +1950,12 @@ MonoBehaviour:
     m_Bits: 8200
   _detectionRadius: 6
   _physicalDamage: 50
-  _bonusPrefab: {fileID: 5054829381564010568, guid: db72c1e6eef04734f92dc4fc1a7872e1,
+  _coinPrefab: {fileID: 5054829381564010568, guid: db72c1e6eef04734f92dc4fc1a7872e1,
     type: 3}
-  _numberOfBonus: 5
+  _blueGemPrefab: {fileID: 7563405948888103871, guid: ad7e267414753a04089c33c66df6283e,
+    type: 3}
+  _numberOfCoinsBonus: 5
+  _numberOfBlueGemBonus: 2
   _bonusDistanceFromSpawnPoint: 1
   _bonusHeightOnTerrain: 0.25
   enemyHandHitbox: {fileID: 8331042893545343513}

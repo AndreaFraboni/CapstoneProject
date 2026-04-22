@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private bool _clickForWalk = false;
     private bool _clickForRun = false;
 
+    private bool _isRolling = false;
+
     private void Awake()
     {
         if (_cam == null) _cam = Camera.main;
@@ -55,9 +57,10 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance == null) return;
         if (!GameManager.Instance.IsPlaying()) return;
 
+        if (_isRolling) return;
+
         _clickForWalk = true;
     }
-
     public void OnDoubleClick(InputAction.CallbackContext context)
     {
         if (!isAlive) return;
@@ -65,7 +68,51 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance == null) return;
         if (!GameManager.Instance.IsPlaying()) return;
 
+        if (_isRolling) return;
+
         _clickForRun = true;
+    }
+
+    public void OnSpacebar(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) return;
+
+        if (_isRolling) return;
+
+        if (isAlive) StartRoll();
+    }
+
+    private void StartRoll()
+    {
+        _isRolling = true;
+
+        if (!isAlive) return;
+
+        _meshAgent.ResetPath();
+        _meshAgent.isStopped = true; // fermo mesh agent !!
+        _meshAgent.updatePosition = false;
+        _meshAgent.updateRotation = false;
+
+        _anim.applyRootMotion = true; // attivo la Root Motion il player si muove con l'animazione
+
+        _anim.SetTrigger("StandToRol"); // chiamo call trigger stand to roll  ...
+    }
+
+    public void EndRoll() // chiamato da animation events a fine roll anim per ristabilire controllo normale senza root motion
+    {
+        _isRolling = false;
+
+        if (!isAlive) return;
+
+        _anim.applyRootMotion = false; // disattivo root motion
+
+        _meshAgent.Warp(transform.position); // aggiorno posizione del mesh agent con la posizione raggiunta dopo l'anim roll
+
+        _meshAgent.isStopped = false; // riavvio mesh agent .....
+
+        _meshAgent.updatePosition = true;
+        _meshAgent.updateRotation = true;
     }
 
     private void Update()
@@ -73,6 +120,8 @@ public class PlayerController : MonoBehaviour
         if (!isAlive) return;
         if (GameManager.Instance == null) return;
         if (!GameManager.Instance.IsPlaying()) return;
+
+        if (_isRolling) return;
 
         HandleMove();
         HandleAnimation();

@@ -5,10 +5,13 @@ public class DemonsPooling : MonoBehaviour
 {
     public static DemonsPooling Instance { get; private set; }
 
-    [SerializeField] private EnemyFSMController _EnemyRef;
-    [SerializeField] private int _poolSize = 10;
+    [SerializeField] private EnemyFSMController _enemyRef;
+    [SerializeField] private EnemyFSMController _miniBossEnemyRef;
+    [SerializeField] private int _demonPoolSize = 10;
+    [SerializeField] private int _miniBossDemonPoolSize = 5;
 
-    private Queue<EnemyFSMController> _EnemiesPool = new Queue<EnemyFSMController>();
+    private Queue<EnemyFSMController> _enemiesDemonPool = new Queue<EnemyFSMController>();
+    private Queue<EnemyFSMController> _miniBossEnemiesPool = new Queue<EnemyFSMController>();
 
     private void Awake()
     {
@@ -20,38 +23,71 @@ public class DemonsPooling : MonoBehaviour
 
         Instance = this;
 
-        CreatePool(_poolSize);
+        CreateDemonPool(_demonPoolSize);
+        CreateMiniBossDemonPool(_miniBossDemonPoolSize);
     }
 
-    public void CreatePool(int num)
+    public void CreateDemonPool(int num)
     {
-        if (_EnemyRef == null)
+        if (_enemyRef == null)
         {
-            Debug.LogError("EnemiesPooling: _EnemyPrefab is NULL !!!");
+            Debug.LogError("Demon Enemies Pooling: _enemyRef is NULL !!!");
             return;
         }
 
         for (int i = 0; i < num; i++)
         {
-            EnemyFSMController obj = Instantiate(_EnemyRef, transform);
+            EnemyFSMController obj = Instantiate(_enemyRef, transform);
             obj.gameObject.SetActive(false);
-            _EnemiesPool.Enqueue(obj);
+            _enemiesDemonPool.Enqueue(obj);
         }
     }
 
-    public EnemyFSMController GetPoolObj()
+    public void CreateMiniBossDemonPool(int num)
     {
-        if (_EnemiesPool.Count == 0) CreatePool(1);
-        if (_EnemiesPool.Count == 0) return null;
-        EnemyFSMController obj = _EnemiesPool.Dequeue();
+        if (_miniBossEnemyRef == null)
+        {
+            Debug.LogError("Demon Enemies Pooling: _enemyRef is NULL !!!");
+            return;
+        }
+
+        for (int i = 0; i < num; i++)
+        {
+            EnemyFSMController obj = Instantiate(_miniBossEnemyRef, transform);
+            obj.gameObject.SetActive(false);
+            _miniBossEnemiesPool.Enqueue(obj);
+        }
+    }
+
+
+    public EnemyFSMController GetDemonPoolObj()
+    {
+        if (_enemiesDemonPool.Count == 0) CreateDemonPool(1);
+        if (_enemiesDemonPool.Count == 0) return null;
+        EnemyFSMController obj = _enemiesDemonPool.Dequeue();
         return obj;
     }
 
-    public void PutPoolObj(EnemyFSMController obj)
+    public void PutDemonPoolObj(EnemyFSMController obj)
     {
         obj.gameObject.SetActive(false);
-        _EnemiesPool.Enqueue(obj);
+        _enemiesDemonPool.Enqueue(obj);
     }
+
+    public EnemyFSMController GetMiniBossDemonPoolObj()
+    {
+        if (_miniBossEnemiesPool.Count == 0) CreateDemonPool(1);
+        if (_miniBossEnemiesPool.Count == 0) return null;
+        EnemyFSMController obj = _miniBossEnemiesPool.Dequeue();
+        return obj;
+    }
+
+    public void PutMiniBossDemonPoolObj(EnemyFSMController obj)
+    {
+        obj.gameObject.SetActive(false);
+        _miniBossEnemiesPool.Enqueue(obj);
+    }
+
 
 
 }

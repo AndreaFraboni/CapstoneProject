@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currenthp: 0
-  _maxHP: 100
+  _maxHP: 250
   _fullHPOnStart: 1
 --- !u!1 &9145649079089783559
 GameObject:

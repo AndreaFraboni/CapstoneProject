@@ -32,7 +32,7 @@ public class Picker : MonoBehaviour
 
     public void AddBlueGem(int value)
     {
-        // AudioManager.Instance.PlaySFX("PickupBlueGem");
+        AudioManager.Instance.PlaySFX("PickupBlueGem");
         GameManager.Instance.AddBlueGems(value);
     }
 

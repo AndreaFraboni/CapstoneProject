@@ -14,7 +14,7 @@ public class FreeLookManualController : MonoBehaviour
     [SerializeField] private float _maxFov = 60f;
     [SerializeField] private float _zoomSmooth = 8f;
 
-    private float zoomInput;
+    private float _zoomInput;
 
     private void Awake()
     {
@@ -45,14 +45,13 @@ public class FreeLookManualController : MonoBehaviour
     private void HandleZoom()
     {
         float fov = _freeLookCamera.m_Lens.FieldOfView;
-        fov = fov - zoomInput * _zoomSpeed;
+        fov = fov - _zoomInput * _zoomSpeed;
         fov = Mathf.Clamp(fov, _minFov, _maxFov);
         _freeLookCamera.m_Lens.FieldOfView = Mathf.Lerp(_freeLookCamera.m_Lens.FieldOfView, fov, Time.deltaTime * _zoomSmooth);
     }
 
     public void OnZoom(InputAction.CallbackContext context)
     {
-        zoomInput = context.ReadValue<float>();
+        _zoomInput = context.ReadValue<float>();
     }
-
 }

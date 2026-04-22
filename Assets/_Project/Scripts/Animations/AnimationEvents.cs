@@ -38,4 +38,10 @@ public class PlayerAnimationEvents : MonoBehaviour
         if (_ec != null) _ec.enemyHandHitbox.EnableHitbox();
     }
 
+    public void AE_EndRoll()
+    {
+        if (_pc == null) return;
+        _pc.EndRoll();
+    }
+
 }

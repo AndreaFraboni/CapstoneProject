@@ -12,8 +12,11 @@ public class EnemyFSMController : MonoBehaviour
 
     [SerializeField] private int _physicalDamage = 50;
 
-    [SerializeField] private GameObject _bonusPrefab;
-    [SerializeField] private int _numberOfBonus = 5;
+    [SerializeField] private GameObject _coinPrefab;
+    [SerializeField] private GameObject _blueGemPrefab;
+
+    [SerializeField] private int _numberOfCoinsBonus = 5;
+    [SerializeField] private int _numberOfBlueGemBonus = 5;
     [SerializeField] private float _bonusDistanceFromSpawnPoint = 1f;
     [SerializeField] private float _bonusHeightOnTerrain = 0.25f;
 
@@ -191,13 +194,26 @@ public class EnemyFSMController : MonoBehaviour
     private void SpawnBonus()
     {
         AudioManager.Instance.PlaySFXAtPoint("BonusGame", this.transform.position);
-        for (int i = 0; i < _numberOfBonus; i++)
+
+        for (int i = 0; i < _numberOfCoinsBonus; i++)
         {
-            GameObject clone = Instantiate(_bonusPrefab,
+            GameObject clone = Instantiate(_coinPrefab,
                                            this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
                                            Quaternion.identity);
-            clone.transform.RotateAround(this.transform.position, Vector3.up, 360 / (float)_numberOfBonus * i);
+            clone.transform.RotateAround(this.transform.position, Vector3.up, 360 / (float)_numberOfCoinsBonus * i);
         }
+
+        if (_numberOfBlueGemBonus > 0)
+        {
+            for (int i = 0; i < _numberOfBlueGemBonus; i++)
+            {
+                GameObject clone = Instantiate(_blueGemPrefab,
+                                               this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
+                                               Quaternion.identity);
+                clone.transform.RotateAround(this.transform.position, Vector3.up, 360 / (float)_numberOfBlueGemBonus * i);
+            }
+        }
+
     }
 
     public GameObject CheckNewTarget()
@@ -240,7 +256,7 @@ public class EnemyFSMController : MonoBehaviour
 
         if (DemonsPooling.Instance != null)
         {
-            DemonsPooling.Instance.PutPoolObj(this);
+            DemonsPooling.Instance.PutDemonPoolObj(this);
         }
         else
         {
