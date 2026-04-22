@@ -31,6 +31,9 @@ public class WaveManager : MonoBehaviour
 
         while (true)
         {
+
+            if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) StopWaveManager();
+           
             SpawnEnemies();
 
             float delay = Mathf.Clamp(_spawnrate - wave, 5f, _spawnrate);
@@ -39,6 +42,16 @@ public class WaveManager : MonoBehaviour
             wave++;
         }
     }
+    
+    private void StopWaveManager()
+    {
+        if (Spawner != null)
+        {
+            StopCoroutine(Spawner);
+            Spawner = null;
+        }
+    }
+
 
     private void SpawnEnemies()
     {
