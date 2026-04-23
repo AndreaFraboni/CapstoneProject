@@ -299,25 +299,11 @@ public class EnemyFSMController : MonoBehaviour
     public void StartPlayAttackAnimation()
     {
         if (anim == null || IsAttacking || _deathStarted) return;
-       
-        //if (CurrentTarget.CompareTag(Tags.Player))
-        //{
-        //    if (!CurrentTarget.gameObject.GetComponent<PlayerController>().isAlive) return;
-        //}
-        //if (CurrentTarget.CompareTag(Tags.Tower))
-        //{
-        //    if (!CurrentTarget.gameObject.GetComponent<Tower>().isAlive) return;
-        //}
-        //if (CurrentTarget.CompareTag(Tags.SacredTree))
-        //{
-        //    if (!CurrentTarget.gameObject.GetComponent<SacredTreeController>().isAlive) return;
-        //}
 
         if (CurrentTarget.gameObject.TryGetComponent<ILiveCheckable>(out var LiveCheckable))
         {
             if (!LiveCheckable.isAliveState()) return;
         }
-
 
         IsAttacking = true;
 
