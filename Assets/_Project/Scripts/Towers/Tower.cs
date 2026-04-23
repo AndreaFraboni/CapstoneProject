@@ -19,6 +19,8 @@ public class Tower : MonoBehaviour
     public SO_TowerData TowerData { get; private set; }
     public SO_BulletData BulletData { get; private set; }
 
+    public bool isAlive = true;
+
     private void Awake()
     {
         if (_lifeController == null) _lifeController = GetComponent<LifeController>();
@@ -182,10 +184,9 @@ public class Tower : MonoBehaviour
 
     public void OnDefeated()
     {
+        isAlive = false;
         AudioManager.Instance.PlaySFX("MagicSpellExplode");
-
         if (GameManager.Instance) GameManager.Instance.RemoveTower();
-
         Destroy(gameObject);
     }
 

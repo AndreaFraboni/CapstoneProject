@@ -36,10 +36,10 @@ public class WaveManager : MonoBehaviour
             if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) StopWaveManager();
 
 
-            if (wave % 5 == 0)
-            {
+            //if (wave % 1 == 0)
+            //{
                 SpawnMiniBossEnemy();
-            }
+            //}
 
             SpawnEnemies();
 
