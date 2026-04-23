@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ILiveCheckable
 {
     [SerializeField] private NavMeshAgent _meshAgent;
     [SerializeField] private NavMeshPath _navMeshPath;
@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
     private bool _clickForRun = false;
 
     private bool _isRolling = false;
+
+    public bool isAliveState()
+    {
+        return isAlive;
+    }
 
     private void Awake()
     {

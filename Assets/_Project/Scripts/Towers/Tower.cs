@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, ILiveCheckable
 {
     [SerializeField] private Transform _cannonBaseAim;
     [SerializeField] private Transform _firePoint;
@@ -20,6 +20,11 @@ public class Tower : MonoBehaviour
     public SO_BulletData BulletData { get; private set; }
 
     public bool isAlive = true;
+
+    public bool isAliveState()
+    {
+        return isAlive;
+    }
 
     private void Awake()
     {

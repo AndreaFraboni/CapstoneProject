@@ -1,10 +1,15 @@
 using UnityEngine;
 
-public class SacredTreeController : MonoBehaviour
+public class SacredTreeController : MonoBehaviour, ILiveCheckable
 {
     [SerializeField] private LifeController _lifeController;
 
     public bool isAlive = true;
+
+    public bool isAliveState()
+    {
+        return isAlive;
+    }
 
     private void Awake()
     {
