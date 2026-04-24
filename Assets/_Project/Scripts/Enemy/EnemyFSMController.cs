@@ -230,7 +230,7 @@ public class EnemyFSMController : MonoBehaviour
 
             GameObject obj = col.gameObject;
 
-            if (!obj.CompareTag(Tags.Tower) && !obj.CompareTag(Tags.Player)) continue;
+            if (!obj.CompareTag(Tags.Tower) && !obj.CompareTag(Tags.Player) && !obj.CompareTag(Tags.Ent)) continue;
             if (_mainTarget != null && obj.transform == _mainTarget) continue;
 
             float distance = Vector3.Distance(transform.position, obj.transform.position);

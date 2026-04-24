@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    public static WaveManager Instance { get; private set; }
+
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Transform _spawnMiniBossPoint;
     [SerializeField] private Transform _targetForEnemy;
@@ -11,9 +14,23 @@ public class WaveManager : MonoBehaviour
     private Coroutine Spawner;
     private Camera _cam;
 
+    private int _currentWave = 0;
+
+    public Action<int> OnWaveChanged;
+
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         _cam = Camera.main;
+
+        OnWaveChanged?.Invoke(_currentWave);
     }
 
     private void Start()
@@ -26,27 +43,30 @@ public class WaveManager : MonoBehaviour
         Spawner = StartCoroutine(StartWaves());
     }
 
+    private void Update()
+    {
+        OnWaveChanged?.Invoke(_currentWave);
+    }
+
     private IEnumerator StartWaves()
     {
-        int wave = 1;
+        _currentWave = 1;
 
         while (true)
         {
-
             if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) StopWaveManager();
 
-
-            if (wave % 10 == 0) // spawn mini boss after 10 waves ....
+            if (_currentWave % 10 == 0) // spawn mini boss after 10 waves ....
             {
                 SpawnMiniBossEnemy();
             }
 
             SpawnEnemies();
 
-            float delay = Mathf.Clamp(_spawnrate - wave, 5f, _spawnrate);
+            float delay = Mathf.Clamp(_spawnrate - _currentWave, 5f, _spawnrate);
             yield return new WaitForSeconds(delay);
 
-            wave++;
+            _currentWave++;
         }
     }
 
@@ -90,8 +110,10 @@ public class WaveManager : MonoBehaviour
         }
 
         miniBossEnemyClonePrefab.transform.position = _spawnMiniBossPoint.position;
-
         miniBossEnemyClonePrefab.gameObject.SetActive(true);
+
+        AudioManager.Instance.PlaySFXAtPoint("EnemyRoar", -_spawnMiniBossPoint.position);
+
         miniBossEnemyClonePrefab.ResetEnemy(_targetForEnemy);
     }
 

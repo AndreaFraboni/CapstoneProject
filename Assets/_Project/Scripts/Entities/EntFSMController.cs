@@ -162,7 +162,7 @@ public class EntFSMController : MonoBehaviour
 
         if (EnemiesManager.Instance.listEnemies.Count == 0)
         {
-            Debug.LogWarning("EnemiesManager.Instance is EMPTY!");
+            //Debug.LogWarning("EnemiesManager.Instance is EMPTY!");
             return null;
         }
 

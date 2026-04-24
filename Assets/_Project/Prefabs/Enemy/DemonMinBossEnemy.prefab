@@ -1190,6 +1190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pc: {fileID: 0}
   _ec: {fileID: 6382769327385557927}
+  _entc: {fileID: 0}
 --- !u!1 &7425106178193731674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,7 +1544,7 @@ MonoBehaviour:
   _mainTarget: {fileID: 0}
   _otherTargetsLayer:
     serializedVersion: 2
-    m_Bits: 8200
+    m_Bits: 40968
   _detectionRadius: 10
   _physicalDamage: 100
   _coinPrefab: {fileID: 5054829381564010568, guid: db72c1e6eef04734f92dc4fc1a7872e1,

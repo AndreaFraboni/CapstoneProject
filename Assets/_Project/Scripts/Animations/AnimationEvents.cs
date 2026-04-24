@@ -28,6 +28,13 @@ public class AnimationEvents : MonoBehaviour
         _ec.DestroyGOEnemy();
     }
 
+    public void AE_DestroyEntGameObject()
+    {
+        if (_entc == null) return;
+        _entc.DestroyGOEnt();
+    }
+
+
     public void AE_EndAttackAnimation()
     {
         if (_ec != null) _ec.StopAttack();
