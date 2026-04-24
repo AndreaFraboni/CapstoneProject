@@ -20,7 +20,7 @@ public class EnemyFSMController : MonoBehaviour
     [SerializeField] private float _bonusDistanceFromSpawnPoint = 1f;
     [SerializeField] private float _bonusHeightOnTerrain = 0.25f;
 
-    public EnemyHandHitBox enemyHandHitbox;
+    public HandHitBox enemyHandHitbox;
 
     private BaseFSMState _currentState;
 
@@ -47,7 +47,7 @@ public class EnemyFSMController : MonoBehaviour
 
         if (enemyHandHitbox == null)
         {
-            enemyHandHitbox = GetComponentInParent<EnemyHandHitBox>();
+            enemyHandHitbox = GetComponentInChildren<HandHitBox>();
         }
 
         hitColliders = new Collider[maxColliders];

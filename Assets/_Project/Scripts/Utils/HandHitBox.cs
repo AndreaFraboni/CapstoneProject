@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyHandHitBox : MonoBehaviour
+public class HandHitBox : MonoBehaviour
 {
     public int physicalDamage = 0;
 

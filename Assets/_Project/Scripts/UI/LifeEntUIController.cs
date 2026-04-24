@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LifeEnemyUIController : MonoBehaviour
+public class LifeEntUIController : MonoBehaviour
 {
     [SerializeField] private LifeController _lifeController;
     [SerializeField] private Image _barlifeFillable;
@@ -15,7 +15,7 @@ public class LifeEnemyUIController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("LifeEnemyUIController: LifeController non trovato!");
+            Debug.LogError("LifeEntUIController: LifeController non trovato!");
 
         }
     }

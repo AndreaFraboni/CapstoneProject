@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class PlayerAnimationEvents : MonoBehaviour
+public class AnimationEvents : MonoBehaviour
 {
     [SerializeField] private PlayerController _pc;
     [SerializeField] private EnemyFSMController _ec;
+    [SerializeField] private EntFSMController _entc;
 
     private void Awake()
     {
