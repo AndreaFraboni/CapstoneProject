@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ebfbe44c1acf94e99a642bc36b0c17, type: 3}
+  m_Name: Ent
+  m_EditorClassIdentifier: 
+  EntName: Ent
+  EntPrefab: {fileID: 1279757730232237106, guid: 13b7fad40a51a9a4cb01b4acd6059bc3,
+    type: 3}
+  ghostPrefab: {fileID: 6766996149734197718, guid: 4d456f024b616d840a728c06e3cb6532,
+    type: 3}
+  goldPrice: 1000
+  blueGemsPrice: 1000

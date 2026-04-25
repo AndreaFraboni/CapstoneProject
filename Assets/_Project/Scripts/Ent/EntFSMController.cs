@@ -5,15 +5,21 @@ public class EntFSMController : MonoBehaviour
 {
     [SerializeField] private EntBaseFSMState _initialState;
     [SerializeField] private LifeController _lifeController;
+
     [SerializeField] private float _detectionRadius = 6f;
     [SerializeField] private int _physicalDamage = 100;
 
     public HandHitBox HandHitbox;
+
     private EntBaseFSMState _currentState;
+
     public NavMeshAgent agent;
     public Animator anim;
+
     bool _deathStarted = false;
+
     public bool isAlive = true;
+
     public bool IsAttacking = false;
 
     public Transform CurrentTarget { get; private set; }
@@ -24,9 +30,20 @@ public class EntFSMController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         if (_lifeController == null) _lifeController = GetComponent<LifeController>();
-        if (HandHitbox == null) HandHitbox = GetComponentInChildren<HandHitBox>();
+
+        if (HandHitbox == null)
+        {
+            HandHitbox = GetComponentInChildren<HandHitBox>();
+        }
+
+        if (HandHitbox != null)
+        {
+            HandHitbox.physicalDamage = _physicalDamage;
+            HandHitbox.DisableHitbox();
+        }
 
         EntBaseFSMState[] states = GetComponentsInChildren<EntBaseFSMState>();
+
         foreach (var state in states)
         {
             state.Setup(this);
@@ -49,8 +66,6 @@ public class EntFSMController : MonoBehaviour
 
     private void Start()
     {
-        if (HandHitbox) HandHitbox.physicalDamage = _physicalDamage;
-
         if (_initialState != null)
         {
             ChangeState(_initialState);
@@ -98,11 +113,15 @@ public class EntFSMController : MonoBehaviour
         if (newState == null) return;
         if (_currentState == newState) return;
 
-        if (_currentState != null)
-            _currentState.OnStateExit();
+        if (_currentState != null) _currentState.OnStateExit();
 
         _currentState = newState;
         _currentState.OnStateEnter();
+    }
+
+    public void SearchNewTarget()
+    {
+        CurrentTarget = FindNearestEnemy();
     }
 
     public void SetCurrentTarget(Transform target)
@@ -118,24 +137,13 @@ public class EntFSMController : MonoBehaviour
 
     public void ValidateCurrentTarget()
     {
-        if (CurrentTarget == null)
-        {
-            CurrentTarget = FindNearestEnemy();
-            return;
-        }
+        if (CurrentTarget == null) return;
 
         EnemyFSMController enemy = CurrentTarget.GetComponent<EnemyFSMController>();
-        if (enemy == null)
+        if (enemy == null || !enemy.isAlive)
         {
             CurrentTarget = null;
-            CurrentTarget = FindNearestEnemy();
-            return;
-        }
-
-        if (!enemy.isAlive)
-        {
-            CurrentTarget = null;
-            CurrentTarget = FindNearestEnemy();
+            StopAttack();
             return;
         }
 
@@ -143,10 +151,8 @@ public class EntFSMController : MonoBehaviour
         if (distance > _detectionRadius)
         {
             CurrentTarget = null;
-            CurrentTarget = FindNearestEnemy();
+            StopAttack();
         }
-
-
     }
 
     private Transform FindNearestEnemy()
@@ -178,8 +184,8 @@ public class EntFSMController : MonoBehaviour
                 NearstEnemyFounded = currentEnemy.gameObject;
             }
         }
-        if (NearstEnemyFounded != null)
-            return NearstEnemyFounded.transform;
+
+        if (NearstEnemyFounded != null) return NearstEnemyFounded.transform;
 
         return null;
     }
@@ -220,16 +226,34 @@ public class EntFSMController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void StartPlayAttackAnimation()
+    {
+        if (anim == null || IsAttacking || _deathStarted) return;
+
+        if (CurrentTarget == null) return;
+
+        if (CurrentTarget.gameObject.TryGetComponent<ILiveCheckable>(out var liveCheckable))
+        {
+            if (!liveCheckable.isAliveState())
+            {
+                CurrentTarget = null;
+                StopAttack();
+                return;
+            }
+        }
+
+        IsAttacking = true;
+        anim.SetBool("isAttacking", true);
+    }
 
     public void StopAttack()
     {
+        //Debug.Log("STOP ATTACK !! ");
+
         IsAttacking = false;
         if (anim == null) return;
         anim.SetBool("isAttacking", false);
     }
-
-
-
 
 
 }

@@ -51,7 +51,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.10274498, y: 0.42329884, z: 0.10485342}
   m_Center: {x: -0.009076864, y: 0.1993622, z: -0.008780232}
@@ -1862,8 +1862,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 35.94, y: -2.6, z: 18.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4240238311174492970}
   - {fileID: 8987639637644616108}
@@ -1950,13 +1950,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 40968
   _detectionRadius: 3
+  _maxNumOfTargetDetectable: 10
   _physicalDamage: 50
   _coinPrefab: {fileID: 5054829381564010568, guid: db72c1e6eef04734f92dc4fc1a7872e1,
     type: 3}
   _blueGemPrefab: {fileID: 7563405948888103871, guid: ad7e267414753a04089c33c66df6283e,
     type: 3}
+  _heartPrefab: {fileID: 2779229778718983374, guid: fb4ac60a45e970544b3aa7d7e2194ac9,
+    type: 3}
   _numberOfCoinsBonus: 5
   _numberOfBlueGemBonus: 2
+  _numberOfHearts: 1
   _bonusDistanceFromSpawnPoint: 1
   _bonusHeightOnTerrain: 0.25
   enemyHandHitbox: {fileID: 8331042893545343513}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackTargetState : BaseFSMState
+public class EntAttackState : EntBaseFSMState
 {
     [SerializeField] private float _timeBetweenAttacks = 2f;
     [SerializeField] private float _rotationSpeed = 8f;
@@ -9,7 +9,7 @@ public class AttackTargetState : BaseFSMState
 
     public override void OnStateEnter()
     {
-        if (_controller == null) return;
+        if (_controller == null || _controller.agent == null) return;
 
         _controller.ValidateCurrentTarget();
 
@@ -20,30 +20,31 @@ public class AttackTargetState : BaseFSMState
             _controller.agent.velocity = Vector3.zero;
         }
 
-        _controller.StartPlayAttackAnimation();
+        if (_controller.HasCurrentTarget()) _controller.StartPlayAttackAnimation();
         _nextAttackTime = Time.time + _timeBetweenAttacks;
     }
 
     public override void StateUpdate()
     {
-        if (_controller == null || !_controller.isAlive) return;
+        if (_controller == null || _controller.agent == null || !_controller.isAlive) return;
 
         _controller.ValidateCurrentTarget();
 
         Transform target = _controller.CurrentTarget;
         if (target == null) return;
-        Vector3 dirToSacredTree = target.position - _controller.transform.position;
-        dirToSacredTree.y = 0f;
+        Vector3 direction = target.position - _controller.transform.position;
+        direction.y = 0f;
 
-        if (dirToSacredTree.sqrMagnitude > 0.001f)
+        if (direction.sqrMagnitude > 0.001f)
         {
-            Quaternion targetRot = Quaternion.LookRotation(dirToSacredTree.normalized);
+            Quaternion targetRot = Quaternion.LookRotation(direction.normalized);
             _controller.transform.rotation = Quaternion.Slerp(_controller.transform.rotation, targetRot, _rotationSpeed * Time.deltaTime);
         }
 
+
         if (Time.time >= _nextAttackTime)
         {
-            _controller.StartPlayAttackAnimation();
+            if (_controller.HasCurrentTarget()) _controller.StartPlayAttackAnimation();
             _nextAttackTime = Time.time + _timeBetweenAttacks;
         }
     }
@@ -51,7 +52,9 @@ public class AttackTargetState : BaseFSMState
     public override void OnStateExit()
     {
         _controller.StopAttack();
-
         if (_controller.agent != null) _controller.agent.isStopped = false;
     }
+
+
+
 }

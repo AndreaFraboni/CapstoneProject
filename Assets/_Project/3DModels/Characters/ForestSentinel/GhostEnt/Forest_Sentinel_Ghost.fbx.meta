@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 1472cfc80fa00284f92928ec3c5ef36c
+guid: c9620dc2d7c5d4240a1602ce8688158e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: e501e03b6ec754147961c26e49058ba8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,52 +36,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Mutant Swiping
-      takeName: mixamo.com
-      internalID: -203655887218126122
-      firstFrame: 0
-      lastFrame: 80
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events:
-      - time: 0.4804401
-        functionName: AE_StartEntAttackAnimation
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 77fcb664c3aaa1b45aa7ec19117708b1,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.66828066
-        functionName: AE_EndEntAttackAnimation
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 77fcb664c3aaa1b45aa7ec19117708b1,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -352,18 +312,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Forest_Sentinel(Clone)
+    - name: Forest_Sentinel 1(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Mesh1.0
-      parentName: Forest_Sentinel(Clone)
+      parentName: Forest_Sentinel 1(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
       scale: {x: 100, y: 100, z: 100}
     - name: mixamorig:Hips
-      parentName: Forest_Sentinel(Clone)
+      parentName: Forest_Sentinel 1(Clone)
       position: {x: 0.00028162118, y: 1.0560675, z: -0.0026693612}
       rotation: {x: 0.0012221553, y: 0.00012429988, z: -0.0036488948, w: 0.9999926}
       scale: {x: 1, y: 1, z: 1}
@@ -539,12 +499,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4c0bc0223c3964e4982d4bd29f880c57,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 2
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

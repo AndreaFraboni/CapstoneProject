@@ -8,9 +8,7 @@ public class DetectNearstTargetTransition : BaseFSMTransition
         if (!_controller.IsCurrentTargetMainTarget()) return false;
 
         GameObject newTarget = _controller.CheckNewTarget();
-
         if (newTarget == null) return false;
-
         _controller.SetCurrentTarget(newTarget.transform);
 
         return true;

@@ -18,6 +18,11 @@ public class EntIdleState : EntBaseFSMState
     public override void StateUpdate()
     {
         if (_controller == null || _controller.agent == null || !_controller.isAlive) return;
+
+        if (!_controller.HasCurrentTarget())
+        {
+            _controller.SearchNewTarget();
+        }
     }
 
     public override void OnStateExit()

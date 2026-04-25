@@ -3,31 +3,46 @@ using UnityEngine;
 public class HandHitBox : MonoBehaviour
 {
     public int physicalDamage = 0;
-
     [SerializeField] private Collider _col;
+
+    private bool isActive = false;
 
     private void Awake()
     {
-        _col = GetComponent<Collider>();
-        if (_col != null) _col.enabled = false;  // Hand hitbox start disabled !!!
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<LifeController>(out LifeController _life))
+        _col = GetComponent<BoxCollider>();
+        if (_col == null)
         {
-            _life.TakeDamage(physicalDamage);
+            Debug.LogError("NESSUN BOX COLLIDER TROVATO SU " + gameObject.name);
+            return;
         }
+
+        isActive = false;
+
+        _col.enabled = false;
     }
 
     public void EnableHitbox()
     {
-        if (_col != null) _col.enabled = true; // activated in beginning of attack animation
+        isActive = true;
+        if (_col != null) _col.enabled = true;
     }
 
     public void DisableHitbox()
     {
-        if (_col != null) _col.enabled = false; // deactivated in the end of attack animation
+        isActive = false;
+        if (_col != null) _col.enabled = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isActive) return;
+        if (other.TryGetComponent<LifeController>(out LifeController life))
+        {
+            life.TakeDamage(physicalDamage);
+        }
+    }
+
+
+
 
 }

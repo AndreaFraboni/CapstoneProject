@@ -57,7 +57,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.3632184
         functionName: AE_StartAttackAnimation
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 77fcb664c3aaa1b45aa7ec19117708b1,

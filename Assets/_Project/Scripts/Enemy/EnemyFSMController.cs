@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyFSMController : MonoBehaviour
+public class EnemyFSMController : MonoBehaviour, ILiveCheckable
 {
     [SerializeField] private BaseFSMState _initialState;
     [SerializeField] private LifeController _lifeController;
@@ -9,14 +9,18 @@ public class EnemyFSMController : MonoBehaviour
 
     [SerializeField] private LayerMask _otherTargetsLayer;
     [SerializeField] private float _detectionRadius = 6f;
+    [SerializeField] private int _maxNumOfTargetDetectable = 10;
 
     [SerializeField] private int _physicalDamage = 50;
 
     [SerializeField] private GameObject _coinPrefab;
     [SerializeField] private GameObject _blueGemPrefab;
+    [SerializeField] private GameObject _heartPrefab;
 
     [SerializeField] private int _numberOfCoinsBonus = 5;
-    [SerializeField] private int _numberOfBlueGemBonus = 5;
+    [SerializeField] private int _numberOfBlueGemBonus = 4;
+    [SerializeField] private int _numberOfHearts = 1;
+
     [SerializeField] private float _bonusDistanceFromSpawnPoint = 1f;
     [SerializeField] private float _bonusHeightOnTerrain = 0.25f;
 
@@ -35,8 +39,10 @@ public class EnemyFSMController : MonoBehaviour
     public Transform MainTarget => _mainTarget;
     public Transform CurrentTarget { get; private set; }
 
-    private Collider[] hitColliders;
-    private const int maxColliders = 10;
+    public bool isAliveState()
+    {
+        return isAlive;
+    }
 
     private void Awake()
     {
@@ -50,10 +56,7 @@ public class EnemyFSMController : MonoBehaviour
             enemyHandHitbox = GetComponentInChildren<HandHitBox>();
         }
 
-        hitColliders = new Collider[maxColliders];
-
         BaseFSMState[] states = GetComponentsInChildren<BaseFSMState>();
-
         foreach (var state in states)
         {
             state.Setup(this);
@@ -166,7 +169,6 @@ public class EnemyFSMController : MonoBehaviour
     public void SetCurrentTarget(Transform target)
     {
         if (target == null) return;
-        //Debug.Log("CurrentTarget -> " + target.name);
         CurrentTarget = target;
     }
 
@@ -195,12 +197,18 @@ public class EnemyFSMController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFXAtPoint("BonusGame", this.transform.position);
 
-        for (int i = 0; i < _numberOfCoinsBonus; i++)
+        if (_numberOfCoinsBonus > 0)
         {
-            GameObject clone = Instantiate(_coinPrefab,
-                                           this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-                                           Quaternion.identity);
-            clone.transform.RotateAround(this.transform.position, Vector3.up, 360 / (float)_numberOfCoinsBonus * i);
+            for (int i = 0; i < _numberOfCoinsBonus; i++)
+            {
+                GameObject clone = Instantiate(_coinPrefab,
+                                               this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
+                                               _coinPrefab.transform.rotation);
+
+                float angleStep = 360f / (float)_numberOfCoinsBonus;
+                float angle = angleStep * i;
+                clone.transform.RotateAround(transform.position, Vector3.up, angle);
+            }
         }
 
         if (_numberOfBlueGemBonus > 0)
@@ -209,17 +217,35 @@ public class EnemyFSMController : MonoBehaviour
             {
                 GameObject clone = Instantiate(_blueGemPrefab,
                                                this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-                                               Quaternion.identity);
-                clone.transform.RotateAround(this.transform.position, Vector3.up, 360 / (float)_numberOfBlueGemBonus * i);
+                                               _blueGemPrefab.transform.rotation);
+                float angleStep = 360f / (float)_numberOfBlueGemBonus;
+                float angle = angleStep * i;
+                clone.transform.RotateAround(transform.position, Vector3.up, angle);
             }
         }
 
+        if (_numberOfHearts > 0)
+        {
+            for (int i = 0; i < _numberOfHearts; i++)
+            {
+                GameObject clone = Instantiate(_heartPrefab,
+                                               this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
+                                               _heartPrefab.transform.rotation);
+                float angleStep = 360f / (float)_numberOfHearts;
+                float angle = angleStep * i;
+                clone.transform.RotateAround(transform.position, Vector3.up, angle);
+            }
+        }
     }
 
     public GameObject CheckNewTarget()
     {
         GameObject nearstTargetFounded = null;
         float nearstDistance = _detectionRadius;
+
+        Collider[] hitColliders;
+        int maxColliders = _maxNumOfTargetDetectable;
+        hitColliders = new Collider[maxColliders];
 
         int numColliders = Physics.OverlapSphereNonAlloc(transform.position, nearstDistance, hitColliders);
 
@@ -262,7 +288,6 @@ public class EnemyFSMController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        //Destroy(gameObject);
     }
 
     private void StartDeathAnimation()
