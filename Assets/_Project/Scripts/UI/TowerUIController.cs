@@ -20,10 +20,13 @@ public class TowerUIController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (GameManager.Instance != null) GameManager.Instance.OnCoinsChanged -= UpdateCurrentCoins;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnCoinsChanged -= UpdateCurrentCoins;
 
-        GameManager.Instance.OnTowersNotBuildable -= DeactiveTowersUI;
-        GameManager.Instance.OnTowersBuildable -= ReactiveTowersUI;
+            GameManager.Instance.OnTowersNotBuildable -= DeactiveTowersUI;
+            GameManager.Instance.OnTowersBuildable -= ReactiveTowersUI;
+        }
     }
 
     private void DeactiveTowersUI()
@@ -37,7 +40,7 @@ public class TowerUIController : MonoBehaviour
 
     private void ReactiveTowersUI()
     {
-        UpdateCurrentCoins(GameManager.Instance.currentCoins); // I use updatecurrent coins for reactive all Towers buttons
+        if (GameManager.Instance != null) UpdateCurrentCoins(GameManager.Instance.currentCoins); // I use updatecurrent coins for reactive all Towers buttons
     }
 
     private void UpdateCurrentCoins(int coins)

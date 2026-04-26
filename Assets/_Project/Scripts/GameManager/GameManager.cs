@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
         Paused,
         GameOver,
         Victory,
-        TowerPlacing
+        TowerPlacing,
+        EntPlacing
     }
 
     public GameState CurrentState { get; private set; } = GameState.Playing;
@@ -33,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     public event Action OnTowersNotBuildable;
     public event Action OnTowersBuildable;
+
+    //public event Action OnEntsCantBePlaced;
+    //public event Action OnEntsCanBePlaced;
 
     private void Awake()
     {
@@ -60,20 +64,21 @@ public class GameManager : MonoBehaviour
         OnBlueGemsChanged?.Invoke(currentBlueGems);
     }
 
+    //***************************** manage towers ...... ************************************************//
     public bool CanAddOtherTower(int amount)
     {
-        if (currentTowersSpawned + amount > _maxTowersInScene) // stai tentando di buildare una torre ma sei già fuori limite !!!
+        if (currentTowersSpawned + amount > _maxTowersInScene)
         {
-            OnTowersNotBuildable?.Invoke(); // disattivo UI delle torri da buildare .....
+            OnTowersNotBuildable?.Invoke();
             ExitTowerPlacing();
             return false;
         }
 
-        currentTowersSpawned += amount; // ok aumento numero torri in scena
+        currentTowersSpawned += amount;
 
-        if (currentTowersSpawned >= _maxTowersInScene) // ora però sei oltre il limite delle torri in scena contemporaneamente .....
+        if (currentTowersSpawned >= _maxTowersInScene)
         {
-            OnTowersNotBuildable?.Invoke(); // disattivo UI delle torri da buildare .....
+            OnTowersNotBuildable?.Invoke();
             ExitTowerPlacing();
         }
 
@@ -82,16 +87,15 @@ public class GameManager : MonoBehaviour
 
     public void RemoveTower()
     {
-        currentTowersSpawned--; // tolgo torre dal conteggio torri in scena ...
-
+        currentTowersSpawned--;
         if (currentTowersSpawned < 0) currentTowersSpawned = 0;
-
         if (currentTowersSpawned < _maxTowersInScene)
         {
-            OnTowersBuildable?.Invoke(); // riattivo UI delle torri da buildare
+            OnTowersBuildable?.Invoke();
         }
     }
 
+    //****************************** manage coins and bluegems ..... ***********************************//
     public void AddBlueGems(int amount)
     {
         if (amount <= 0) return;
@@ -142,6 +146,7 @@ public class GameManager : MonoBehaviour
             return false;
     }
 
+    //**************** manage pause&resume game and all phase of game : gameover restart loadmenu quit game .. ********************************//
     public void OnPause(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
@@ -160,6 +165,11 @@ public class GameManager : MonoBehaviour
         }
 
         if (CurrentState == GameState.TowerPlacing)
+        {
+            return true;
+        }
+
+        if (CurrentState == GameState.EntPlacing)
         {
             return true;
         }
@@ -197,7 +207,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ResumeInNextFrame()
     {
-        yield return null; // al prossimo frame riattivo il game ....
+        yield return null;
 
         GameUIManager.Instance.HidePause();
 
@@ -240,6 +250,7 @@ public class GameManager : MonoBehaviour
         if (GameUIManager.Instance != null) GameUIManager.Instance.QuitGame();
     }
 
+    //************************** manage Tower & Ents Game State Enter and Exit *******************//
     public void EnterTowerPlacing()
     {
         CurrentState = GameState.TowerPlacing;
@@ -249,4 +260,16 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = GameState.Playing;
     }
+
+    public void EnterEntPlacing()
+    {
+        CurrentState = GameState.EntPlacing;
+    }
+
+    public void ExitEntPlacing()
+    {
+        CurrentState = GameState.Playing;
+    }
+
+
 }

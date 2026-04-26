@@ -157,6 +157,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "EntPlacingMode",
+            "id": "3f4ac392-6fa1-4cbe-8054-41fb54d00c83",
+            "actions": [
+                {
+                    "name": "LeftMouseClick",
+                    "type": "Button",
+                    "id": "1b614c2a-941b-4b49-b74d-5c5e65f51662",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightMouseClick",
+                    "type": "Button",
+                    "id": "791e8237-01bc-44f3-abfa-68c1c491f3b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7e153d8f-b16e-412d-9a18-476408ea12f7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftMouseClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a0ac5fc-31cf-4a49-9d74-c317d533c626",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightMouseClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
