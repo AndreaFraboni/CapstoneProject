@@ -5,10 +5,11 @@ public class TimeManager : MonoBehaviour
 {
     public static TimeManager Instance { get; private set; }
 
-    [Header("TIMER SETTINGS")]
-    [SerializeField] private float _currentTime;
+    [SerializeField] private float _currentTime = 0;
 
     public Action<float> OnTimeChanged;
+
+    public int time_elapsed;
 
     private void Awake()
     {
@@ -26,13 +27,13 @@ public class TimeManager : MonoBehaviour
     private void Update()
     {
         _currentTime += Time.deltaTime;
-
         TimeUpdate();
     }
 
     private void TimeUpdate()
     {
         int secondiTrascorsi = (int)_currentTime;
+        time_elapsed = (int)_currentTime;
         OnTimeChanged?.Invoke(_currentTime);
     }
 
