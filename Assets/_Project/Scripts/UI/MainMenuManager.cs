@@ -1,8 +1,31 @@
+using JetBrains.Annotations;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public AudioManager AudioManager;
+
+    private void Awake()
+    {
+        AudioManager = Resources.Load<AudioManager>("AudioManager");
+        Instantiate(AudioManager);
+    }
+
+    public void SetMasterVolume(float value)
+    {
+        AudioManager.Instance.SetVolume(value, "Master");
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        AudioManager.Instance.SetVolume(value, "Music");
+    }
+
+
     private void Start()
     {
         LoadAudioSettings();

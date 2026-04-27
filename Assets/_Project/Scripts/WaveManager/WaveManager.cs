@@ -56,10 +56,10 @@ public class WaveManager : MonoBehaviour
         {
             if (GameManager.Instance == null || !GameManager.Instance.IsPlaying()) StopWaveManager();
 
-            if (_currentWave % 10 == 0) // spawn mini boss after 10 waves ....
-            {
+            //if (_currentWave % 10 == 0) // spawn mini boss after 10 waves ....
+            //{
                 SpawnMiniBossEnemy();
-            }
+            //}
 
             SpawnEnemies();
 

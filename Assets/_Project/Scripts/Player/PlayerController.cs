@@ -155,8 +155,8 @@ public class PlayerController : MonoBehaviour, ILiveCheckable
                 if (_clickForWalk) _meshAgent.speed = _walkingSpeed;
                 if (_clickForRun) _meshAgent.speed = _runningSpeed;
 
-                _meshAgent.ResetPath();
-                _meshAgent.SetDestination(hit.point);
+                //_meshAgent.ResetPath();
+                _meshAgent.SetDestination(navHit.position);
             }
         }
         _clickForWalk = false;

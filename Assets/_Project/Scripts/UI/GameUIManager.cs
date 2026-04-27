@@ -5,6 +5,8 @@ public class GameUIManager : MonoBehaviour
 {
     public static GameUIManager Instance { get; private set; }
 
+    public AudioManager AudioManager;
+
     // UI referements
     public GameObject pauseMenu;
     public GameObject gameOverBanner;
@@ -20,7 +22,21 @@ public class GameUIManager : MonoBehaviour
         }
 
         Instance = this;
+
+        AudioManager = Resources.Load<AudioManager>("AudioManager");
+        Instantiate(AudioManager);
     }
+
+    public void SetMasterVolume(float value)
+    {
+        AudioManager.Instance.SetVolume(value, "Master");
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        AudioManager.Instance.SetVolume(value, "Music");
+    }
+
 
     public void PlayClickSound()
     {
