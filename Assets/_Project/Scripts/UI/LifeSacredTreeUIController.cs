@@ -29,7 +29,8 @@ public class LifeSacredTreeUIController : MonoBehaviour
 
     private void UpdateSacredTreeLifeText(int lifeNum, int maxhealth)
     {
-        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameManager.GameState.GameOver) return;
+        if (GameManager.Instance == null) return;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.GameOver) return;
         if (maxhealth <= 0) return;
 
         if (_currenLifeText != null) _currenLifeText.text = lifeNum + "/" + maxhealth;

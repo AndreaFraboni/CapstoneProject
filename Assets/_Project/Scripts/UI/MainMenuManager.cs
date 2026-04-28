@@ -1,9 +1,5 @@
-using JetBrains.Annotations;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
-using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {

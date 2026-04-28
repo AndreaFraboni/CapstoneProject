@@ -28,7 +28,7 @@ public class LifeTowerUIController : MonoBehaviour
 
     private void UpdateTowerLifeText(int lifeNum, int maxhealth)
     {
-        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameManager.GameState.GameOver) return;
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.GameOver) return;
         if (maxhealth <= 0) return;
 
         if (_barlifeFillable != null) _barlifeFillable.fillAmount = (float)lifeNum / maxhealth;

@@ -18,6 +18,8 @@ public class WaveManager : MonoBehaviour
 
     public Action<int> OnWaveChanged;
 
+    public int CurrentWave => _currentWave;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

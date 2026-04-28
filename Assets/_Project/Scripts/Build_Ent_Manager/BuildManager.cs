@@ -37,7 +37,7 @@ public class BuildManager : MonoBehaviour
         {
             return false;
         }
-        if (GameManager.Instance.CurrentState == GameManager.GameState.TowerPlacing)
+        if (GameManager.Instance.CurrentState == GameState.TowerPlacing)
         {
             return true;
         }
@@ -174,7 +174,7 @@ public class BuildManager : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance == null) return;
-        if (GameManager.Instance.CurrentState != GameManager.GameState.TowerPlacing) return;
+        if (GameManager.Instance.CurrentState != GameState.TowerPlacing) return;
         if (_selectedTowerData == null) return;
         if (_currentGhostTower == null) return;
 

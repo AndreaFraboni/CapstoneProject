@@ -8,21 +8,16 @@ public class GameOverUIMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        // Save Player STATS in LeaderBoard ....
-        IOManager.Instance.SetPlayerName("LocalPlayer");
-        IOManager.Instance.SetPlayerTime(TimeManager.Instance.time_elapsed);
-    }
-
-    private void Start()
-    {
-        if (WaveManager.Instance != null && TimeManager.Instance != null)
+        if (WaveManager.Instance != null)
         {
             WaveManager.Instance.OnWaveChanged += UpdateWaveText;
-            TimeManager.Instance.OnTimeChanged += UpdateTimerText;
+            UpdateWaveText(WaveManager.Instance.CurrentWave);
         }
-        else
+
+        if (TimeManager.Instance != null)
         {
-            Debug.LogError("Wave and Time Manager: are NULL ?????");
+            TimeManager.Instance.OnTimeChanged += UpdateTimerText;
+            UpdateTimerText(TimeManager.Instance.CurrentTimeElapsed);
         }
     }
 

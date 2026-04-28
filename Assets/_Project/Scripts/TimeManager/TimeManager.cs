@@ -11,6 +11,9 @@ public class TimeManager : MonoBehaviour
 
     public int time_elapsed;
 
+    public int CurrentTimeElapsed => (int)_currentTime;
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,6 +29,17 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance == null) return;
+        var state = GameManager.Instance.CurrentState;
+
+        if (state == GameState.GameOver || state == GameState.Victory)
+        {
+            TimeUpdate();
+            return;
+        }
+
+        if (state == GameState.Paused) return;
+
         _currentTime += Time.deltaTime;
         TimeUpdate();
     }

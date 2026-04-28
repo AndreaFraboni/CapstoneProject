@@ -37,7 +37,7 @@ public class EntPlacer : MonoBehaviour
         {
             return false;
         }
-        if (GameManager.Instance.CurrentState == GameManager.GameState.EntPlacing)
+        if (GameManager.Instance.CurrentState == GameState.EntPlacing)
         {
             return true;
         }
@@ -166,7 +166,7 @@ public class EntPlacer : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance == null) return;
-        if (GameManager.Instance.CurrentState != GameManager.GameState.EntPlacing) return;
+        if (GameManager.Instance.CurrentState != GameState.EntPlacing) return;
         if (_selectedEntData == null) return;
         if (_currentGhostEntPrefab == null) return;
 

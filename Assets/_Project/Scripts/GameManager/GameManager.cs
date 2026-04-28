@@ -8,16 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public enum GameState
-    {
-        Playing,
-        Paused,
-        GameOver,
-        Victory,
-        TowerPlacing,
-        EntPlacing
-    }
-
     public GameState CurrentState { get; private set; } = GameState.Playing;
 
     [SerializeField] private int startingCoins = 100;
@@ -230,6 +220,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        SetGameOverState();
         if (GameUIManager.Instance != null) GameUIManager.Instance.ShowGameOver();
     }
 
