@@ -1,54 +1,88 @@
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScreenFader : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup _canvasGroup;
-
     private static ScreenFader _instance;
 
     public static ScreenFader Instance
     {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindAnyObjectByType<ScreenFader>(FindObjectsInactive.Include); // se gameobject in scena disattivato lui lo cerca e lo attiva
-                if (_instance != null)
-                {
-                    DontDestroyOnLoad(_instance.gameObject);
-                }
-            }
-            return _instance;
-        }
+        get { return _instance; }
     }
+
+    [SerializeField] private CanvasGroup _canvasGroup;
+    [SerializeField] private float _fadeDuration = 1f;
+
+    private Action _onFadeComplete;
 
     private void Awake()
     {
-        if (_instance == null)
+        if (_instance != null && _instance != this)
         {
-            Debug.Log($"{gameObject.name} registered as instance for {nameof(ScreenFader)}");
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (_instance != this)
-        {
-            Debug.Log($"{gameObject.name} tried to register ad instance for {nameof(ScreenFader)} but there is already {_instance.gameObject.name}");
             Destroy(gameObject);
+            return;
         }
+        _instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void StartFadeToOpaque()
+    public void StartFadeToOpaque(Action onFadeComplete = null)
     {
-        gameObject.SetActive(true);
-        _canvasGroup.alpha = 1;
+        StopAllCoroutines();
+        _onFadeComplete = onFadeComplete;
+        StartCoroutine(FadeCoroutine(0, 1, _fadeDuration, onFadeComplete));
     }
 
-    public void FadeToTransparent()
+    public void StartFadeToTransparent(Action onFadeComplete = null)
     {
-        gameObject.SetActive(true);
-        _canvasGroup.alpha = 0;
+        StopAllCoroutines();
+        _onFadeComplete = onFadeComplete;
+        StartCoroutine(FadeCoroutine(1, 0, _fadeDuration, onFadeComplete));
     }
 
+    public void FadeToBlackAndLoadScene(string sceneName)
+    {
+        StartFadeToOpaque(() =>
+        {
+            StartCoroutine(Load(sceneName));
+        });
+    }
 
+    private IEnumerator Load(string sceneName)
+    {
+        yield return SceneManager.LoadSceneAsync(sceneName);
 
+        yield return null;
+
+        StartFadeToTransparent();
+    }
+
+    private IEnumerator FadeCoroutine(float startValue, float endValue, float duration, Action callback)
+    {
+        _canvasGroup.alpha = startValue;
+
+        _canvasGroup.blocksRaycasts = true; // blocca click su quello che c'è sotto 
+        _canvasGroup.interactable = true;  // blocca input
+
+        float timer = 0f;
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            _canvasGroup.alpha = Mathf.Lerp(startValue, endValue, timer / duration);
+            yield return null;
+        }
+
+        _canvasGroup.alpha = endValue;
+
+        if (endValue <= Mathf.Epsilon)
+        {
+            _canvasGroup.blocksRaycasts = false; // riattiva click su quello che c'è sotto
+            _canvasGroup.interactable = false;   // riattiva input
+        }
+
+        callback?.Invoke();
+    }
 }
