@@ -56,12 +56,12 @@ public class Leaderboard : MonoBehaviour
 
         if (highscores == null || highscores.highscoreEntryList == null || highscores.highscoreEntryList.Count == 0)
         {
-            Debug.LogWarning("TABELLA DEI PUNTEGGI VUOTA !!!!");
+            //Debug.LogWarning("TABELLA DEI PUNTEGGI VUOTA !!!!");
             if (_messageBanner != null) _messageBanner.SetActive(true);
         }
         else
         {
-            Debug.LogWarning("TABELLA DEI PUNTEGGI è presente quindi la ordino !!!!");
+            //Debug.LogWarning("TABELLA DEI PUNTEGGI è presente quindi la ordino !!!!");
             SortHighscores(highscores.highscoreEntryList);
             for (int i = 0; i < highscores.highscoreEntryList.Count && i < maxrank; i++)
             {

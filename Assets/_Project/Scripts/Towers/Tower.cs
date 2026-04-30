@@ -61,6 +61,8 @@ public class Tower : MonoBehaviour, ILiveCheckable
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
+
         if (CheckNearstEnemy()) // Check if Enemy in range
         {
             if (_target != null)
@@ -77,6 +79,7 @@ public class Tower : MonoBehaviour, ILiveCheckable
                 }
             }
         }
+
     }
 
     private bool CanShoot()

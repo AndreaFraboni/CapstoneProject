@@ -116,6 +116,7 @@ public class EnemyFSMController : MonoBehaviour, ILiveCheckable
     private void Update()
     {
         if (_currentState == null || !isAlive) return;
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
 
         ValidateCurrentTarget();
 

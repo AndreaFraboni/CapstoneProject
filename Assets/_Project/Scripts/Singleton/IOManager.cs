@@ -63,7 +63,7 @@ public class IOManager : GenericSingleton<IOManager>
 
         if (SavePlayerDataFile())
         {
-            Debug.LogWarning("PLAYER DATA SAVED !!");
+            //Debug.LogWarning("PLAYER DATA SAVED !!");
         }
         else
         {
@@ -183,7 +183,7 @@ public class IOManager : GenericSingleton<IOManager>
         {
             string jsonwritingText = JsonUtility.ToJson(mPlayerData);
             File.WriteAllText(_savePlayerFile, jsonwritingText);
-            Debug.Log("File di salvataggio Player Data scritto in: " + _savePlayerFile);
+            //Debug.Log("File di salvataggio Player Data scritto in: " + _savePlayerFile);
             return true;
         }
         catch (System.Exception e)
@@ -226,7 +226,7 @@ public class IOManager : GenericSingleton<IOManager>
             // Save updated Highscores     
             json = JsonUtility.ToJson(highscores, true);
             File.WriteAllText(_saveLeaderboardFile, json);
-            Debug.Log("Leaderboard salvata in: " + _saveLeaderboardFile);
+            //Debug.Log("Leaderboard salvata in: " + _saveLeaderboardFile);
         }
     }
 

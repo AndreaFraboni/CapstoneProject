@@ -13,8 +13,6 @@ public class GameUIManager : MonoBehaviour
     public GameObject gameOverMenu;
     public GameObject winnerMenu;
 
-    public AudioManager AudioManager;
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,9 +22,6 @@ public class GameUIManager : MonoBehaviour
         }
 
         Instance = this;
-
-        AudioManager = Resources.Load<AudioManager>("AudioManager");
-        Instantiate(AudioManager);
     }
 
     public void SetMasterVolume(float value)

@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public event Action OnTowersBuildable;
 
     public AudioManager AudioManager;
+    public IOManager IOManager;
+    public ScreenFader Screenfader;
 
     private void Awake()
     {
@@ -37,8 +39,17 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
 
-        AudioManager = Resources.Load<AudioManager>("AudioManager");
-        Instantiate(AudioManager);
+        if (AudioManager.Instance == null)
+        {
+            AudioManager = Resources.Load<AudioManager>("AudioManager");
+            Instantiate(AudioManager);
+        }
+
+        if (IOManager.Instance == null)
+        {
+            IOManager = Resources.Load<IOManager>("IOManager");
+            Instantiate(IOManager);
+        }
 
         currentCoins = startingCoins;
         currentBlueGems = startingBlueGems;

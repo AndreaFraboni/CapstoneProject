@@ -4,7 +4,7 @@ public abstract class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviou
 {
     private static T _instance;
 
-    private static bool isApplicationQuit = false;
+    //private static bool isApplicationQuit = false;
 
     protected virtual bool ShouldBeDestroyOnLoad() => false;
     
@@ -15,30 +15,27 @@ public abstract class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviou
             if (_instance == null)
             {
                 _instance = FindAnyObjectByType<T>(FindObjectsInactive.Include);
-
-                if (_instance == null && !isApplicationQuit)
-                {
-                    GameObject singleton = new GameObject(typeof(T).ToString());
-                    _instance = singleton.AddComponent<T>();
-                }
+                //if (_instance == null)
+                //{
+                //    Debug.LogError($"Nessuna istanza di {typeof(T).Name} trovata in scena!");
+                //}
             }
             return _instance;
         }
     }
 
-    protected virtual void Awake() 
+    protected virtual void Awake()
     {
-        if (_instance==null)
+        if (_instance == null)
         {
-            _instance = GetComponent<T>();
+            _instance = this as T;
+
             if (!ShouldBeDestroyOnLoad())
-            {
                 DontDestroyOnLoad(gameObject);
-            }
-            else if (_instance !=null)
-            {
-                Destroy(gameObject);
-            }
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -50,10 +47,10 @@ public abstract class GenericSingleton<T> : MonoBehaviour where T : MonoBehaviou
         }
     }
 
-    protected virtual void OnApplicationQuit()
-    {
-        isApplicationQuit = true;
-    }
+    //protected virtual void OnApplicationQuit()
+    //{
+    //    isApplicationQuit = true;
+    //}
 
 
 }

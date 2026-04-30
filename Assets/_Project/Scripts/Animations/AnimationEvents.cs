@@ -62,7 +62,7 @@ public class AnimationEvents : MonoBehaviour
 
         if (!_entc.IsAttacking)
         {
-            Debug.LogWarning("Bloccato EnableHitbox: Ent non è in attacco reale");
+           // Debug.LogWarning("Bloccato EnableHitbox: Ent non è in attacco reale");
             return;
         }
 

@@ -1,16 +1,28 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
 {
     public AudioManager AudioManager;
+    public IOManager IOManager;
+    public ScreenFader Screenfader;
 
     [SerializeField] private string _LevelSceneAssetName;
     public float _splashDuration = 1f;
 
     private void Awake()
     {
-        AudioManager = Resources.Load<AudioManager>("AudioManager");
-        Instantiate(AudioManager);
+        if (AudioManager.Instance == null)
+        {
+            AudioManager = Resources.Load<AudioManager>("AudioManager");
+            Instantiate(AudioManager);
+        }
+
+        if (IOManager.Instance == null)
+        {
+            IOManager = Resources.Load<IOManager>("IOManager");
+            Instantiate(IOManager);
+        }
 
     }
 

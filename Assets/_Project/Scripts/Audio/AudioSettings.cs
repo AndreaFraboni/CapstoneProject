@@ -72,7 +72,7 @@ public class AudioSettings : MonoBehaviour
         bool result = IOManager.Instance.SaveAudioSettings(masterVolValue, musicVolValue, sfxVolValue);
         if (result)
         {
-            Debug.Log("AUDIO SETTINGS SAVED !!!");
+            //Debug.Log("AUDIO SETTINGS SAVED !!!");
         }
         else
         {

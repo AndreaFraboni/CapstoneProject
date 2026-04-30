@@ -20,6 +20,12 @@ public class AudioManager : GenericSingleton<AudioManager>
 
     public void SetVolume(float value, string group)
     {
+        if (_mixer == null)
+        {
+            Debug.LogError("AudioMixer non assegnato nell'AudioManager!");
+            return;
+        }
+
         if (value > 0.01f)
         {
             float volume = Mathf.Log10(value) * 20;
@@ -88,15 +94,29 @@ public class AudioManager : GenericSingleton<AudioManager>
 
     public void PlayFootsteps(string name)
     {
+        if (sfxFootStepsSource == null)
+        {
+            Debug.LogError("Footsteps Source non assegnato!");
+            return;
+        }
+
         foreach (Sound sound in sfxSounds)
         {
             if (sound.name == name)
             {
-                sfxFootStepsSource.clip = sound.clip;
+                if (sound.clip == null)
+                {
+                    Debug.LogError($"Clip nulla per footsteps: {name}");
+                    return;
+                }
+
+                if (sfxFootStepsSource.clip != sound.clip) sfxFootStepsSource.clip = sound.clip;
                 if (!sfxFootStepsSource.isPlaying) sfxFootStepsSource.Play();
                 return;
             }
         }
+
+        Debug.LogError($"Footsteps sound Not Found: {name}");
     }
 
     public void PlaySFXAtPoint(string name, Vector3 position)
@@ -129,7 +149,8 @@ public class AudioManager : GenericSingleton<AudioManager>
     // Stop All Audio Source !!!!!
     public void StopAllAudioSource()
     {
-        if (musicSource.isPlaying) musicSource.Stop();
-        if (sfxSource.isPlaying) sfxSource.Stop();
+        if (musicSource != null && musicSource.isPlaying) musicSource.Stop();
+        if (sfxSource != null && sfxSource.isPlaying) sfxSource.Stop();
+        if (sfxFootStepsSource != null && sfxFootStepsSource.isPlaying) sfxFootStepsSource.Stop();
     }
 }
