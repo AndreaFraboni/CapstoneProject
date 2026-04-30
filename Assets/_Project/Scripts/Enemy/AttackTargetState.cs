@@ -28,6 +28,8 @@ public class AttackTargetState : BaseFSMState
     {
         if (_controller == null || !_controller.isAlive) return;
 
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
+        
         _controller.ValidateCurrentTarget();
 
         Transform target = _controller.CurrentTarget;

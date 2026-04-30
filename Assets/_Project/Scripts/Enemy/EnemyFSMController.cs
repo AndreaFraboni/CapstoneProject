@@ -13,9 +13,9 @@ public class EnemyFSMController : MonoBehaviour, ILiveCheckable
 
     [SerializeField] private int _physicalDamage = 50;
 
-    [SerializeField] private GameObject _coinPrefab;
-    [SerializeField] private GameObject _blueGemPrefab;
-    [SerializeField] private GameObject _heartPrefab;
+    //[SerializeField] private GameObject _coinPrefab;
+    //[SerializeField] private GameObject _blueGemPrefab;
+    //[SerializeField] private GameObject _heartPrefab;
 
     [SerializeField] private int _numberOfCoinsBonus = 5;
     [SerializeField] private int _numberOfBlueGemBonus = 4;
@@ -197,46 +197,7 @@ public class EnemyFSMController : MonoBehaviour, ILiveCheckable
     private void SpawnBonus()
     {
         AudioManager.Instance.PlaySFXAtPoint("BonusGame", this.transform.position);
-
-        if (_numberOfCoinsBonus > 0)
-        {
-            for (int i = 0; i < _numberOfCoinsBonus; i++)
-            {
-                GameObject clone = Instantiate(_coinPrefab,
-                                               this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-                                               _coinPrefab.transform.rotation);
-
-                float angleStep = 360f / (float)_numberOfCoinsBonus;
-                float angle = angleStep * i;
-                clone.transform.RotateAround(transform.position, Vector3.up, angle);
-            }
-        }
-
-        if (_numberOfBlueGemBonus > 0)
-        {
-            for (int i = 0; i < _numberOfBlueGemBonus; i++)
-            {
-                GameObject clone = Instantiate(_blueGemPrefab,
-                                               this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-                                               _blueGemPrefab.transform.rotation);
-                float angleStep = 360f / (float)_numberOfBlueGemBonus;
-                float angle = angleStep * i;
-                clone.transform.RotateAround(transform.position, Vector3.up, angle);
-            }
-        }
-
-        if (_numberOfHearts > 0)
-        {
-            for (int i = 0; i < _numberOfHearts; i++)
-            {
-                GameObject clone = Instantiate(_heartPrefab,
-                                               this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-                                               _heartPrefab.transform.rotation);
-                float angleStep = 360f / (float)_numberOfHearts;
-                float angle = angleStep * i;
-                clone.transform.RotateAround(transform.position, Vector3.up, angle);
-            }
-        }
+        BonusDropManager.Instance.TrySpawnBonus(this.transform.position, _numberOfCoinsBonus, _numberOfBlueGemBonus, _numberOfHearts);
     }
 
     public GameObject CheckNewTarget()
@@ -325,6 +286,8 @@ public class EnemyFSMController : MonoBehaviour, ILiveCheckable
     public void StartPlayAttackAnimation()
     {
         if (anim == null || IsAttacking || _deathStarted) return;
+
+        if (GameManager.Instance.CurrentState != GameState.Playing) return;
 
         if (CurrentTarget.gameObject.TryGetComponent<ILiveCheckable>(out var LiveCheckable))
         {
