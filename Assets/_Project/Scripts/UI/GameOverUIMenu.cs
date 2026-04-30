@@ -8,6 +8,8 @@ public class GameOverUIMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        IOManager.Instance.SetPlayerName("LocalPlayer");
+
         if (WaveManager.Instance != null)
         {
             WaveManager.Instance.OnWaveChanged += UpdateWaveText;
@@ -18,6 +20,11 @@ public class GameOverUIMenu : MonoBehaviour
         {
             TimeManager.Instance.OnTimeChanged += UpdateTimerText;
             UpdateTimerText(TimeManager.Instance.CurrentTimeElapsed);
+
+            if (IOManager.Instance != null)
+            {
+                IOManager.Instance.SetPlayerTime((int)TimeManager.Instance.CurrentTimeElapsed);
+            }
         }
     }
 

@@ -18,7 +18,6 @@ public class LifeSacredTreeUIController : MonoBehaviour
         else
         {
             Debug.LogError("LifeUIController: LifeController non trovato!");
-
         }
     }
 

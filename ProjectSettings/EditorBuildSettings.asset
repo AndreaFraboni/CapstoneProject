@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Project/Scenes/SplahScreen.unity
+    guid: ab0c1dab0e7639e48adbb68c57dc185e
+  - enabled: 1
     path: Assets/_Project/Scenes/MainMenu.unity
     guid: 65dc39dabf55706499c1dafc894ea873
   - enabled: 1

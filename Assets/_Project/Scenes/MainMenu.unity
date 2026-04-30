@@ -6453,6 +6453,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AudioManager: {fileID: 0}
+  _LevelSceneAssetName: Level
+  _splashDuration: 1
 --- !u!114 &7845842422044724252
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,13 +5,15 @@ public class GameUIManager : MonoBehaviour
 {
     public static GameUIManager Instance { get; private set; }
 
-    public AudioManager AudioManager;
+    [SerializeField] private string _mainMenuSceneName;
 
     // UI referements
     public GameObject pauseMenu;
     public GameObject gameOverBanner;
     public GameObject gameOverMenu;
     public GameObject winnerMenu;
+
+    public AudioManager AudioManager;
 
     private void Awake()
     {
@@ -61,7 +63,15 @@ public class GameUIManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         Cursor.visible = true;
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+        if (_mainMenuSceneName != null)
+        {
+            ScreenManager.Instance.LoadNextScene(_mainMenuSceneName);
+        }
+        else
+        {
+            Debug.LogError("Next Scene Asset is not assigned !!!!!");
+        }
     }
 
     public void ShowGameOver()

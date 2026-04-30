@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public event Action OnTowersNotBuildable;
     public event Action OnTowersBuildable;
 
+    public AudioManager AudioManager;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -34,6 +36,9 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+
+        AudioManager = Resources.Load<AudioManager>("AudioManager");
+        Instantiate(AudioManager);
 
         currentCoins = startingCoins;
         currentBlueGems = startingBlueGems;
@@ -174,6 +179,12 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.Instance.StopAllAudioSource();
             if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemePauseMenu");
+        }
+
+        if (ScreenFader.Instance != null)
+        {
+            ScreenFader.Instance._canvasGroup.blocksRaycasts = false; // attiva click su quello che c'è sotto il fader
+            ScreenFader.Instance._canvasGroup.interactable = false;   // attiva input
         }
 
         GameUIManager.Instance.ShowPause();

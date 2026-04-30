@@ -12,7 +12,7 @@ public class ScreenFader : MonoBehaviour
         get { return _instance; }
     }
 
-    [SerializeField] private CanvasGroup _canvasGroup;
+    public CanvasGroup _canvasGroup;
     [SerializeField] private float _fadeDuration = 1f;
 
     private Action _onFadeComplete;
@@ -27,6 +27,8 @@ public class ScreenFader : MonoBehaviour
         _instance = this;
 
         DontDestroyOnLoad(gameObject);
+        _canvasGroup.blocksRaycasts = false; // attiva click su quello che c'è sotto
+        _canvasGroup.interactable = false;   // attiva input
     }
 
     public void StartFadeToOpaque(Action onFadeComplete = null)

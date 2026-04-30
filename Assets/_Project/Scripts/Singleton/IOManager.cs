@@ -31,6 +31,8 @@ public class Highscores
 
 public class IOManager : GenericSingleton<IOManager>
 {
+    private const string DEFAULT_PLAYER_NAME = "localplayer";
+
     public PlayerData mPlayerData = new PlayerData();
     public AudioSettingData mAudioSettings = new AudioSettingData();
 
@@ -153,6 +155,7 @@ public class IOManager : GenericSingleton<IOManager>
                 return false;
             }
             mPlayerData = JsonUtility.FromJson<PlayerData>(jsonloadingtext);
+
             if (mPlayerData == null)
             {
                 Debug.LogWarning("problema con il file json in lettura : non è valido !!!");
@@ -161,9 +164,10 @@ public class IOManager : GenericSingleton<IOManager>
             else
             {
                 Debug.LogWarning("creo dei dati di default !!!");
-                playerName = "Player";
+                playerName = DEFAULT_PLAYER_NAME;
                 playerScore = 0;
             }
+
         }
         catch (System.Exception e)
         {

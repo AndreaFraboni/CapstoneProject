@@ -1,14 +1,17 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
     public AudioManager AudioManager;
 
+    [SerializeField] private string _LevelSceneAssetName;
+    public float _splashDuration = 1f;
+
     private void Awake()
     {
         AudioManager = Resources.Load<AudioManager>("AudioManager");
         Instantiate(AudioManager);
+
     }
 
     public void SetMasterVolume(float value)
@@ -21,6 +24,10 @@ public class MainMenuManager : MonoBehaviour
         AudioManager.Instance.SetVolume(value, "Music");
     }
 
+    public void SetSFXVolume(float value)
+    {
+        AudioManager.Instance.SetVolume(value, "SFX");
+    }
 
     private void Start()
     {
@@ -59,7 +66,15 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (_LevelSceneAssetName != null)
+        {
+            ScreenManager.Instance.LoadNextScene(_LevelSceneAssetName);
+        }
+        else
+        {
+            Debug.LogError("Next Scene Asset is not assigned !!!!!");
+        }
     }
 
     public void QuitGame()

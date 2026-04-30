@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class SplashManager : MonoBehaviour
+public class SplashScreenManager : MonoBehaviour
 {
-    [SerializeField] private float _splashDuration = 5f;
-    [SerializeField] private Object _sceneAsset;
-
     public AudioManager AudioManager;
+
+    [SerializeField] private string _nextSceneAssetName;
+    public float _splashDuration = 5f;
 
     private void Awake()
     {
@@ -20,7 +20,14 @@ public class SplashManager : MonoBehaviour
 
         yield return new WaitForSeconds(_splashDuration);
 
-        string nextScene = _sceneAsset.name;
-        ScreenFader.Instance.FadeToBlackAndLoadScene(nextScene);
+        if (_nextSceneAssetName != null)
+        {
+            ScreenManager.Instance.LoadNextScene(_nextSceneAssetName);
+        }
+        else
+        {
+            Debug.LogError("Next Scene Asset is not assigned !!!!!");
+        }
     }
+
 }

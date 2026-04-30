@@ -13,7 +13,6 @@ public class TimeManager : MonoBehaviour
 
     public int CurrentTimeElapsed => (int)_currentTime;
 
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
