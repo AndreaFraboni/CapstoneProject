@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currenthp: 0
-  _maxHP: 2000
+  _maxHP: 1500
   _fullHPOnStart: 1
 --- !u!114 &6382769327385557927
 MonoBehaviour:
@@ -1548,17 +1548,9 @@ MonoBehaviour:
   _detectionRadius: 10
   _maxNumOfTargetDetectable: 10
   _physicalDamage: 100
-  _coinPrefab: {fileID: 5054829381564010568, guid: db72c1e6eef04734f92dc4fc1a7872e1,
-    type: 3}
-  _blueGemPrefab: {fileID: 7563405948888103871, guid: ad7e267414753a04089c33c66df6283e,
-    type: 3}
-  _heartPrefab: {fileID: 2779229778718983374, guid: fb4ac60a45e970544b3aa7d7e2194ac9,
-    type: 3}
   _numberOfCoinsBonus: 5
   _numberOfBlueGemBonus: 5
   _numberOfHearts: 3
-  _bonusDistanceFromSpawnPoint: 1
-  _bonusHeightOnTerrain: 0.25
   enemyHandHitbox: {fileID: 585856555430194645}
   agent: {fileID: 0}
   anim: {fileID: 0}

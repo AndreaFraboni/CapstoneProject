@@ -21,9 +21,6 @@ public class EnemyFSMController : MonoBehaviour, ILiveCheckable
     [SerializeField] private int _numberOfBlueGemBonus = 4;
     [SerializeField] private int _numberOfHearts = 1;
 
-    [SerializeField] private float _bonusDistanceFromSpawnPoint = 1f;
-    [SerializeField] private float _bonusHeightOnTerrain = 0.25f;
-
     public HandHitBox enemyHandHitbox;
 
     private BaseFSMState _currentState;
@@ -197,7 +194,9 @@ public class EnemyFSMController : MonoBehaviour, ILiveCheckable
     private void SpawnBonus()
     {
         AudioManager.Instance.PlaySFXAtPoint("BonusGame", this.transform.position);
+
         BonusDropManager.Instance.TrySpawnBonus(this.transform.position, _numberOfCoinsBonus, _numberOfBlueGemBonus, _numberOfHearts);
+
     }
 
     public GameObject CheckNewTarget()

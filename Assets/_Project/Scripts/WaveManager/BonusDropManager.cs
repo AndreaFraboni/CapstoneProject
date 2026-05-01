@@ -10,9 +10,12 @@ public class BonusDropManager : MonoBehaviour
     [SerializeField] private GameObject _blueGemPrefab;
     [SerializeField] private GameObject _heartPrefab;
 
-    [SerializeField] private int _maxBonusPerWave = 5;
+    [SerializeField] private float _bonusDistanceFromSpawnPoint = 1f;
+    [SerializeField] private float _bonusHeightOnTerrain = 0.25f;
 
-    private int _currentWaveNum = 0;
+    [SerializeField] private int _maxBonusPerWave = 50;
+
+    [SerializeField] private int _currentWaveNum = 0;
 
     private int _bonusSpawned = 0;
 
@@ -44,74 +47,62 @@ public class BonusDropManager : MonoBehaviour
         _bonusSpawned = 0;
     }
 
-    public void TrySpawnBonus(Vector3 spawnPosition, int coins, int blueGems, int hearts)
+    public void TrySpawnBonus(Vector3 spawnPosition, int numcoins, int numblueGems, int numhearts)
     {
-        for (int i = 0; i < coins; i++)
+        if (_bonusSpawned >= _maxBonusPerWave) return; // già oltre il limite di bonus spawnabili
+
+        int coinsToSpawn = numcoins;
+        int gemsToSpawn = numblueGems;
+        int heartsToSpawn = numhearts;
+
+        if (_currentWaveNum <= 2)  
         {
-            SpawnCoin(spawnPosition);
+            gemsToSpawn = 1;
+            heartsToSpawn = 0;
+        }
+        else if (_currentWaveNum >2 && _currentWaveNum <= 5)
+        {
+            gemsToSpawn = 2;
+            heartsToSpawn = 1;
+            coinsToSpawn += 2;
+        }
+        else if (_currentWaveNum > 5 && _currentWaveNum < 10)
+        {
+            gemsToSpawn = 2;
+            heartsToSpawn = 1;
+            coinsToSpawn += 5;
+        }
+        else if (_currentWaveNum >=10) 
+        {
+            coinsToSpawn += 5;
+            gemsToSpawn += 1;
+            heartsToSpawn = 1;
         }
 
-        for (int i = 0; i < blueGems; i++)
+        SpawnBonus(spawnPosition, _heartPrefab, heartsToSpawn);
+        SpawnBonus(spawnPosition, _blueGemPrefab, gemsToSpawn);
+        SpawnBonus(spawnPosition, _coinPrefab, coinsToSpawn);
+
+    }
+
+    private void SpawnBonus(Vector3 spawnpoint, GameObject prefab, int amount)
+    {
+        if (prefab == null) return;
+        if (amount <= 0) return;
+
+        for (int i = 0; i < amount; i++)
         {
-            SpawnBlueGem(spawnPosition);
+            if (_bonusSpawned >= _maxBonusPerWave) return;
+
+            GameObject clone = Instantiate(prefab,
+                                           spawnpoint + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
+                                           prefab.transform.rotation);
+
+            float angleStep = 360f / (float)amount;
+            float angle = angleStep * i;
+            clone.transform.RotateAround(spawnpoint, Vector3.up, angle);
+
+            _bonusSpawned++;
         }
-
-        for (int i = 0; i < hearts; i++)
-        {
-            SpawnHeart(spawnPosition);
-        }
     }
-
-    private void SpawnCoin(Vector3 spawnposition)
-    {
-
-    }
-    private void SpawnBlueGem(Vector3 spawnposition)
-    {
-
-    }
-    private void SpawnHeart(Vector3 spawnposition)
-    {
-
-    }
-
-    //if (_numberOfCoinsBonus > 0)
-    //{
-    //    for (int i = 0; i < _numberOfCoinsBonus; i++)
-    //    {
-    //        GameObject clone = Instantiate(_coinPrefab,
-    //                                       this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-    //                                       _coinPrefab.transform.rotation);
-
-    //        float angleStep = 360f / (float)_numberOfCoinsBonus;
-    //        float angle = angleStep * i;
-    //        clone.transform.RotateAround(transform.position, Vector3.up, angle);
-    //    }
-    //}
-
-    //if (_numberOfBlueGemBonus > 0)
-    //{
-    //    for (int i = 0; i < _numberOfBlueGemBonus; i++)
-    //    {
-    //        GameObject clone = Instantiate(_blueGemPrefab,
-    //                                       this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-    //                                       _blueGemPrefab.transform.rotation);
-    //        float angleStep = 360f / (float)_numberOfBlueGemBonus;
-    //        float angle = angleStep * i;
-    //        clone.transform.RotateAround(transform.position, Vector3.up, angle);
-    //    }
-    //}
-    //if (_numberOfHearts > 0)
-    //{
-    //    for (int i = 0; i < _numberOfHearts; i++)
-    //    {
-    //        GameObject clone = Instantiate(_heartPrefab,
-    //                                       this.transform.position + Vector3.forward * _bonusDistanceFromSpawnPoint + Vector3.up * _bonusHeightOnTerrain,
-    //                                       _heartPrefab.transform.rotation);
-    //        float angleStep = 360f / (float)_numberOfHearts;
-    //        float angle = angleStep * i;
-    //        clone.transform.RotateAround(transform.position, Vector3.up, angle);
-    //    }
-
-
 }

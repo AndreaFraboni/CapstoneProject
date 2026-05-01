@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private Transform _spawnMiniBossPoint;
     [SerializeField] private Transform _targetForEnemy;
 
-    private float _spawnrate = 20;
+    private float _spawnrate = 50;
     private Coroutine Spawner;
     private Camera _cam;
 
@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        Invoke("CallWave", 10); // wait some times before to start enemy wave !!!
+        Invoke("CallWave", 20); // wait some times before to start enemy wave !!!
     }
 
     private void CallWave()

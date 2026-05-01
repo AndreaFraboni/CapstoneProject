@@ -651,6 +651,7 @@ MonoBehaviour:
   _fireRange: 0
   _shootForce: 0
   _lifeController: {fileID: 0}
+  isAlive: 1
 --- !u!114 &5097089329340656091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currenthp: 0
-  _maxHP: 250
+  _maxHP: 400
   _fullHPOnStart: 1
 --- !u!1 &9145649079089783559
 GameObject:

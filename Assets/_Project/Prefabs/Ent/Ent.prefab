@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currenthp: 0
-  _maxHP: 1000
+  _maxHP: 1500
   _fullHPOnStart: 1
 --- !u!114 &169029501999230565
 MonoBehaviour:

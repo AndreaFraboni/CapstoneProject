@@ -17,5 +17,5 @@ MonoBehaviour:
     type: 3}
   ghostPrefab: {fileID: 6766996149734197718, guid: 4d456f024b616d840a728c06e3cb6532,
     type: 3}
-  goldPrice: 1000
-  blueGemsPrice: 1000
+  goldPrice: 500
+  blueGemsPrice: 500
