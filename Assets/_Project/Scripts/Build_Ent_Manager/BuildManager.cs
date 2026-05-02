@@ -111,6 +111,11 @@ public class BuildManager : MonoBehaviour
 
     public void StartPlacement(SO_TowerData towerData)
     {
+        if (EntPlacer.Instance != null && EntPlacer.Instance.IsEntPlacingMode())
+        {
+            EntPlacer.Instance.CancelPlacement();
+        }
+
         if (_currentGhostTower != null)
         {
             Destroy(_currentGhostTower);
@@ -221,7 +226,7 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    private void CancelPlacement()
+    public void CancelPlacement()
     {
         _selectedTowerData = null;
 

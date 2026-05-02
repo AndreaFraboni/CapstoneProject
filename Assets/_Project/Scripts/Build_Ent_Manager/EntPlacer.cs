@@ -102,6 +102,11 @@ public class EntPlacer : MonoBehaviour
 
     public void StartPlacement(SO_EntData EntData)
     {
+        if (BuildManager.Instance != null && BuildManager.Instance.IsBuildMode())
+        {
+            BuildManager.Instance.CancelPlacement();
+        }
+
         if (_currentGhostEntPrefab != null)
         {
             Destroy(_currentGhostEntPrefab);
@@ -124,7 +129,7 @@ public class EntPlacer : MonoBehaviour
     {
         if (_selectedEntData == null) return false;
 
-        if (!GameManager.Instance.CanSpendCoins(_selectedEntData.goldPrice) && !GameManager.Instance.CanSpendCoins(_selectedEntData.blueGemsPrice))
+        if (!GameManager.Instance.CanSpendCoins(_selectedEntData.goldPrice) || !GameManager.Instance.CanSpendBlueGems(_selectedEntData.blueGemsPrice))
         {
             Debug.Log("You don't have money & Blue gems needed !!!!");
             return false;
@@ -148,7 +153,7 @@ public class EntPlacer : MonoBehaviour
     {
         if (_selectedEntData == null) return false;
 
-        if (!GameManager.Instance.CanSpendCoins(_selectedEntData.goldPrice) && !GameManager.Instance.CanSpendCoins(_selectedEntData.blueGemsPrice))
+        if (!GameManager.Instance.CanSpendCoins(_selectedEntData.goldPrice) || !GameManager.Instance.CanSpendBlueGems(_selectedEntData.blueGemsPrice))
         {
             Debug.Log("You don't have money & Blue gems needed !!!!");
             return false;
@@ -213,7 +218,7 @@ public class EntPlacer : MonoBehaviour
         }
     }
 
-    private void CancelPlacement()
+    public void CancelPlacement()
     {
         _selectedEntData = null;
 

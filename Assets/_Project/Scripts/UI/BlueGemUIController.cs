@@ -16,7 +16,7 @@ public class BlueGemUIController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (GameManager.Instance != null) GameManager.Instance.OnCoinsChanged -= UpdateBlueGemsText;
+        if (GameManager.Instance != null) GameManager.Instance.OnBlueGemsChanged -= UpdateBlueGemsText;
     }
 
     private void UpdateBlueGemsText(int coins)
