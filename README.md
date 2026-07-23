@@ -1,5 +1,7 @@
 CAPSTONE PROJECT - Progetto finale
 
+https://img.itch.zone/aW1hZ2UvNDUyMDA3Mi8yNjk1MjQzNC5qcGc=/original/k2QBtf.jpg
+
 CLICK BELOW TO WATCH VIDEO TRAILER :
 
 short trailer in english : [(https://www.youtube.com/watch?v=hGSUyoEvsPc)]
