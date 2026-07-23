@@ -6,7 +6,7 @@ CLICK BELOW TO WATCH VIDEO TRAILER :
 
 short trailer in english : [(https://www.youtube.com/watch?v=hGSUyoEvsPc)]
 
-game trailer in italian :[![VIDEO TRAILER](https://fraboniandrea.altervista.org/Capstone/screenshoot.jpg)]([https://fraboniandrea.altervista.org/video/TheLastMelody.mp4](https://youtu.be/mjnajTU4_-8?si=8pI-j1MxN6jVpgcT))
+game trailer in italian :[![VIDEO TRAILER](https://fraboniandrea.altervista.org/Capstone/screenshoot.jpg)](https://youtu.be/mjnajTU4_-8?si=8pI-j1MxN6jVpgcT)
  
 
 🎮 SCARICA IL GIOCO QUI 👇  
