@@ -1,6 +1,6 @@
 CAPSTONE PROJECT - Progetto finale
 
-https://img.itch.zone/aW1hZ2UvNDUyMDA3Mi8yNjk1MjQzNC5qcGc=/original/k2QBtf.jpg
+![Main Menu](TheForestOfTheFaun.jpg)
 
 CLICK BELOW TO WATCH VIDEO TRAILER :
 
